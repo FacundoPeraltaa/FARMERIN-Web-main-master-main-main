@@ -1,0 +1,3934 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+$sidebar-bg-color: #1d1d1d;
+$submenu-bg-color: rgba(255, 255, 255, 0.05);
+$submenu-bg-color-collapsed: rgba(29, 29, 29, 0.95);
+$sidebar-color: #adadad;
+$highlight-color: #d8d8d8;
+$icon-bg-color: rgba(255, 255, 255, 0.05);
+$icon-size: 35px;
+@import '~react-pro-sidebar/dist/scss/styles.scss';
+
+
+#__next {
+  height: 100%;
+}
+
+.app {
+  height: 100%;
+  display: flex;
+  position: relative;
+
+  .btn-toggle {
+    cursor: pointer;
+    width: 4rem;
+    height: auto;
+    color: gray;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    display: none;
+    background-image:url('../public/logoF.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-blend-mode:lighten;
+    background-size:auto 100%;
+  
+  }
+
+
+
+  .sidebar-btn-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    .sidebar-btn {
+      padding: 1px 15px;
+      border-radius: 40px;
+      background: rgba(255, 255, 255, 0.05);
+      color: #adadad;
+      text-decoration: none;
+      margin: 0 auto;
+      height: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      span {
+        margin-left: 5px;
+        font-size: 13px;
+      }
+      &:hover {
+        color: $highlight-color;
+      }
+    }
+  }
+
+  .sidebar-logo-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .sidebar-logo {
+      padding: 5px 5px;
+      border-radius: 40px;
+     
+      color: #adadad;
+      text-decoration: none;
+      margin: 0 auto;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      span {
+        margin-left: 5px;
+        font-size: 25px;
+      }
+      &:hover {
+        color: $highlight-color;
+      }
+    }
+  }
+@media (max-width:768px) {
+  .responsive {
+    display: none;
+  }
+}
+  .collapsed {
+    .sidebar-btn {
+      display: inline-block;
+      border-radius: 50%;
+      width: 35px;
+      height: 35px;
+      line-height: 40px;
+      padding:0;
+  
+    }
+    .sidebar-logo {
+      display: inline-block;
+      border-radius: 50%;
+      width: 55px;
+      height: 55px;
+      line-height: 60px;
+      padding:0;
+    }
+  }
+
+  main {
+   
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    background-color:whitesmoke;
+
+    header {
+      color: white;
+      margin:0rem;
+      align-items: center;
+      display:flex;
+      justify-content:space-between;
+      height: 5rem;
+      width: 100%;
+      position:fixed;
+      top:0;
+      z-index: 1;
+      background-color:#212f49;    //#5b5d5f 
+      border: 0;
+      box-shadow: 0 2px 2px 0 rgba(60,75,100,.14), 0 3px 1px -2px rgba(60,75,100,.12), 0 1px 5px 0 rgba(60,75,100,.2);
+     
+    }
+
+    content{     
+      padding-top: 6rem;
+    }
+
+    footer {
+      margin-top: auto;
+      color: #888;
+      text-align: center;
+      a {
+        text-decoration: none;
+        color: #888;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    
+  }
+
+  .social-bagdes {
+    margin-top: 10px;
+    img {
+      margin: 5px;
+    }
+  }
+
+  .block { 
+    padding: 1rem;
+    font-size: 14px;
+    color: #545454;
+    > span {
+      margin-left: 10px;
+    }
+  }
+
+  .enca-ani{
+    display: flex;
+    margin-right: 300px;
+    padding: 2;
+  }
+  
+  .hdos-ani{
+    display: flex;
+    background-color: #F18700;
+    text-align: center;
+    font-family: "helvetica";
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    line-height: 2;
+    padding-left: 2px;
+    padding-right: 2px;
+    border-radius: 10px;
+
+  }
+  .elem-header{
+    align-items: center;
+    display: flex;
+    padding: 0.5rem ;
+    }
+
+
+
+
+  .elem-porc-reduccion{
+    display: flex;
+    margin-right: 300px;
+    padding: 2;
+  }
+
+  .elem-porc-aumento{
+    display: flex;
+    margin-right: 300px;
+    padding: 2;
+  }
+
+  .elem-aumen-letras{
+    display: flex;
+    background-color: #F18700;
+    text-align: center;
+    font-family: "helvetica";
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    line-height: 2;
+    padding-left: 2px;
+    padding-right: 2px;
+    border-radius: 10px;
+  }
+
+  .elem-reduc-letras{
+    display: flex;
+    background-color: #F18700;
+    text-align: center;
+    font-family: "helvetica";
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    line-height: 2;
+    padding-left: 2px;
+    padding-right: 2px;
+    border-radius: 10px;
+
+  }
+
+
+
+// CUANDO LA PESTAÑA SEA MENOR A 768 PX CAMBIA DE LA SIGUIENTE MANERA
+@media (max-width: 767.98px) {
+    overflow-x: hidden;
+    header {
+      h1 {
+        font-size: 24px;
+      }
+    }
+  }
+
+
+  @media (max-width: 768px) {
+    .btn-toggle {
+      margin: 1rem;
+      display: flex;
+    }
+    .block{
+      display: none;
+    }
+ 
+  }
+}
+.hambur {
+  display: flex;
+  margin-right: 2%;
+}
+@media (min-width: 768px) {
+  .hambur {
+    display: none
+  }}
+
+.badge {
+  padding: 3px 6px;
+  font-size: 9px;
+  letter-spacing: 1px;
+  border-radius: 15px;
+  &.red {
+    color: #ffffff;
+    background: #d63030;
+  }
+  &.gray {
+    color: #ffffff;
+    background: #777777;
+  }
+  &.yellow {
+    color: #000000;
+    background: #ffd331;
+  }
+ 
+}
+
+// CUANDO LA PESTAÑA SEA MENOR A 1434 PX CAMBIA DE LA SIGUIENTE MANERA
+@media (max-width: 1434px) {
+  .elem-porc-aumento{
+    width: 45em;
+    display: flex;
+    margin: 4%;
+    
+  }
+
+  .elem-aumen-letras{
+    width: 22em;
+    display: flex;
+    font-size: 25px;
+    text-align: center;
+  }
+
+  .elem-porc-reduccion {
+    width: 27em;
+    display: flex;
+    margin: 28%;
+  }
+
+  .elem-reduc-letras {
+    width: 50em;
+    display: flex;
+    font-size: 16px;
+    text-align: center;
+  }
+
+
+}
+
+// CUANDO LA PESTAÑA SEA MENOR A 1234 PX CAMBIA DE LA SIGUIENTE MANERA
+@media (max-width: 1234px) {
+  .elem-porc-aumento{
+    width: 25em;
+    display: flex;
+    margin: 3%;
+    
+  }
+
+  .elem-aumen-letras{
+    width: 30em;
+    display: flex;
+    font-size: 15px;
+    text-align: center;
+  }
+
+  .elem-porc-reduccion {
+    width: 24em;
+    display: flex;
+    margin: 30%;
+  }
+
+  .elem-reduc-letras {
+    width: 28em;
+    display: flex;
+    font-size: 14px;
+    text-align: center;
+  }
+
+
+}
+
+// CUANDO LA PESTAÑA SEA MENOR A 990 PX CAMBIA DE LA SIGUIENTE MANERA
+@media (max-width: 990px) {
+  .elem-porc-aumento{
+    width: 14em;
+    display: flex;
+    margin: 2%;
+    
+  }
+
+  .elem-aumen-letras{
+    width: 40em;
+    display: flex;
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .elem-porc-reduccion {
+    width: 27em;
+    display: flex;
+    margin: 28%;
+  }
+
+  .elem-reduc-letras {
+    width: 40em;
+    display: flex;
+    font-size: 16px;
+    text-align: center;
+  }
+
+
+
+}
+
+// CUANDO LA PESTAÑA SEA MENOR A 900 PX CAMBIA DE LA SIGUIENTE MANERA
+@media (max-width: 900px) {
+  .elem-porc-aumento{
+    width: 13em;
+    display: flex;
+    margin: 5%;
+    
+  }
+
+  .elem-aumen-letras{
+    width: 19em;
+    display: flex;
+    font-size: 11px;
+    text-align: center;
+  }
+
+  .elem-porc-reduccion {
+    width: 19em;
+    display: flex;
+    margin: 9%;
+  }
+
+  .elem-reduc-letras {
+    width: 19em;
+    display: flex;
+    font-size: 11px;
+    text-align: center;
+  }
+
+
+}
+
+// CUANDO LA PESTAÑA SEA MENOR A 888 PX CAMBIA DE LA SIGUIENTE MANERA
+@media (max-width: 888px) {
+  .elem-porc-aumento{
+    width: 13em;
+    display: flex;
+    margin: 5%;
+    
+  }
+
+  .elem-aumen-letras{
+    width: 19em;
+    display: flex;
+    font-size: 11px;
+    text-align: center;
+  }
+
+  .elem-porc-reduccion {
+    width: 19em;
+    display: flex;
+    margin: 9%;
+  }
+
+  .elem-reduc-letras {
+    width: 19em;
+    display: flex;
+    font-size: 11px;
+    text-align: center;
+  }
+
+  
+
+}
+
+
+
+// CUANDO LA PESTAÑA SEA MENOR A 700 PX CAMBIA DE LA SIGUIENTE MANERA
+@media (max-width: 700px) {
+  .elem-porc-aumento{
+    width: 27em;
+    display: flex;
+    margin: 10%;
+  }
+
+  .elem-aumen-letras{
+    width: 45em;
+    display: flex;
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .elem-porc-reduccion {
+    width: 27em;
+    display: flex;
+    margin: 10%;
+  }
+
+  .elem-reduc-letras {
+    width: 45em;
+    display: flex;
+    font-size: 16px;
+    text-align: center;
+  }
+
+
+
+}
+
+// CUANDO LA PESTAÑA SEA MENOR A 500 PX CAMBIA DE LA SIGUIENTE MANERA
+@media (max-width: 500px) {
+  .elem-porc-aumento{
+    align-items: center;
+    width: 70em;
+    height: 4em;
+    display: flex;
+    margin: 3%;
+  }
+
+  .elem-aumen-letras{
+    width: 17em;
+    height: 4em;
+    display: flex;
+    font-size: 12px;
+    text-align: center;
+  }
+
+  .elem-porc-reduccion {
+    align-items: center;
+    width: 50em;
+    height: 10em;
+    display: flex;
+    margin: 3%;
+  }
+
+  .elem-reduc-letras {
+    width: 17em;
+    height: 4em;
+    display: flex;
+    font-size: 12px;
+    text-align: center;
+  }
+
+
+
+}
+//LOADER DE  MONITOR
+/* From Uiverse.io by Chriskoziol */ 
+.spinnerContainer-Monitor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 150px;
+}
+
+.spinner-Monitor {
+  width: 56px;
+  height: 56px;
+  display: grid;
+  border: 4px solid #0000;
+  border-radius: 50%;
+  border-right-color: #299fff;
+  animation: tri-spinner 1s infinite linear;
+}
+
+.spinner-Monitor::before,
+.spinner-Monitor::after {
+  content: "";
+  grid-area: 1/1;
+  margin: 2px;
+  border: inherit;
+  border-radius: 50%;
+  animation: tri-spinner 2s infinite;
+}
+
+.spinner-Monitor::after {
+  margin: 8px;
+  animation-duration: 3s;
+}
+
+@keyframes tri-spinner {
+  100% {
+    transform: rotate(1turn);
+  }
+}
+
+.loader-Monitor {
+  color: #4a4a4a;
+  font-family: "Poppins",sans-serif;
+  font-weight: 500;
+  font-size: 25px;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 40px;
+  padding: 10px 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-radius: 8px;
+}
+
+.words-Monitor {
+  overflow: hidden;
+}
+
+.word-Monitor {
+  display: block;
+  height: 100%;
+  padding-left: 6px;
+  color: #299fff;
+  animation: cycle-words 5s infinite;
+}
+
+@keyframes cycle-words {
+  10% {
+    -webkit-transform: translateY(-105%);
+    transform: translateY(-105%);
+  }
+
+  25% {
+    -webkit-transform: translateY(-100%);
+    transform: translateY(-100%);
+  }
+
+  35% {
+    -webkit-transform: translateY(-205%);
+    transform: translateY(-205%);
+  }
+
+  50% {
+    -webkit-transform: translateY(-200%);
+    transform: translateY(-200%);
+  }
+
+  60% {
+    -webkit-transform: translateY(-305%);
+    transform: translateY(-305%);
+  }
+
+  75% {
+    -webkit-transform: translateY(-300%);
+    transform: translateY(-300%);
+  }
+
+  85% {
+    -webkit-transform: translateY(-405%);
+    transform: translateY(-405%);
+  }
+
+  100% {
+    -webkit-transform: translateY(-400%);
+    transform: translateY(-400%);
+  }
+}
+
+
+.TextoFoto 
+{
+  background-color: #1b8aa5; /* Color de fondo amarillo */
+  color: #c4cd07; /* Color de texto oscuro */
+  padding: 5px 9px; /* Espacio dentro del elemento */
+  border: 1px solid #e0a800; /* Borde del elemento */
+  border-radius: 5px; /* Bordes redondeados */
+  font-size: 25PX; /* Tamaña de las letras */
+}
+.chartContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chartContainer img {
+  height: 150px;
+  width: 150px;
+}
+
+/// LOADER DE GRAFICO
+
+.spinnerContainer-Grafico {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 150px;
+}
+
+.spinner-Grafico {
+  width: 56px;
+  height: 56px;
+  display: grid;
+  border: 4px solid #0000;
+  border-radius: 50%;
+  border-right-color: #299fff;
+  animation: tri-spinner 1s infinite linear;
+}
+
+.spinner-Grafico::before,
+.spinner-Grafico::after {
+  content: "";
+  grid-area: 1/1;
+  margin: 2px;
+  border: inherit;
+  border-radius: 50%;
+  animation: tri-spinner 2s infinite;
+}
+
+.spinner-Grafico::after {
+  margin: 8px;
+  animation-duration: 3s;
+}
+
+@keyframes tri-spinner {
+  100% {
+    transform: rotate(1turn);
+  }
+}
+
+.loader-Grafico {
+  color: #4a4a4a;
+  font-family: "Poppins",sans-serif;
+  font-weight: 500;
+  font-size: 25px;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 40px;
+  padding: 10px 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-radius: 8px;
+}
+
+.words-Grafico {
+  overflow: hidden;
+}
+
+.word-Grafico {
+  display: block;
+  height: 100%;
+  padding-left: 6px;
+  color: #299fff;
+  animation: cycle-words 5s infinite;
+}
+
+@keyframes cycle-words {
+  10% {
+    -webkit-transform: translateY(-105%);
+    transform: translateY(-105%);
+  }
+
+  25% {
+    -webkit-transform: translateY(-100%);
+    transform: translateY(-100%);
+  }
+
+  35% {
+    -webkit-transform: translateY(-205%);
+    transform: translateY(-205%);
+  }
+
+  50% {
+    -webkit-transform: translateY(-200%);
+    transform: translateY(-200%);
+  }
+
+  60% {
+    -webkit-transform: translateY(-305%);
+    transform: translateY(-305%);
+  }
+
+  75% {
+    -webkit-transform: translateY(-300%);
+    transform: translateY(-300%);
+  }
+
+  85% {
+    -webkit-transform: translateY(-405%);
+    transform: translateY(-405%);
+  }
+
+  100% {
+    -webkit-transform: translateY(-400%);
+    transform: translateY(-400%);
+  }
+}
+
+
+
+
+
+
+
+
+.listContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.AnimalesFormulario {
+  max-height: 600px;
+  overflow-y: auto;
+  width: 60px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
+  margin-left: 20px;
+}
+.AnimalesFormulario h2 {
+  font-size: 23px;
+}
+
+.tablaDeAnimales {
+  width: 100px;
+  border-collapse: collapse;
+}
+
+.tablaDeAnimales th, .tablaDeAnimales td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.tablaDeAnimales th {
+  background-color: #f2f2f2;
+}
+
+.mensajeVacio {
+  font-size: 15px;
+  color: #666;
+  margin-top: 10px;
+  text-align: center;
+  font-weight: bold;
+  margin-left: 20px;
+  //margin-top: 350px;
+}
+
+// ESTILOS DE AYUDA 
+
+.llamadas-link {
+  display: inline-block;
+}
+
+.llamadas-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  background-color: #1a89a4;
+  justify-content: center;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  color: #fefeff;
+  text-decoration: none;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+  margin: auto;
+  height: 50px;
+  width: 150px;
+}
+
+.llamadas-btn svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.llamadas-btn:hover {
+  padding: 10px 20px;
+}
+
+.llamadas-btn:hover svg {
+  display: none;
+}
+
+.llamadas-text {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.llamadas-btn:hover .llamadas-text {
+  opacity: 1;
+}
+
+// ... estilos existentes ...
+
+.web-icon {
+  width: 40px; // Tamaño de la imagen aumentado
+  height: 40px; // Tamaño de la imagen aumentado
+  display: inline-block; // Asegura que se comporte como un bloque en línea
+  transition: all 0.3s; // Transición para efectos hover
+}
+
+// Asegúrate de que el botón use flexbox para centrar el contenido
+.web-button { // Clase renombrada
+  display: flex; // Usar flexbox
+  align-items: center; // Centrar verticalmente
+  justify-content: center; // Centrar horizontalmente
+  padding: 10px;
+  background-color: #1a89a4;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  color: #fefeff;
+  text-decoration: none;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+  margin: auto;
+  height: 50px;
+  width: 150px;
+}
+
+// Estilo para el texto
+.llamadas-text {
+  opacity: 0; // Ocultar texto inicialmente
+  transition: opacity 0.3s; // Transición para el texto
+  position: absolute; // Posicionar el texto sobre la imagen
+}
+
+// Mostrar el texto al pasar el mouse
+.web-button:hover .llamadas-text { // Clase renombrada
+  opacity: 1; // Mostrar texto al pasar el mouse
+}
+
+// ... estilos existentes ...
+
+.contact-page {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+  background-color: #f0f0f0;
+}
+contact-section, .social-section {
+  width: 45%;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px #020014;
+}
+
+.contact-section, .map-section {
+  width: 95%;
+  background-color: #ffffff;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px #020014;
+}
+// TITULOS CONTACTO - REDES 
+.titulo-ayuda {
+  font-family: 'Roboto', sans-serif; /* Fuente moderna */
+  font-size: 2.5rem; /* Tamaño del texto */
+  font-weight: 700; /* Grosor del texto */
+  line-height: 1.2; /* Espaciado entre líneas */
+  letter-spacing: -0.5px; /* Espaciado entre letras */
+  margin: 0.5em 0; /* Márgenes superior e inferior */
+  padding: 0.2em 0.5em; /* Relleno adicional para el fondo */
+  color: #1b89a5; /* Color del texto: Gris oscuro */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  border-bottom: 2px solid #1b89a5; /* Línea inferior */
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+  .titulo-ayuda {
+      font-size: 2rem; /* Tamaño del texto para dispositivos medianos */
+  }
+}
+
+@media (max-width: 480px) {
+  .titulo-ayuda {
+      font-size: 1.5rem; /* Tamaño del texto para dispositivos pequeños */
+  }
+}
+/*
+// AVISO DE RACIONES
+.divRaciones {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 20px auto;
+}
+// AVISO GRAFICO 
+.tituloRacionesAviso {
+  margin: 0;
+  color: #721c24;
+  font-family: 'Arial', sans-serif;
+}
+
+.tituloRacionesAviso:first-child {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.tituloRacionesAviso:nth-child(2) {
+  font-size: 18px;
+  font-weight: normal;
+}
+
+.divAnimalesList {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 20px auto;
+  text-align: center;
+}
+// AVISO LISTAS 
+.tituloAnimalesList {
+  margin: 0;
+  color: #721c24;
+  font-family: 'Arial', sans-serif;
+  font-size: 12px;
+}
+*/
+// TITULOS UBICACION 
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+
+.titulo-ayuda-ubi {
+    font-family: 'Roboto', sans-serif; /* Fuente moderna y legible */
+    font-size: 2.5rem; /* Tamaño del texto ajustable */
+    font-weight: 700; /* Grosor del texto */
+    line-height: 1.2; /* Espaciado entre líneas */
+    letter-spacing: -0.5px; /* Espaciado entre letras */
+    margin: 0.5em 0; /* Márgenes superior e inferior */
+    padding: 0; /* Sin relleno adicional */
+}
+
+/* Colores */
+.titulo-ayuda-ubi {
+    color: #1b89a5; /* Color del texto: Gris oscuro */
+    padding: 0.2em 0.5em; /* Relleno para el fondo */
+}
+
+/* Sombra de texto */
+.titulo-ayuda-ubi {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+/* Bordes */
+.titulo-ayuda-ubi {
+    border-bottom: 2px solid #1b89a5; /* Línea en la parte inferior */
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+    .titulo-ayuda-ubi {
+        font-size: 2rem; /* Tamaño del texto para dispositivos medianos */
+    }
+}
+
+@media (max-width: 480px) {
+    .titulo-ayuda-ubi {
+        font-size: 1.5rem; /* Tamaño del texto para dispositivos pequeños */
+    }
+}
+.contact-item {
+  margin-bottom: 15px;
+}
+
+.contact-item a {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  color: #020014; /* Color del texto */
+  font-size: 20px; /* Tamaño del texto */
+  font-weight: 500; /* Peso del texto */
+}
+
+.contact-item a i, .contact-item a svg {
+  margin-right: 15px; /* Espacio entre el icono y el texto */
+  font-size: 28px; /* Tamaño del icono */
+  color: #1a8aa4; /* Color del icono */
+}
+
+.contact-item a:hover {
+  color: #1a8aa4; /* Color del texto al pasar el mouse */
+  text-decoration: underline; /* Subraya al pasar el mouse */
+}
+
+/* Estilos generales para las alertas */
+.alert {
+  margin: 10px 0;
+  padding: 15px;
+  border-radius: 5px;
+  display: grid;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 16px;
+
+  h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .d-flex {
+    display: flex;
+    align-items: center;
+  }
+}
+
+/* Estilo para el botón dentro del alerta */
+.alert .btn {
+  font-size: 14px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Estilo para el cartel de aumento */
+.alert-success {
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+  color: #155724;
+
+  .btn-outline-success {
+    color: #155724;
+    border: 1px solid #155724;
+
+    &:hover {
+      background-color: #155724;
+      color: #141313;
+    }
+  }
+}
+
+/* Estilo para el cartel de reducción */
+.alert-warning {
+  background-color: #fff3cd;
+  border: 1px solid #ffeeba;
+  color: #856404;
+
+  .btn-outline-warning {
+    color: #856404;
+    border: 1px solid #856404;
+
+    &:hover {
+      background-color: #856404;
+      color: #fff;
+    }
+  }
+}
+
+/* Estilo específico para el contenedor del cartel de aumento */
+.elem-porc-aumento {
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+  color: #155724;
+  padding: 15px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  .elem-aumen-letras {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+  }
+}
+
+/* Estilo específico para el contenedor del cartel de reducción */
+.elem-porc-reduccion {
+  background-color: #fff3cd;
+  border: 1px solid #ffeeba;
+  color: #856404;
+  padding: 15px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  .elem-reduc-letras {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+  }
+}
+/*
+// LAYAUT DE NOREGS
+.listaNoRegs {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center; 
+}
+
+.tituloNoRegs {
+  margin-left: 20px; 
+  font-size: 25px;
+  font-family: 'Times New Roman';
+}
+
+.excelNoRegs {
+  margin-right: 15px;
+  padding: 5px 50px;
+  font-size: 16px;
+  background-color: #28a745;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.divNoReg {
+  background-color: #f8d7da; 
+  color: #721c24; 
+  border: 1px solid #f5c6cb; 
+  padding: 20px; 
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  max-width: 600px; 
+  margin: 20px auto; 
+  text-align: center; 
+}
+// AVISO DE NO REGS 
+.divNoReg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+.tituloNodispoError {
+  margin: 0;
+  color: #721c24;
+  font-family: 'Arial', sans-serif;
+}
+
+.tituloNodispoError:first-child {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.tituloNodispoError:nth-child(2) {
+  font-size: 18px;
+  font-weight: normal;
+}
+
+// EXEL RACIONES
+.tamboChart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.chartHeader {
+  display: flex;
+  justify-content: space-between; 
+  width: 100%; 
+  margin-bottom: 10px; 
+}
+
+.tituloNoRegs {
+  margin: 0; 
+}
+
+.excelRaciones {
+  background-color: #28a745; 
+  color: white;
+  margin-left: 150px;
+  border-radius: 10px;
+  padding: 5px 10px;
+  cursor: pointer; 
+}
+
+.excelRaciones:hover {
+  background-color: #208938; 
+}
+
+.modal-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.table th, .table td {
+  vertical-align: middle;
+}
+
+.alert-warning {
+  text-align: center;
+}
+
+button.btn-info {
+  background-color: #17a2b8;
+  border-color: #17a2b8;
+}
+
+button.btn-info:hover {
+  background-color: #138496;
+  border-color: #117a8b;
+}
+*/
+///////////////////////////////// FICHA HISTORIAL ///////////////////////////////////////
+.custom-table {
+  margin-top: 20px;
+}
+
+.custom-table th, .custom-table td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.custom-table thead th {
+  background-color: #0985a1;
+  color: #fff;
+  font-weight: bold;
+}
+
+.custom-table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+//////////////////////////////////////////// BOTONES PARAMETROS ////////////////////////////////////////7
+.dropdown-reducir-button {
+  .btn {
+  background-color: red;
+  border-color: red;
+  font-size: 1.25rem;         // Tamaño de fuente más grande
+  padding: 0.75rem 1.5rem;    // Aumenta el padding para hacer el botón más grande
+  line-height: 1.5;           // Ajusta la altura de la línea para el texto
+
+  &:hover {
+    background-color: darkred; // Rojo más oscuro
+    border-color: darkred;     // Rojo más oscuro
+  }
+}
+}
+
+.dropdown-menu {
+  background-color: whitesmoke;
+  border-color: whitesmoke;
+  border-color: #000000;
+
+
+  .dropdown-item {
+    font-size: 1.25rem;       // Tamaño de fuente más grande para los items
+    padding: 0.75rem 1.5rem;  // Aumenta el padding para los items
+  }
+
+  .dropdown-item:hover {
+    background-color: white; // Rojo más oscuro para los items del dropdown
+    color: white;             // Opcional: cambia el color del texto para mejorar el contraste
+  }
+}
+
+
+.dropdown-aumentar-button{
+  .btn {
+  background-color: green;
+  border-color: green;
+  font-size: 1.25rem;         // Tamaño de fuente más grande
+  padding: 0.75rem 1.5rem;    // Aumenta el padding para hacer el botón más grande
+  line-height: 1.5;           // Ajusta la altura de la línea para el texto
+
+  &:hover {
+    background-color: darkgreen; // Rojo más oscuro
+    border-color: darkgreen;     // Rojo más oscuro
+  }
+}
+
+.dropdown-menu {
+  background-color: whitesmoke;
+  border-color: whitesmoke;
+  border-color: #000000;
+
+  .dropdown-item {
+    font-size: 1.25rem;       // Tamaño de fuente más grande para los items
+    padding: 0.75rem 1.5rem;  // Aumenta el padding para los items
+  }
+
+  .dropdown-item:hover {
+    background-color: white; // Rojo más oscuro para los items del dropdown
+    color: white;              // Opcional: cambia el color del texto para mejorar el contraste
+  }
+}
+}
+.botonAplicar {
+  font-weight: bold;
+  border-radius: 10px;
+  width: 30%;
+  margin: 0 auto;
+  height: 30px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin-top: 10px; // Ajusta el margen superior según necesites
+}
+
+.botonRestablecer{
+  padding: 0.75rem 1.5rem; 
+  font-weight: bold;
+  border-radius: 10px;
+  width: 40%;
+  height: 45px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.boton-historial {
+  background-color: #1b8aa5;
+  color: white; // Asegúrate de que el texto sea legible
+  border: none; // Opcional: quitar el borde si no se ajusta al diseño
+  &:hover {
+      background-color: darken(#1b8aa5, 10%); // Oscurecer el color al pasar el ratón por encima
+  }
+}
+
+.historial-container {
+  max-height: 400px; // Limita la altura máxima del contenedor y permite desplazamiento si es necesario
+  overflow-y: auto; // Agrega desplazamiento vertical
+  padding: 15px;
+
+  .historial-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      border-bottom: 1px solid #e0e0e0; // Línea de separación entre elementos
+      background-color: #f9f9f9; // Fondo de los elementos del historial
+      margin-bottom: 10px;
+      border-radius: 5px; // Bordes redondeados
+
+      &:last-child {
+          border-bottom: none; // Sin borde inferior en el último elemento
+      }
+
+      .historial-fecha {
+          font-weight: bold;
+          color: #333; // Color de la fecha
+      }
+
+      .historial-mensaje {
+          color: #666; // Color del mensaje
+      }
+  }
+}
+
+//////////////////////////////////////////// inicio CONTROL DE INGRESO (aprtado nuevo) /////////////////////////////////////////////////
+
+.containerGrafico {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  align-items: center;
+}
+ ///////////////////////// inicio TITULO Y EXCEL  /////////////////////
+.tamboHeader {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  //margin-bottom: 20px;
+
+}
+
+.btn_btn-primary{
+  background-color: #28a745;
+  /* Color de fondo del botón */
+  color: white;
+  margin-left: 150px;
+  border-radius: 10px;
+  padding: 5px 10px;
+  /* Espaciado interno del botón */
+  cursor: pointer;
+  /* Cambia el cursor al pasar sobre el botón */
+}
+///////////////////////// fin TITULO Y EXCEL  ///////////////////////// 
+///
+///////////////////////// inicio GRAFICO DE BARRAS ////////////////////
+.chartArea {
+  height: 400px;
+  width: 100%;
+  max-width: 800px;
+}
+///////////////////////// fin GRAFICO DE BARRAS //////////////////////
+///
+/////////////////////// inicio BOTONES Y LISTA DE ANIMALES /////////// 
+.tamboChart {
+  height: auto;
+  width: 100%;
+  justify-content: center;
+}
+
+
+
+.chartButton {
+  padding: 10px 15px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.listContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.AnimalesFormulario {
+  max-height: 450px; // altura de la tabla
+  width: 35%; // ancho de la tabla
+  overflow-y: auto; // barra de desplazamiento
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 6px; // bordes de la tabla
+}
+
+.AnimalesFormulario h2 {
+  font-size: 22px; // tamaño de la fuente
+  text-align: center; // centrar el texto 
+}
+
+.tablaDeAnimales {
+  width: 100%;
+  border-collapse: collapse; // unir las celdas 
+}
+
+.tablaDeAnimales th {
+  background-color: #f2f2f2;
+  text-align: center;
+}
+
+.tablaDeAnimales td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+.loaderSecosNaN{
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #333;
+}
+/////////////////////// fin BOTONES Y LISTA DE ANIMALES /////////// 
+///
+///////////////////////// inicio AVISO  /////////////////////////
+.errorContainer {
+  max-width: 300px;
+  margin: auto;
+  flex-direction: column;
+  font-size: 20px;
+  text-align: center;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 15px;
+  color: #e43434df;
+}
+
+.tituloRacionesAviso {
+  font-family: 'Arial', sans-serif;
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+
+.tituloRacionesAviso:first-child {
+  color:#000000;
+  font-size: 25px;
+
+}
+
+.tituloRacionesAviso:nth-child(2) {
+  color:#000000;
+  font-size: 25px;
+}
+///////////////////////// fin AVISO  /////////////////////////
+
+//
+////////////////////////////////////////// fin CONTROL DE INGRESO  /////////////////////////////////////////////////
+/// 
+/// 
+/// 
+.loader {
+  width: 90px;
+  height: 200px;
+  position: relative;
+  margin: auto;
+}
+
+.loader-text {
+  position: absolute;
+  top: 0;
+  padding: 0;
+  margin: 0;
+  color: #287fbb;
+  animation: text_713 3.5s ease both infinite;
+  font-size: .15rem;
+  letter-spacing: 1px;
+}
+
+.load {
+  background-color: #287fbb;
+  border-radius: 50px;
+  display: block;
+  height: 25px;
+  width: 25px;
+  bottom: 0;
+  position: absolute;
+  transform: translateX(64px);
+  animation: loading_713 3.5s ease both infinite;
+}
+
+.load::before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: #71c872;
+  border-radius: inherit;
+  animation: loading2_713 3.5s ease both infinite;
+}
+
+@keyframes text_713 {
+  0% {
+    letter-spacing: 1px;
+    transform: translateX(0px);
+  }
+  40% {
+    letter-spacing: 2px;
+    transform: translateX(26px);
+  }
+  80% {
+    letter-spacing: 1px;
+    transform: translateX(32px);
+  }
+  90% {
+    letter-spacing: 2px;
+    transform: translateX(0px);
+  }
+  100% {
+    letter-spacing: 1px;
+    transform: translateX(0px);
+  }
+}
+
+@keyframes loading_713 {
+  0% {
+    width: 16px;
+    transform: translateX(0px);
+  }
+  40% {
+    width: 100%;
+    transform: translateX(0px);
+  }
+  80% {
+    width: 16px;
+    transform: translateX(64px);
+  }
+  90% {
+    width: 100%;
+    transform: translateX(0px);
+  }
+  100% {
+    width: 16px;
+    transform: translateX(0px);
+  }
+}
+
+@keyframes loading2_713 {
+  0% {
+    transform: translateX(0px);
+    width: 16px;
+  }
+  40% {
+    transform: translateX(0%);
+    width: 80%;
+  }
+  80% {
+    width: 100%;
+    transform: translateX(0px);
+  }
+  90% {
+    width: 80%;
+    transform: translateX(15px);
+  }
+  100% {
+    transform: translateX(0px);
+    width: 16px;
+  }
+}
+.loginContainer * {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif; // Cambiado a Roboto para mayor modernidad
+  color: #287fbd;
+  width: 500vw;
+  height: 500vh;
+  background: #ecf1f4; // Color de fondo oscuro
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}
+
+
+
+::-webkit-input-placeholder {
+  color: #eee; // Color del placeholder
+}
+
+/* inicio LOGIN FARMERIN */
+.wrapperLoginFarmerin {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%; // Ancho del contenedor ajustado a la pantalla
+  height: 100vh; // Altura del contenedor ajustado a la pantalla
+  display: grid;
+  grid-template-columns: 1fr; // Una columna para pantallas pequeñas
+  border: 3px solid #287fbb; // Borde del contenedor
+  box-shadow: 0 0 50px 0 #4cb04e; // Sombra del contenedor
+  border-radius: 10px; // Bordes redondeados
+  overflow: hidden; // Oculta el desbordamiento
+
+  @media (min-width: 768px) {
+    width: 80%; // Ancho del contenedor ajustado para pantallas medianas
+    height: 80vh; // Altura del contenedor ajustado para pantallas medianas
+    grid-template-columns: 1fr 1fr; // Dos columnas para pantallas medianas
+  }
+
+  @media (min-width: 1024px) {
+    width: 900px; // Ancho del contenedor ajustado para pantallas grandes
+    height: 75vh; // Altura del contenedor ajustado para pantallas grandes
+  }
+}
+
+.formLoginFarmerin {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px; // Espaciado interno
+}
+
+.titleLoginFarmerin {
+  font-size: 25px; // Tamaño del título
+  margin-bottom: 10px; // Espaciado inferior
+  padding-top: 70px;
+  color: rgb(84, 85, 85);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.inpLoginFarmerin {
+  padding-bottom: 10px;
+  border-bottom: 2px solid #eee; // Línea inferior
+  width: 100%; // Ancho completo
+}
+
+.inputLoginFarmerin {
+  border: none;
+  outline: none;
+  background: none;
+  width: 100%; // Ancho completo
+  padding: 10px; // Espaciado interno
+  font-size: 17px; // Tamaño de fuente
+  color: #4cb04e; // Color del texto
+}
+
+.submitLoginFarmerin {
+  border: none;
+  outline: none;
+  width: 100%; // Ancho completo
+  margin-top: 20px; // Espaciado superior
+  padding: 10px 0; // Espaciado interno
+  font-size: 20px; // Tamaño de fuente
+  border-radius: 40px; // Bordes redondeados
+  letter-spacing: 1px; // Espaciado entre letras
+  cursor: pointer; // Cambia el cursor al pasar
+  color: #f0f0f0;
+  background: linear-gradient(45deg, #4cb04e, #287fbd); // Fondo degradado
+  transition: background 0.3s; // Transición suave
+}
+
+.submitLoginFarmerin:hover {
+  background: linear-gradient(45deg, #287fbd, #4cb04e); // Cambio de color al pasar el mouse
+}
+
+.footerLoginFarmerin {
+  margin-top: 5px; // Espaciado superior
+  letter-spacing: 0.5px; // Espaciado entre letras
+  font-size: 14px; // Tamaño de fuente
+  color: #000000;
+  font-weight: bold;
+}
+.footerFarmerinDiv {
+  margin-top: 5px; // Espaciado superior
+  letter-spacing: 0.5px; // Espaciado entre letras
+  font-size: 12px; // Tamaño de fuente
+  color: #626262;
+  
+}
+.linkLoginFarmerin {
+  color: #4cb04e; // Color del enlace
+  text-decoration: none; // Sin subrayado
+}
+
+.bannerLoginFarmerin {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 450px; // Ancho del banner
+  height: 100%; // Altura completa
+  background: linear-gradient(to right, #4cb04e, #287fbd); // Fondo degradado
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 60% 100%); // Forma del banner
+  padding-right: 70px; // Espaciado derecho
+  text-align: right; // Alineación a la derecha
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end; // Alineación de los elementos
+}
+
+.wel_textLoginFarmerin {
+  font-size: 40px; // Tamaño del texto de bienvenida
+  margin-top: -50px; // Margen superior negativo
+  line-height: 50px; // Altura de línea
+  color: #ffffff;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.logoLetras {
+  display: block; // Asegura que el logo sea un bloque
+  position: absolute; // Permite posicionar el logo de manera absoluta
+  top: 25px; // Coloca el logo en la parte superior
+  left: 50px; // Agrega un margen a la izquierda
+  margin: 0; // Elimina márgenes para que esté pegado
+  max-width: 100%; // Asegura que el logo no exceda el ancho del contenedor
+  height: auto; // Mantiene la proporción del logo
+}
+
+.welcomeText {
+  text-align: center; // Centra el texto
+  margin-top: 100px; // Espacio desde el logo hasta el texto
+  font-size: 24px; // Ajusta el tamaño del texto según sea necesario
+}
+
+.paraLoginFarmerin {
+  margin-top: 10px; // Espaciado superior
+  font-size: 18px; // Tamaño de fuente
+  line-height: 24px; // Altura de línea
+  letter-spacing: 1px; // Espaciado entre letras
+}
+
+// Estilos para el modal de perfil
+.modal-perfil {
+    position: absolute;
+    right: 0;
+}
+.modal-perfil {
+    .modal-header {
+        background-color: #1b8aa5; // Color de fondo del encabezado
+        color: white; // Color del texto
+    }
+
+    .modal-body {
+        background-color: #f8f9fa; // Color de fondo del cuerpo del modal
+        color: #333; // Color del texto
+        h5 {
+            margin-bottom: 15px; // Espaciado entre los encabezados
+        }
+    }
+
+    .modal-footer {
+        background-color: #f1f1f1; // Color de fondo del pie del modal
+        button {
+            &:hover {
+                background-color: #1b8aa5; // Color de fondo al pasar el mouse
+                color: white; // Color del texto al pasar el mouse
+            }
+        }
+    }
+}
+
+// Estilos para el botón de perfil en la barra de navegación
+
+.elem-header-der {
+  display: flex;
+  justify-content: space-between; // Asegura que los elementos se distribuyan
+  align-items: center; // Centra verticalmente los elementos
+
+  .alert-container {
+      margin-right: auto; // Empuja el contenedor de alertas hacia la izquierda
+  }
+
+  .perfil-container {
+      margin-left: auto; // Empuja el contenedor de perfil hacia la derecha
+  }
+}
+
+// MODAL DE PERFIL
+/* Mantiene el botón y la lista en su posición original */
+.config-perfil-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+/* Botón de Configuración (ahora más ancho) */
+.button-perfil {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px; /* Mayor espacio interno */
+  gap: 12px;
+  height: 40px; /* Más alto */
+  width: 280px; /* Más ancho */
+  border: none;
+  color: #ffffff;
+  background-color: #297fba;
+  border-radius: 24px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background 0.3s ease;
+}
+
+/* Efecto hover en el botón */
+.button-perfil:hover {
+  background-color: #235c82;
+}
+
+/* Ícono del botón gira al hacer hover */
+.button-perfil:hover .svg-icon-perfil {
+  animation: spin 2s linear infinite;
+}
+
+/* Animación de rotación del ícono */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/// ver contra
+.password-input-container-perfil {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-input-container-perfil .toggle-password {
+  position: absolute;
+  right: 10px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: #666;
+}
+/* Contenedor del menú desplegable */
+.card-perfil {
+  position: absolute;
+  top: 55px; /* Se mantiene en su lugar */
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
+  padding: 15px;
+  width: 300px; /* Más ancho */
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Lista de opciones */
+.list-perfil {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Elementos de la lista */
+.element-perfil {
+  display: flex;
+  align-items: center;
+  padding: 16px; /* Mayor espacio */
+  cursor: pointer;
+  border-radius: 10px;
+  transition: background 0.3s ease;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/* Efecto hover en la lista */
+.element-perfil:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* Espaciado entre ícono y texto */
+.element-perfil svg {
+  margin-right: 14px;
+}
+
+/* Estilo para "Borrar Tambo" */
+.element-danger-perfil {
+  color: #f05454;
+  font-weight: bold;
+}
+
+/* Estilo para "Cerrar Sesión" */
+.element-logout-perfil {
+  color: #2d2d2d;
+  font-weight: bold;
+}
+
+
+
+.animales-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 0; // Elimina márgenes inferiores
+  padding: 0; // Elimina padding si es necesario
+
+  .obtener-button {
+      background-color: #4CAF50; // Color verde
+      color: white;
+      padding: 5px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+
+      &:hover {
+          background-color: #45a049; // Color verde más oscuro al pasar el mouse
+      }
+  }
+}
+
+.card-botones-animales {
+  background-image: linear-gradient(163deg, #45a049 0%, #287fbd 100%);
+  border-radius: 20px;
+  transition: all .3s;
+  width: 100%;
+  border: 1px solid #080808;
+ }
+ 
+ .card-botones-animales2 {
+  width: 100%;
+  background-color: #fefafa;
+  border-radius:20px;
+  transition: all .2s;
+ }
+ 
+ .card-botones-animales2:hover {
+  transform: scale(0.98);
+  border-radius: 20px;
+  box-shadow: 0px 0px 30px 1px #2387cf;
+ }
+ 
+ .card-botones-animales:hover {
+  box-shadow: 0px 0px 30px 1px #1a741e;
+ }
+
+
+.tituloAnimales  {
+  margin-bottom: 5px; // Espacio entre el título y los botones
+  font-size: 1.5rem; // Ajusta el tamaño de la fuente según sea necesario
+  font-weight: bold;
+  margin: auto;
+}
+  
+
+
+.AdverPerfil {
+  position: relative; /* Para posicionar el tooltip */
+  display: inline-flex; /* Para alinear el icono y el texto */
+  align-items: center; /* Centrar verticalmente */
+}
+
+/* From Uiverse.io by Cksunandh */ 
+/* Basic reset and styling */
+
+/* Tooltip container */
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+  margin: 5px;
+}
+
+/* Icon styling */
+.icon-tooltip  {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: #101010;
+  border-color: #080808;
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease;
+}
+
+/* SVG Animation: Rotate and scale effect */
+.icon-tooltip svg {
+  transition: transform 0.5s ease-in-out;
+}
+
+.icon-tooltip:hover svg {
+  transform: rotate(360deg) scale(1.2);
+}
+
+.tooltip {
+  visibility: hidden;
+  width: 250px;
+  background-color: #ededed;
+  text-align: center;
+  border-radius: 5px;
+  padding: 10px;
+  position: absolute;
+  bottom: 125%; /* Position above the icon */
+  transform: translateX(-50%); /* Center the tooltip */
+  opacity: 0;
+  transition: opacity 0.5s, transform 0.5s;
+}
+
+/* Tooltip Arrow */
+.tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  margin-left: auto;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #ededed transparent transparent transparent;
+}
+
+/* Show tooltip on hover */
+.tooltip-container:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}
+
+.tooltip-container:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+  animation: bounce 0.6s ease;
+}
+
+  /* BOTONES LISTA DE ANIMALES */ 
+  .custom-obtenerAnimales-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.custom-obtenerAnimales-button:hover {
+    background-color: #0056b3;
+}
+
+.custom-obtenerAnimales-button:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Estilos del modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Fondo semitransparente */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000; /* Asegura que esté encima de otros elementos */
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+////////////////////////////////// BOTON VAQUILLONAS 
+button.listasAnimalesVaquillonas-button {
+  font-family: inherit;
+  font-size: 18px;
+  background: linear-gradient(to bottom, #f6f3f3 0%, #f6f3f3 100%);
+  color: #1a741e;
+  padding: 5px 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s;
+  margin: auto;
+  width: 300px; 
+  height: 30px;
+}
+
+button.listasAnimalesVaquillonas-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+button.listasAnimalesVaquillonas-button:active {
+  transform: scale(0.95);
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+button.listasAnimalesVaquillonas-button span {
+  display: block;
+  margin-left: 0.4em;
+  transition: all 0.3s;
+}
+
+button.listasAnimalesVaquillonas-button svg {
+  width: 25px;
+  height: 25px;
+  fill: #1a741e;
+  transition: all 0.3s;
+}
+
+button.listasAnimalesVaquillonas-button .svg-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 0.5em;
+  transition: all 0.3s;
+}
+
+button.listasAnimalesVaquillonas-button:hover svg {
+  transform: rotate(45deg);
+}
+
+//////////////////////////// BOTON VACAS 
+button.listasAnimalesVacas-button {
+  font-family: inherit;
+  font-size: 18px;
+  background: linear-gradient(to bottom, #f6f3f3 0%, #f6f3f3 100%);
+  color: #1a741e;
+  padding: 5px 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s;
+  margin: auto;
+  width: 300px; 
+  height: 30px;
+}
+
+button.listasAnimalesVacas-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+button.listasAnimalesVacas-button:active {
+  transform: scale(0.95);
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+button.listasAnimalesVacas-button span {
+  display: block;
+  margin-left: 0.4em;
+  transition: all 0.3s;
+}
+
+button.listasAnimalesVacas-button svg {
+  width: 25px;
+  height: 25px;
+  fill: #1a741e;
+  transition: all 0.3s;
+}
+
+button.listasAnimalesVacas-button .svg-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 0.5em;
+  transition: all 0.3s;
+}
+
+button.listasAnimalesVacas-button:hover svg {
+  transform: rotate(45deg);
+}
+
+//////////////// BOTON CERRAR OBTENER ANIMALES 
+
+button.listasAnimalesCerrar-button {
+  font-family: inherit;
+  font-size: 18px;
+  background: linear-gradient(to bottom, #f6f3f3 0%, #f6f3f3 100%);
+  color: #1a741e;
+  padding: 5px 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s;
+  margin: auto;
+  width: 300px; 
+  height: 30px;
+}
+
+button.listasAnimalesCerrar-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+button.listasAnimalesCerrar-button:active {
+  transform: scale(0.95);
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+button.listasAnimalesCerrar-button span {
+  display: block;
+  margin-left: 0.4em;
+  transition: all 0.3s;
+}
+
+button.listasAnimalesCerrar-button svg {
+  width: 25px;
+  height: 25px;
+  fill: #1a741e;
+  transition: all 0.3s;
+}
+
+button.listasAnimalesCerrar-button .svg-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 0.5em;
+  transition: all 0.3s;
+}
+
+button.listasAnimalesCerrar-button:hover svg {
+  transform: rotate(45deg);
+}
+
+//////////////////////////// LISTA DE ANIMALES
+/* Estilos para las listas dentro del modal */
+.listaPerfil {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px; /* Espaciado entre elementos */
+  margin-top: 10px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 450px;
+}
+
+/* Encabezado de las listas */
+.listaPerfil h3 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #00ad54;
+  padding-bottom: 5px;
+}
+
+/* Elementos individuales de la lista */
+.listaPerfil p {
+  font-size: 18px;
+  color: #555;
+  margin: 0;
+  padding: 5px 10px;
+  width: 100%;
+  text-align: left;
+  border-left: 5px solid #00ad54;
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover sobre los elementos de la lista */
+.listaPerfil p:hover {
+  background-color: #f1f1f1;
+}
+
+
+
+/* Botón de cerrar en el modal */
+.close-modal-button {
+    margin-top: 20px;
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.close-modal-button:hover {
+    background-color: #a71d2a;
+}
+
+.close-modal-button:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(220, 53, 69, 0.5);
+}
+
+/* Contenedor principal de botones */
+.animales-list-container {
+  display: flex;
+  flex-direction: column; // Asegura que los elementos se apilen verticalmente
+  align-items: flex-start;
+  margin-top: 5px;
+  gap: 10px 20px;
+}
+
+.button-containerInfoTambo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 0; // Elimina márgenes inferiores
+  padding: 0; // Elimina padding si es necesario
+
+  .obtenerInfoTambo {
+      background-color: #4CAF50; // Color verde
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+
+      &:hover {
+          background-color: #45a049; // Color verde más oscuro al pasar el mouse 
+      }
+  }
+}
+///////////////////////////////////////////////77 PERFIL FARMERIN ///////////////////////////////////////////////////////////////
+.farmerin-card-container {
+  padding-top: 95px;
+}
+.farmerin-card {
+  max-width: 320px;
+  border-radius: 1rem;
+  background-color: #000000;
+  padding: 1rem;
+  margin: auto;
+}
+
+.farmerin-card-infos {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  grid-gap: 1rem;
+  gap: 1rem;
+}
+
+.farmerin-card-image {
+  height: 7rem;
+  width: 7rem;
+  border-radius: 0.5rem;
+  color: #e3e4e6;
+  background: linear-gradient(to bottom right, #45a049, #287fbd);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.farmerin-card-info {
+  height: 7rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.farmerin-card-name {
+  font-size: 1.25rem;
+  line-height: 1.25rem; // Ajustado para reducir el espacio
+  font-weight: 500;
+  color: rgba(255, 255, 255, 1);
+  margin-bottom: 0.25rem; // Reducido para menos espacio
+  padding-top: 0.5rem;
+}
+
+.farmerin-card-tambo {
+  font-size: 1rem;
+  line-height: 1rem; // Ajustado para reducir el espacio
+  color: rgba(156, 163, 175, 1);
+}
+.farmerin-card-actions {
+  padding-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  align-items: center;
+  justify-content: center; /* Asegura distribución uniforme */
+}
+
+ /////////////////////////////// BOTON OBTENER INFO TAMBO ///////////////////////////////
+ .button-containerInfoTambo {
+    width: 100%; /* Asegura que no genere un espacio adicional */
+    display: flex;
+    justify-content: center;
+}
+.card-fondoBotones {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.custom-obtenerInfoTambo-button {
+  text-decoration: none;
+  line-height: 1;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 10px 10px 20px rgba(0,0,0,.05);
+  background-color: #fff;
+  color: #121212;
+  border: none;
+  cursor: pointer;
+}
+
+.custom-obtenerInfoTambo-button-decor {
+  position: absolute;
+  inset: 0;
+  background-color: var(--clr);
+  transform: translateX(-100%);
+  transition: transform .3s;
+  z-index: 0;
+}
+
+.custom-obtenerInfoTambo-button-content {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+}
+
+.custom-obtenerInfoTambo-button__icon {
+  width: 48px;
+  height: 40px;
+  background-color: var(--clr);
+  display: grid;
+  place-items: center;
+}
+
+.custom-obtenerInfoTambo-button__text {
+  display: inline-block;
+  transition: color .2s;
+  padding: 1px 0.8rem 1px;
+  padding-left: .75rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 220px;
+}
+
+.custom-obtenerInfoTambo-button:hover .custom-obtenerInfoTambo-button__text {
+  color: #fff;
+}
+
+.custom-obtenerInfoTambo-button:hover .custom-obtenerInfoTambo-button-decor {
+  transform: translate(0);
+}
+/* MODAL OBTENER INFO TAMBO */
+
+.green-btn-horarios {
+  background-color: #47a04b;
+}
+
+.green-btn-horarios:hover {
+  background-color: #368339;
+}
+
+.green-btn-horarios:active {
+  background-color: #2d6830;
+}
+
+.green-btn-horarios:disabled {
+  background-color: #c8eac9;
+  color: #1b7a43;
+}
+
+.red-btn-horarios {
+  background-color: #f93a3a;
+}
+
+.red-btn-horarios:hover {
+  background-color: #e71f1f;
+}
+
+.red-btn-horarios:active {
+  background-color: #c21313;
+}
+
+.red-btn-horarios:disabled {
+  background-color: #ffc7c7;
+  color: #c21313;
+}
+
+.warning-horarios-general {
+  position: fixed; // Cambiado a fixed para que se centre en la pantalla
+  top: 0;
+  left: 0;
+  z-index: 999;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(2px);
+  display: flex; // Añadido para centrar el contenido
+  justify-content: center; // Centra horizontalmente
+  align-items: center; // Centra verticalmente
+}
+
+.confirmHorarios-div {
+  font-size: 14px;
+  width: 300px;
+  padding: 20px;
+  text-align: center;
+  border-radius: 6px;
+  box-shadow: 4px 4px 15px #3e3e3e;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  cursor: default;
+  background-color: #f5f5f5;
+}
+
+.confirmHorarios-div button {
+  cursor: pointer;
+  width: 100%;
+  padding: 4px 6px;
+  border-radius: 4px;
+  color: #fff;
+  border: none;
+  height: 30px;
+  width: 100%;
+}
+
+.confirmHorarios-div p {
+  display: flex;
+  flex-direction: column;
+}
+
+.confirmHorarios-div p strong {
+  margin-bottom: 15px;
+}
+.text-center-horarios-p {
+  display: flex;
+  flex-direction: row;
+  margin:auto;
+}
+.text-center-horarios-span {
+   margin: auto;
+   text-align: center;
+   font-size: 12px;
+   color: #000000;
+   font-weight: bold;
+}
+
+
+.modal-horarios-container {
+  display: flex;
+  justify-content: center; // Alinea el botón con el Form.Control
+  align-items: center;
+}
+
+.modal-title {
+  font-size: 1rem; // Reduce el tamaño del título
+}
+
+.text-center p {
+  display: flex;
+  justify-content: center; // Centra los títulos: Turnos, Bajadas, Kgs. Tolvas
+  align-items: center;
+  margin: 0; // Asegura que no haya márgenes que desalineen el texto
+}
+
+///////////////////////////// BOTON OBTENER ANIMALES ///////////////////////////////
+/* From Uiverse.io by Creatlydev */ 
+.obtener-animales-button {
+  text-decoration: none;
+  line-height: 1;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 10px 10px 20px rgba(0,0,0,.05);
+  background-color: #fff;
+  color: #121212;
+  border: none;
+  cursor: pointer;
+}
+
+.obtener-animales-button-decor {
+  position: absolute;
+  inset: 0;
+  background-color: var(--clr);
+  transform: translateX(-100%);
+  transition: transform .3s;
+  z-index: 0;
+}
+
+.obtener-animales-button-content {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+}
+
+.obtener-animales-button__icon {
+  width: 48px;
+  height: 40px;
+  background-color: var(--clr);
+  display: grid;
+  place-items: center;
+}
+
+.obtener-animales-button__text {
+  display: inline-block;
+  transition: color .2s;
+  padding: 1px 1.0rem 1px;
+  padding-left: .75rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 220px;
+}
+
+.obtener-animales-button:hover .obtener-animales-button__text {
+  color: #fff;
+}
+
+.obtener-animales-button:hover .obtener-animales-button-decor {
+  transform: translate(0);
+}
+.card-fondoBotones {
+ padding-top: 70px;
+ }
+///////////////////////////// BOTON CERRAR SESION /////////////////////////////// 
+.farmerin-footer {
+  padding-top: 40px;
+  display: flex; // Añadido para alinear los botones horizontalmente
+  justify-content: center; // Centra los botones en el contenedor
+  gap: 20px; // Espacio entre los botones
+}
+.Btn-footer-perfil {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition-duration: 0.4s;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(to right, #45a049, #287fbd);
+  margin: auto;
+}
+
+.sign-footer-perfil {
+  width: 100%;
+  transition-duration: 0.4s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sign-footer-perfil svg {
+  width: 17px;
+}
+
+.sign-footer-perfil svg path {
+  fill: white;
+}
+
+.text-footer-perfil {
+  position: absolute;
+  right: 0%;
+  width: 0%;
+  opacity: 0;
+  color: #ecf0f1;
+  font-size: 1.2em;
+  font-weight: 600;
+  transition-duration: 0.4s;
+}
+
+.Btn-footer-perfil:hover {
+  width: 150px;
+  border-radius: 20px;
+  transition-duration: 0.4s;
+  background: linear-gradient(to right, #287fbd, #45a049);
+}
+
+.Btn-footer-perfil:hover .sign-footer-perfil {
+  width: 30%;
+  transition-duration: 0.4s;
+  padding-left: 12px;
+}
+
+.Btn-footer-perfil:hover .text-footer-perfil {
+  opacity: 1;
+  width: 70%;
+  transition-duration: 0.4s;
+  padding-right: 10px;
+}
+
+.Btn-footer-perfil:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0.2);
+}
+///////////////////////////// BOTON BORRAR TAMBO ///////////////////////////////
+/* From Uiverse.io by vinodjangid07 */ 
+.button-borrar-tambo {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgb(20, 20, 20);
+  border: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+  cursor: pointer;
+  transition-duration: .3s;
+  overflow: hidden;
+  position: relative;
+  margin: auto;
+}
+
+.svgIcon-borrar-tambo {
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  transition-duration: .3s;
+  justify-content: center;
+}
+
+.svgIcon-borrar-tambo path {
+  fill: white;
+}
+
+.button-borrar-tambo:hover {
+  width: 140px;
+  border-radius: 50px;
+  transition-duration: .3s;
+  background-color: rgb(255, 69, 69);
+  align-items: center;
+}
+
+.button-borrar-tambo:hover .svgIcon-borrar-tambo {
+  width: 50px;
+  transition-duration: .3s;
+  transform: translateY(60%);
+}
+
+.button-borrar-tambo::before {
+  position: absolute;
+  top: -20px;
+  content: "Borrar Tambo";
+  color: white;
+  transition-duration: .3s;
+  font-size: 2px;
+}
+
+.button-borrar-tambo:hover::before {
+  font-size: 13px;
+  opacity: 1;
+  transform: translateY(30px);
+  transition-duration: .3s;
+}
+
+/* MODAL BORRAR TAMBO */ 
+.confirmBorrar-div {
+  background-color: #ccc;
+}
+
+.green-btn-borrar {
+  background-color: #47a04b;
+}
+
+.green-btn-borrar:hover {
+  background-color: #368339;
+}
+
+.green-btn-borrar:active {
+  background-color: #2d6830;
+}
+
+.green-btn-borrar:disabled {
+  background-color: #c8eac9;
+  color: #1b7a43;
+}
+
+.red-btn-borrar {
+  background-color: #f93a3a;
+}
+
+.red-btn-borrar:hover {
+  background-color: #e71f1f;
+}
+
+.red-btn-borrar:active {
+  background-color: #c21313;
+}
+
+.red-btn-borrar:disabled {
+  background-color: #ffc7c7;
+  color: #c21313;
+}
+
+.confirmBorrar-div {
+  font-size: 14px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  padding: 20px;
+  text-align: center;
+  border-radius: 6px;
+  box-shadow: 4px 4px 15px #3e3e3e;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  cursor: default;
+}
+
+.confirmBorrar-div button {
+  cursor: pointer;
+  width: 100%;
+  padding: 4px 6px;
+  border-radius: 4px;
+  color: #fff;
+  border: none;
+  height: 30px;
+  width: 100%;
+  
+}
+
+.confirmBorrar-div p {
+  display: flex;
+  flex-direction: column;
+}
+
+.confirmBorrar-div p strong {
+  margin-bottom: 15px;
+}
+
+.warning-borrar-general {
+  position: absolute; /* switch to fixed */
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  color:rgba(0, 0, 0, 0.5);;
+  
+}
+
+.warning-borrar-generala {
+  padding-top: 100px;
+  height: 1px;
+  width: 1px;
+  background-color: rgba(0, 0, 0, 0.5);
+ 
+}
+
+.modal-borrar-container {
+  display: flex;
+  flex-direction: row;
+  height: 32px;
+  margin-top: 20px;
+  gap: 7px;
+  width: 100%;
+}
+/* BOTON APLICAR A TODOS */ 
+.copy-custom {
+  /* button */
+  --button-bg: #353434;
+  --button-hover-bg: #464646;
+  --button-text-color: #CCCCCC;
+  --button-hover-text-color: #8bb9fe;
+  --button-border-radius: 8px; /* Reduce el radio del borde */
+  --button-diameter: 28px; /* Reduce el diámetro del botón */
+  --button-outline-width: 1px;
+  --button-outline-color: rgb(141, 141, 141);
+  /* tooltip */
+  --tooltip-bg: #f4f3f3;
+  --toolptip-border-radius: 4px;
+  --tooltip-font-family: Menlo, Roboto Mono, monospace;
+  --tooltip-font-size: 10px; /* Reduce el tamaño de fuente del tooltip */
+  --tootip-text-color: rgb(50, 50, 50);
+  --tooltip-padding-x: 5px; /* Reduce el padding del tooltip */
+  --tooltip-padding-y: 5px; /* Reduce el padding del tooltip */
+  --tooltip-offset: 6px; /* Ajusta el offset del tooltip */
+}
+
+.copy-custom {
+  box-sizing: border-box;
+  width: var(--button-diameter);
+  height: var(--button-diameter);
+  border-radius: var(--button-border-radius);
+  background-color: var(--button-bg);
+  color: var(--button-text-color);
+  border: none;
+  cursor: pointer;
+  position: relative;
+  outline: none;
+}
+
+.tooltip-custom {
+  position: absolute;
+  opacity: 0;
+  visibility: 0;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font: var(--tooltip-font-size) var(--tooltip-font-family);
+  color: var(--tootip-text-color);
+  background: var(--tooltip-bg);
+  padding: var(--tooltip-padding-y) var(--tooltip-padding-x);
+  border-radius: var(--toolptip-border-radius);
+  pointer-events: none;
+  transition: all var(--tooltip-transition-duration) cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  z-index: 1000; /* Asegúrate de que el tooltip tenga un z-index alto */
+}
+
+.tooltip-custom::before {
+  content: attr(data-text-initial);
+}
+
+.tooltip-custom::after {
+  content: "";
+  position: absolute;
+  bottom: calc(var(--tooltip-padding-y) / 2 * -1);
+  width: var(--tooltip-padding-y);
+  height: var(--tooltip-padding-y);
+  background: inherit;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.copy-custom svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.checkmark-custom {
+  display: none;
+}
+
+/* actions */
+
+.copy-custom:hover .tooltip-custom,
+.copy-custom:focus:not(:focus-visible) .tooltip-custom {
+  opacity: 1;
+  visibility: visible;
+  top: calc((100% + var(--tooltip-offset)) * -1);
+}
+
+.copy-custom:focus:not(:focus-visible) .tooltip-custom::before {
+  content: attr(data-text-end);
+}
+
+.copy-custom:focus:not(:focus-visible) .clipboard-custom {
+  display: none;
+}
+
+.copy-custom:focus:not(:focus-visible) .checkmark-custom {
+  display: block;
+}
+
+.copy-custom:hover,
+.copy-custom:focus {
+  background-color: var(--button-hover-bg);
+}
+
+.copy-custom:active {
+  outline: var(--button-outline-width) solid var(--button-outline-color);
+}
+
+.copy-custom:hover svg {
+  color: var(--button-hover-text-color);
+}
+/// RACION SUGERIDA
+.alert-container-control {
+  top: 60px; /* Adjust based on your header height */
+  width: 100%;
+  z-index: 1000;
+}
+//// MODAL HORARIOS 
+/* From Uiverse.io by SteveBloX */ 
+.lista-horarios-perfil {
+  box-sizing: border-box;
+  width: 280px;
+  height: 350px;
+  background: rgba(217, 217, 217, 0.58);
+  border: 1px solid white;
+  box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(6px);
+  border-radius: 17px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.5s;
+  display: flex;
+  align-items: center; // Centra verticalmente
+  justify-content: center; // Centra horizontalmente
+  user-select: none;
+  font-weight: bolder;
+  color: black;
+
+  // Nuevos estilos para centrar el contenido
+  flex-direction: column; // Asegura que los elementos se apilen verticalmente
+  padding: 10px; // Espaciado interno para evitar que el contenido toque los bordes
+  margin: auto;
+
+   // Nuevos estilos para el texto
+   font-size: 1.2rem; // Aumenta el tamaño de la fuente
+  
+}
+
+.lista-horarios-perfil:hover {
+  border: 1px solid black;
+  transform: scale(1.05);
+}
+
+.lista-horarios-perfil:active {
+  transform: scale(1.05) rotateZ(1.7deg);
+}
+
+// Estilos para los elementos de texto dentro de .lista-horarios-perfil
+.lista-horarios-perfil p, // Asegúrate de que los párrafos tengan padding
+.lista-horarios-perfil span { // Asegúrate de que los spans tengan padding
+  padding: 15px; // Añade padding a los elementos de texto
+  font-size: 15px; // Asegura que hereden el tamaño de fuente del contenedor
+
+}
+
+.close-button-perfil {
+  position: absolute; /* Posiciona el botón de forma absoluta */
+  top: 10px; /* Ajusta la distancia desde la parte superior */
+  left: 10px; /* Ajusta la distancia desde la izquierda */
+  background-color: red; /* Color de fondo rojo */
+  color: white; /* Color del texto blanco */
+  border: none; /* Sin borde */
+  border-radius: 5px; /* Bordes redondeados */
+  padding: 5px 10px; /* Espaciado interno */
+  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+  font-size: 16px; /* Tamaño de fuente */
+}
+
+.close-button-perfil:hover {
+  background-color: darkred; /* Color de fondo más oscuro al pasar el mouse */
+}
+
+/* MODAL DE INFORMACION DE TAMBO */
+.modal-table-container {
+  position: fixed; /* Fija el contenedor en la pantalla */
+  top: 50%; /* Centra verticalmente */
+  left: 50%; /* Centra horizontalmente */
+  transform: translate(-50%, -50%); /* Ajusta el centro */
+  background-color: white; /* Fondo blanco */
+  padding: 20px; /* Espaciado interno */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra */
+  z-index: 1050; /* Asegúrate de que esté por encima de otros elementos */
+  max-width: 90%; /* Ancho máximo */
+  overflow: auto; /* Permite desplazamiento si es necesario */
+}
+
+/* BOTON PARA SELECCIONAR ARCHIVO DE EXEL EN ACTUALIZACION MASIVA */
+.container-ActMasiva {
+  height: 300px;
+  width: 300px;
+  border-radius: 10px;
+  box-shadow: 4px 4px 30px rgba(0, 0, 0, .2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  margin: auto;
+  gap: 5px;
+  background-color: rgba(0, 110, 255, 0.041);
+}
+
+.header-ActMasiva {
+  flex: 1;
+  width: 100%;
+  border: 2px dashed royalblue;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: auto;
+}
+
+.header-ActMasiva svg {
+  height: 100px;
+}
+
+.header-ActMasiva p {
+  text-align: center;
+  color: black;
+}
+
+.footer-ActMasiva {
+  background-color: rgba(0, 110, 255, 0.075);
+  width: 100%;
+  height: 40px;
+  padding: 8px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  color: black;
+  border: none;
+  margin: auto;
+}
+
+.footer-ActMasiva svg {
+  height: 130%;
+  fill: royalblue;
+  background-color: rgba(70, 66, 66, 0.103);
+  border-radius: 50%;
+  padding: 2px;
+  cursor: pointer;
+  box-shadow: 0 2px 30px rgba(0, 0, 0, 0.205);
+}
+
+.footer-ActMasiva p {
+  flex: 1;
+  text-align: center;
+}
+
+#file-ActMasiva {
+  display: none;
+}
+/* Boton de Actualizar Animales */
+.button-ActMasiva {
+  cursor: pointer;
+  font-weight: 700;
+  transition: all 0.2s;
+  padding: 5px 10px;
+  border-radius: 20px;
+  background: #297fb8;
+  border: 1px solid transparent;
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  margin: auto;
+  width: 300px;
+}
+
+.span-ActMasiva {
+  margin: auto;
+  color: #e0e0e0;
+}
+
+.button-ActMasiva:hover {
+  background: #4db04e;
+}
+
+.button-ActMasiva > svg-ActMasiva {
+  width: 34px;
+  margin-left: 10px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.button-ActMasiva:hover svg-ActMasiva {
+  transform: translateX(5px);
+}
+
+.button-ActMasiva:active {
+  transform: scale(0.95);
+}
+
+/* BOTON PARA SELECCIONAR ARCHIVO DE EXEL EN ALTA MASIVA */
+.container-AltaMasiva {
+  height: 300px;
+  width: 300px;
+  border-radius: 10px;
+  box-shadow: 4px 4px 30px rgba(0, 0, 0, .2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  margin: auto;
+  gap: 5px;
+  background-color: rgba(0, 110, 255, 0.041);
+}
+
+.header-AltaMasiva {
+  flex: 1;
+  width: 100%;
+  border: 2px dashed royalblue;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: auto;
+}
+
+.header-AltaMasiva svg {
+  height: 100px;
+}
+
+.header-AltaMasiva p {
+  text-align: center;
+  color: black;
+}
+
+.footer-AltaMasiva {
+  background-color: rgba(0, 110, 255, 0.075);
+  width: 100%;
+  height: 40px;
+  padding: 8px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  color: black;
+  border: none;
+  margin: auto;
+}
+
+.footer-AltaMasiva svg {
+  height: 130%;
+  fill: royalblue;
+  background-color: rgba(70, 66, 66, 0.103);
+  border-radius: 50%;
+  padding: 2px;
+  cursor: pointer;
+  box-shadow: 0 2px 30px rgba(0, 0, 0, 0.205);
+}
+
+.footer-AltaMasiva p {
+  flex: 1;
+  text-align: center;
+}
+
+#file-AltaMasiva {
+  display: none;
+}
+/* Boton de Alta Animales */
+.button-AltaMasiva {
+  cursor: pointer;
+  font-weight: 700;
+  transition: all 0.2s;
+  padding: 5px 10px;
+  border-radius: 20px;
+  background: #297fb8;
+  border: 1px solid transparent;
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  margin: auto;
+  width: 300px;
+}
+
+.span-AltaMasiva {
+  margin: auto;
+  color: #e0e0e0;
+}
+
+.button-AltaMasiva:hover {
+  background: #4db04e;
+}
+
+.button-AltaMasiva > svg-AltaMasiva {
+  width: 34px;
+  margin-left: 10px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.button-AltaMasiva:hover svg-AltaMasiva {
+  transform: translateX(5px);
+}
+
+.button-AltaMasiva:active {
+  transform: scale(0.95);
+}
+
+/* BOTON PARA SELECCIONAR ARCHIVO DE EXEL EN CONTROL LECHERO */
+.container-ControlLechero {
+  height: 300px;
+  width: 300px;
+  border-radius: 10px;
+  box-shadow: 4px 4px 30px rgba(0, 0, 0, .2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  margin: auto;
+  gap: 5px;
+  background-color: rgba(0, 110, 255, 0.041);
+}
+
+.header-ControlLechero {
+  flex: 1;
+  width: 100%;
+  border: 2px dashed royalblue;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: auto;
+}
+
+.header-ControlLechero svg {
+  height: 100px;
+}
+
+.header-ControlLechero p {
+  text-align: center;
+  color: black;
+}
+
+.footer-ControlLechero {
+  background-color: rgba(0, 110, 255, 0.075);
+  width: 100%;
+  height: 40px;
+  padding: 8px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  color: black;
+  border: none;
+  margin: auto;
+}
+
+.footer-ControlLechero svg {
+  height: 130%;
+  fill: royalblue;
+  background-color: rgba(70, 66, 66, 0.103);
+  border-radius: 50%;
+  padding: 2px;
+  cursor: pointer;
+  box-shadow: 0 2px 30px rgba(0, 0, 0, 0.205);
+}
+
+.footer-ControlLechero p {
+  flex: 1;
+  text-align: center;
+}
+
+#file-ControlLechero {
+  display: none;
+}
+/* Boton de Control Lechero */
+
+.button-ControlLechero {
+  cursor: pointer;
+  font-weight: 700;
+  transition: all 0.2s;
+  padding: 5px 10px;
+  border-radius: 20px;
+  background: #297fb8;
+  border: 1px solid transparent;
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  margin: auto;
+  width: 300px;
+}
+
+.span-ControlLechero {
+  margin: auto;
+  color: #e0e0e0;
+}
+
+.button-ControlLechero:hover {
+  background: #4db04e;
+}
+
+.button-ControlLechero > svg-ControlLechero {
+  width: 34px;
+  margin-left: 10px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.button-ControlLechero:hover svg-AltaMControlLecheroasiva {
+  transform: translateX(5px);
+}
+
+.button-ControlLechero:active {
+  transform: scale(0.95);
+}
+
+.calendario-ControlLechero{
+  cursor: pointer;
+  font-weight: 700;
+  transition: all 0.2s;
+  padding: 5px 10px;
+  border-radius: 20px;
+  border: 1px solid transparent;
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  margin: auto;
+  width: 317px;
+}
+
+//// ENCONTRAR ERP //// 
+/* Contenedor principal */
+.EncontrarERP-container {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  max-width: 950px;
+}
+
+/* Tabla */
+.EncontrarERP-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Cabecera de la tabla */
+.EncontrarERP-table thead tr {
+  background-color: #1b829b;
+  color: #000000;
+  text-align: left;
+  font-weight: bold;
+}
+
+/* Filas */
+.EncontrarERP-table tbody tr:nth-child(even) {
+  background-color: #f2f4f8;
+}
+
+  .EncontrarERP-table tbody tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+/* Celdas */
+.EncontrarERP-table th, .EncontrarERP-table td {
+  padding: 15px;
+  border-bottom: 1px solid #dddddd;
+  text-align: left;
+}
+
+/* Hover en filas */
+.EncontrarERP-table tbody tr:hover {
+  background-color: #f0f8ff;
+  cursor: pointer;
+}
+
+/* Texto en la columna */
+.EncontrarERP-table td div {
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #444;
+}
+
+/* Ajustes en pantallas pequeñas */
+@media (max-width: 768px) {
+  .EncontrarERP-container {
+    padding: 10px;
+  }
+
+  .EncontrarERP-table th, .EncontrarERP-table td {
+    padding: 10px;
+    font-size: 14px;
+  }
+}
+
+///// TITULO Y BOTON DE DESCARGAR 
+.erp-repetidos-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+
+  h1 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+    text-align: center; // Asegura que el texto esté centrado.
+  }
+
+  .btn-descargar-excel {
+    padding: 10px 20px;
+    background-color: #1b829b;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: #166b7d; // Color más oscuro al pasar el mouse.
+    }
+
+    &:active {
+      background-color: #0e4e5a; // Color aún más oscuro al hacer clic.
+    }
+  }
+}
+
+//////// CAMBIO DE VAQ P.SERVICIO A SECA //////////////
+
+
+.containerCambioAseca {
+  background-color:  #f2f4f8;
+  padding: 15px;
+  flex: 1;
+}
+
+.listContainerCambioAseca {
+  margin-top: 15px;
+  padding-bottom: 20px;
+}
+
+.itemCambioAseca {
+  background-color:  #fff;
+  border-radius:  8px;
+  padding: 15px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px  rgba(0, 0, 0, 0.1);
+}
+
+.textoCambioAseca {
+  font-size: 16px;
+  color:  #444;
+  margin-bottom: 5px;
+}
+
+.labelCambioAseca {
+  font-weight: bold;
+}
+
+.noAnimalesCambioAseca {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 16px;
+  color: #666;
+}
+
+.buttonCambioAseca {
+  background-color: #1b829b;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+
+  &:disabled {
+    background-color: #aaa;
+  }
+}
+
+.buttonCambioAseca:disabled {
+  background-color: #aaa;
+}
+
+///////////////////////////////////// NUEVOS ESTILOS BOTONES PRODUCCION //////////////////////////////////////////////////////
+/* Estilos para los botones de Producción */
+/* Estilos para los botones de Producción */
+
+.produccion-botonera {
+  display: flex;
+  gap: 10px;
+
+  .produccion-btn{
+    padding: 10px 20px;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    background-color: #f0f4f8;
+    color: #333;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    margin: 0px;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+      background-color: #82bafa;
+      border-color: #297fba;
+    }
+
+    &.activo {
+      background-color: #4cb04f;
+      color: #fff;
+      border-color: #3b853d;
+      box-shadow: 0 4px 8px rgba(9, 133, 30, 0.3);
+    }
+  }
+}
+
+/* ESTILOS PARA EL TOOLTIP DE CONTROL */
+.control-tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.control-tooltip-text {
+  visibility: hidden;
+  width: 220px; /* Ajusta según el texto */
+  background-color: #297fba;
+  color: #fff;
+  text-align: center;
+  padding: 5px;
+  border-radius: 6px;
+  position: absolute;
+  bottom: -35px; /* Hace que aparezca debajo */
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 13px;
+  white-space: nowrap;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.control-tooltip:hover .control-tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+
+
+/* Estilos para el Tooltip */
+.produccion-tooltip {
+  position: relative;
+  display: inline-block;
+
+  &:hover .produccion-tooltip-text {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .produccion-tooltip-text {
+    visibility: hidden;
+    background-color: #297fba;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 10px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    white-space: nowrap;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #297fba transparent transparent transparent;
+    }
+  }
+} 
+.result-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  width: 100%;
+}
+
+.result-header {
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.result-box {
+  background: #fff;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.success-box {
+  border-left: 6px solid #4caf50;
+}
+
+.error-box {
+  border-left: 6px solid #f44336;
+}
+
+.result-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #444;
+}
+
+.result-list {
+  list-style: none;
+  padding: 0;
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.result-item {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  font-size: 16px;
+  color: #555;
+  display: flex;
+  align-items: center;
+}
+
+.result-item:last-child {
+  border-bottom: none;
+}
+
+.result-item::before {
+  content: '✔'; /* Checkmark for success */
+  color: #4caf50;
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+.error-box .result-item::before {
+  content: '⚠'; /* Warning sign for errors */
+  color: #f44336;
+}
+
