@@ -57,8 +57,8 @@ export async function subirControlLechero(data, tamboSel, setErrores, setActuali
             console.log(`🔍 Buscando en Firebase el RP: '${rp}' en el tambo ID: '${tamboSel.nombre}'`);
 
             const snapshot = await firebase.db.collection('animal')
-                .where('idtambo', '==', tamboSel.id) // Filtra por tambo seleccionado
-                .where('rp', '==', rp) // Busca el RP normalizado
+                .where('idtambo', '==', tamboSel.id)
+                .where('rp', '==', rp)
                 .get();
 
             if (!snapshot.empty) {
@@ -75,14 +75,14 @@ export async function subirControlLechero(data, tamboSel, setErrores, setActuali
 
                     console.log(`✅ Evento registrado para RP '${rp}' con detalle: ${detalleEvento}`);
                     
-                    // ✅ Solo actualizar 'uc' si el valor es un número válido y NO es "enferma" o "fiscalizada"
-                    if (litros !== null && !esValorEspecial) {
+                    // ✅ Solo actualizar 'uc' si el valor es un número válido, no es especial y distinto de 0
+                    if (litros !== null && !esValorEspecial && litros !== 0) {
                         console.log(`🔄 Actualizando 'uc' en Firebase con: ${litros}`);
                         await firebase.db.collection('animal').doc(doc.id).update({ uc: litros });
                     } else {
-                        console.log(`⚠️ No se actualizó 'uc' para RP '${rp}' porque el valor es especial o inválido (Texto: '${litrosStr}')`);
+                        console.log(`⚠️ No se actualizó 'uc' para RP '${rp}' porque el valor es especial, inválido o igual a 0 (Texto: '${litrosStr}')`);
                     }
-                    
+
                     setActualizados(prev => [...prev, `RP ${rp} - ${detalleEvento}`]);
                     setExito(true);
                 });
@@ -95,5 +95,6 @@ export async function subirControlLechero(data, tamboSel, setErrores, setActuali
             setErrores(prev => [...prev, `Error en RP ${rp}: ${error.message}`]);
         }
     }
+
     console.log("✅ Finalizado el proceso de Control Lechero.");
 }

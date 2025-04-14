@@ -5,25 +5,19 @@ import { Button, Row, Col, Image, Spinner } from 'react-bootstrap';
 import { procesarEventosTambo } from '../components/layout/procesarEventosTambos';
 import { FirebaseContext } from '../firebase2';
 import ResultadosCargas from '../components/layout/ResultadosCargas';
-import  procesarParto  from '../components/layout/registrarParto'; // ✅ cambio correcto
+import procesarParto from '../components/layout/registrarParto';
+import { subirControlLechero } from '../components/layout/cargarControlLechero'; // ⚠️ Ajustá la ruta si está en otro lado
 
 const Dirsa = () => {
     const { firebase, usuario, tamboSel } = useContext(FirebaseContext);
     const [archivoEvento, setArchivoEvento] = useState(null);
+    const [archivoLechero, setArchivoLechero] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [datosPreview, setDatosPreview] = useState([]);
     const [actualizados, setActualizados] = useState([]);
     const [errores, setErrores] = useState([]);
     const inputFileRefEvento = useRef(null);
-
-    const handleFileChange = (event) => {
-        const file = event.target.files[0];
-        if (file) {
-            console.log(`📂 Archivo seleccionado:`, file);
-            setArchivoEvento(file);
-            setDatosPreview([]);
-        }
-    };
+    const inputFileRefLechero = useRef(null);
 
     const limpiarRP = (rp) => rp?.toString().trim().toUpperCase() || "";
 
@@ -41,6 +35,14 @@ const Dirsa = () => {
             }
         }
         return null;
+    };
+
+    const handleFileChange = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            setArchivoEvento(file);
+            setDatosPreview([]);
+        }
     };
 
     const handleUpload = async () => {
@@ -63,22 +65,37 @@ const Dirsa = () => {
                     return;
                 }
 
-                const encabezados = jsonData[0].map(h => h.toString().trim().toUpperCase());
-                const indiceRP = encabezados.indexOf("RP");
-                const indiceFechaEvento = encabezados.indexOf("FECHA DE EVENTO (XX/XX/XXXX)");
-                const indiceCodigoEvento = encabezados.indexOf("CODIGO DE EVENTO (*)");
+                const encabezados = jsonData[0].map(h => h.toString().trim());
+                const encabezadosMayus = encabezados.map(h => h.toUpperCase());
+                const indiceRP = encabezadosMayus.indexOf("RP");
+                const indiceCodigoEvento = encabezadosMayus.indexOf("CODIGO DE EVENTO (*)");
 
-                if (indiceRP === -1 || indiceFechaEvento === -1 || indiceCodigoEvento === -1) {
+                if (indiceRP === -1 || indiceCodigoEvento === -1) {
                     setErrores(["Error: La estructura del archivo es incorrecta. Verifica los encabezados."]);
                     setIsLoading(false);
                     return;
                 }
 
-                jsonData = jsonData.slice(1).map(row => ({
-                    RP: limpiarRP(row[indiceRP]), 
-                    'FECHA DE EVENTO (xx/xx/xxxx)': convertirFecha(row[indiceFechaEvento]),
-                    'CODIGO DE EVENTO (*)': row[indiceCodigoEvento]?.toString().trim() || ""
-                })).filter(item => item.RP && item['CODIGO DE EVENTO (*)']);
+                jsonData = jsonData.slice(1).map((row) => {
+                    const obj = {};
+                    encabezados.forEach((encabezado, i) => {
+                        let valor = row[i];
+                        if (encabezado.toUpperCase().includes("FECHA")) {
+                            valor = convertirFecha(valor);
+                        }
+                        obj[encabezado] = typeof valor === "string" ? valor.trim() : valor;
+                    });
+
+                    if (obj["RP"]) {
+                        obj["RP"] = limpiarRP(obj["RP"]);
+                    }
+
+                    return obj;
+                }).filter(item =>
+                    item.RP &&
+                    item["CODIGO DE EVENTO (*)"] &&
+                    item["CODIGO DE EVENTO (*)"].toString().trim() !== ""
+                );
 
                 if (jsonData.length === 0) {
                     setErrores(["No hay datos válidos en la planilla."]);
@@ -94,14 +111,10 @@ const Dirsa = () => {
                     return;
                 }
 
-                console.log("📊 Total eventos cargados:", jsonData.length);
-                const eventosParto = jsonData.filter(evento => evento['CODIGO DE EVENTO (*)'] === "PA");
-                console.log("🐄 Eventos de parto detectados:", eventosParto.length, eventosParto);
-
+                const eventosParto = jsonData.filter(evento => evento["CODIGO DE EVENTO (*)"] === "PA");
                 for (const evento of eventosParto) {
                     const rpLimpio = limpiarRP(evento.RP);
-                    evento.RP = rpLimpio; // aseguramos consistencia para la función que recibe
-                
+                    evento.RP = rpLimpio;
                     try {
                         await procesarParto(evento, tamboSel, firebase, usuario);
                         setActualizados(prev => [...prev, `✅ Parto registrado para RP ${rpLimpio}`]);
@@ -110,7 +123,8 @@ const Dirsa = () => {
                     }
                 }
 
-                for (const evento of jsonData.filter(e => e['CODIGO DE EVENTO (*)'] !== "PA")) {
+                const otrosEventos = jsonData.filter(e => e["CODIGO DE EVENTO (*)"] !== "PA");
+                for (const evento of otrosEventos) {
                     try {
                         await procesarEventosTambo([evento], tamboSel, setErrores, setActualizados, () => {}, firebase, usuario);
                         setActualizados(prev => [...prev, `✅ RP ${evento.RP} actualizado`]);
@@ -127,6 +141,36 @@ const Dirsa = () => {
             }
         };
         reader.readAsArrayBuffer(archivoEvento);
+    };
+
+    const handleUploadLechero = async () => {
+        if (!archivoLechero) return;
+        setIsLoading(true);
+        setErrores([]);
+        setActualizados([]);
+
+        const reader = new FileReader();
+        reader.onload = async (e) => {
+            try {
+                const data = new Uint8Array(e.target.result);
+                const workbook = XLSX.read(data, { type: 'array' });
+                const sheet = workbook.Sheets[workbook.SheetNames[0]];
+                const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+
+                if (jsonData.length === 0) {
+                    setErrores(["El archivo de control lechero está vacío o no tiene datos."]);
+                    return;
+                }
+
+                await subirControlLechero(jsonData, tamboSel, setErrores, setActualizados, () => {}, firebase, usuario);
+            } catch (error) {
+                console.error("❌ Error al procesar el archivo de control lechero:", error);
+                setErrores(["Error procesando el archivo de control lechero."]);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        reader.readAsArrayBuffer(archivoLechero);
     };
 
     return (
@@ -148,6 +192,22 @@ const Dirsa = () => {
                 </Button>
                 <Button onClick={handleUpload} variant="success" className="mx-2" disabled={!archivoEvento || isLoading}>
                     {isLoading ? <Spinner animation="border" size="sm" /> : "Actualizar Eventos"}
+                </Button>
+            </Row>
+
+            <Row className="mt-3 d-flex justify-content-center">
+                <input
+                    type="file"
+                    accept=".xlsx,.xls,.csv"
+                    ref={inputFileRefLechero}
+                    style={{ display: 'none' }}
+                    onChange={(e) => setArchivoLechero(e.target.files[0])}
+                />
+                <Button onClick={() => inputFileRefLechero.current?.click()} variant="info" className="mx-2">
+                    Cargar Control Lechero
+                </Button>
+                <Button onClick={handleUploadLechero} variant="warning" className="mx-2" disabled={!archivoLechero || isLoading}>
+                    {isLoading ? <Spinner animation="border" size="sm" /> : "Actualizar Control Lechero"}
                 </Button>
             </Row>
 
