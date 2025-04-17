@@ -53,6 +53,13 @@ export async function subirControlLechero(data, tamboSel, setErrores, setActuali
             continue;
         }
 
+        // ❌ Si el valor es 0, "0", "0.0", "0,0", "0,00", saltear la actualización
+        const valoresInvalidos = ["0", "0.0", "0,0", "0,00"];
+        if ((litros === 0 || valoresInvalidos.includes(litrosStr)) && !esValorEspecial) {
+            console.log(`⏭️ RP '${rp}' no se actualiza porque el valor es inválido: "${litrosStr}"`);
+            continue;
+        }
+
         try {
             console.log(`🔍 Buscando en Firebase el RP: '${rp}' en el tambo ID: '${tamboSel.nombre}'`);
 
@@ -65,7 +72,6 @@ export async function subirControlLechero(data, tamboSel, setErrores, setActuali
                 console.log(`✅ RP '${rp}' encontrado en Firebase (${snapshot.size} coincidencias).`);
 
                 snapshot.forEach(async (doc) => {
-                    // ✅ Registrar el evento en la colección 'eventos'
                     await firebase.db.collection('animal').doc(doc.id).collection('eventos').add({
                         fecha: firebase.nowTimeStamp(),
                         tipo: 'Control Lechero',
@@ -75,14 +81,13 @@ export async function subirControlLechero(data, tamboSel, setErrores, setActuali
 
                     console.log(`✅ Evento registrado para RP '${rp}' con detalle: ${detalleEvento}`);
                     
-                    // ✅ Solo actualizar 'uc' si el valor es un número válido, no es especial y distinto de 0
-                    if (litros !== null && !esValorEspecial && litros !== 0) {
+                    if (litros !== null && !esValorEspecial) {
                         console.log(`🔄 Actualizando 'uc' en Firebase con: ${litros}`);
                         await firebase.db.collection('animal').doc(doc.id).update({ uc: litros });
                     } else {
-                        console.log(`⚠️ No se actualizó 'uc' para RP '${rp}' porque el valor es especial, inválido o igual a 0 (Texto: '${litrosStr}')`);
+                        console.log(`⚠️ No se actualizó 'uc' para RP '${rp}' porque el valor es especial o inválido (Texto: '${litrosStr}')`);
                     }
-
+                    
                     setActualizados(prev => [...prev, `RP ${rp} - ${detalleEvento}`]);
                     setExito(true);
                 });
@@ -95,6 +100,5 @@ export async function subirControlLechero(data, tamboSel, setErrores, setActuali
             setErrores(prev => [...prev, `Error en RP ${rp}: ${error.message}`]);
         }
     }
-
     console.log("✅ Finalizado el proceso de Control Lechero.");
 }
