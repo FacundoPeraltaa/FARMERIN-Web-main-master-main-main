@@ -13,11 +13,36 @@ export async function procesarEventosTambo(data, tamboSel, setErrores, setActual
     const limpiarTexto = (valor) => (valor && typeof valor === 'string') ? valor.trim() : "";
 
     for (const item of data) {
-        // ✅ El RP ya viene limpio desde el frontend
         const rp = item["RP"];
-        const codigoEventoRaw = item["CODIGO DE EVENTO (*)"];
-        const codigoEvento = codigoEventoRaw ? limpiarTexto(codigoEventoRaw).toUpperCase() : null;
-        const fechaEventoStr = item["FECHA DE EVENTO (xx/xx/xxxx)"] ? limpiarTexto(item["FECHA DE EVENTO (xx/xx/xxxx)"]) : null;
+        const codigoEventoRaw = item["CODIGO DE EVENTO (*)"] || item["D.Ev"];
+        let codigoEvento = codigoEventoRaw ? limpiarTexto(codigoEventoRaw).toUpperCase() : null;
+
+        // ✅ Detección por palabras clave en planillas con "D.Ev"
+        if (!item["CODIGO DE EVENTO (*)"] && item["D.Ev"]) {
+            const valor = codigoEvento;
+            if (valor.includes("TACTO")) codigoEvento = "P1";
+            else if (valor.includes("CELO")) codigoEvento = "CE";
+            else if (valor.includes("SECADO")) codigoEvento = "3";
+            else if (valor.includes("SERVICIO")) codigoEvento = "SE";
+            else if (valor.includes("ABORTO")) codigoEvento = "AB";
+            else if (valor.includes("ANULA")) codigoEvento = "7";
+            else if (valor.includes("VACIA")) codigoEvento = "13";
+            else if (valor.includes("MUERTE")) codigoEvento = "12";
+            else if (valor.includes("TRANSFERENCIA")) codigoEvento = "11";
+            else if (valor.includes("VENTA")) codigoEvento = "10";
+            else if (valor.includes("RECHAZO")) codigoEvento = "41";
+            else if (valor.includes("TRATAMIENTO")) codigoEvento = "995";
+            else if (valor.includes("COMENTARIO")) codigoEvento = "999";
+        }
+
+        // ✅ Aceptar códigos numéricos del 41 al 48 como Rechazo
+        const codigoNumerico = parseInt(codigoEvento, 10);
+        if (!isNaN(codigoNumerico) && codigoNumerico >= 41 && codigoNumerico <= 48) {
+            codigoEvento = codigoNumerico.toString(); // normalizar como string
+        }
+
+        const fechaEventoStrRaw = item["FECHA DE EVENTO (xx/xx/xxxx)"] || item["Fecha"];
+        const fechaEventoStr = fechaEventoStrRaw ? limpiarTexto(fechaEventoStrRaw) : null;
         const observacion = item["OBSERVACION"] ? limpiarTexto(item["OBSERVACION"]) : "";
 
         if (!rp || !fechaEventoStr) {
@@ -25,12 +50,11 @@ export async function procesarEventosTambo(data, tamboSel, setErrores, setActual
             setErrores(prev => [...prev, `Datos inválidos en RP: ${rp}`]);
             continue;
         }
-        
+
         if (!codigoEvento || codigoEvento.trim() === "") {
             console.warn(`⚠️ Evento omitido: RP '${rp}' no tiene código de evento. No se procesará.`);
             continue;
         }
-        
 
         let fechaEventoCadena = "";
         let fechaEventoTimeStamp = null;
@@ -64,7 +88,6 @@ export async function procesarEventosTambo(data, tamboSel, setErrores, setActual
 
                     console.log(`🔄 Procesando RP: '${rp}' con Evento: '${codigoEvento}' en fecha: '${fechaEventoCadena}'`);
                     console.log("📄 Documento ID:", doc.id);
-                    console.log("📦 Datos actuales del animal:", data);
 
                     const codNum = parseInt(codigoEvento, 10);
 
@@ -114,17 +137,17 @@ export async function procesarEventosTambo(data, tamboSel, setErrores, setActual
                         case "11":
                             updateData = { fbaja: fechaEventoCadena, mbaja: "Transferencia" };
                             eventoTipo = "Baja";
-                            eventoDetalle = `${categoria} dado de baja (Transferencia) mediante planilla Dirsa`;
+                            eventoDetalle = `Animal dado de baja (Transferencia) mediante planilla Dirsa`;
                             break;
                         case "12":
                             updateData = { fbaja: fechaEventoCadena, mbaja: "Muerte" };
                             eventoTipo = "Baja";
-                            eventoDetalle = `${categoria} dado de baja (Muerte) mediante planilla Dirsa`;
+                            eventoDetalle = `Animal dado de baja (Muerte) mediante planilla Dirsa`;
                             break;
                         case "3":
                             updateData.estrep = "seca";
                             eventoTipo = "Secado";
-                            eventoDetalle = "Se sacó animal mediante planilla Dirsa";
+                            eventoDetalle = "Se seco animal mediante planilla Dirsa";
                             break;
                         case "SE":
                             const isPregnant = data.estrep === "preñada";
@@ -185,40 +208,35 @@ export async function procesarEventosTambo(data, tamboSel, setErrores, setActual
                             break;
                     }
 
-                    console.log("📦 updateData para RP", rp, updateData);
-
                     if (Object.keys(updateData).length > 0) {
                         try {
                             await firebase.db.collection("animal").doc(doc.id).update(updateData);
-                            console.log(`✅ RP ${rp} actualizado en Firebase.`);
                             setActualizados(prev => [...prev, `RP ${rp} actualizado.`]);
                         } catch (error) {
-                            console.error(`❌ Error al actualizar RP ${rp}:`, error);
                             setErrores(prev => [...prev, `Error al actualizar RP ${rp}: ${error.message}`]);
                         }
                     } else {
                         setErrores(prev => [...prev, `❗ No se aplicaron cambios para RP ${rp} (evento: ${codigoEvento})`]);
                     }
 
-                    // Registrar evento en subcolección
+                    // ✅ Registrar el evento en la subcolección "eventos"
                     try {
                         const nombreUsuario = usuario?.displayName || "Anónimo";
+                        const eventoData = {
+                            fecha: fechaEventoTimeStamp,
+                            tipo: eventoTipo || "Sin tipo",
+                            detalle: eventoDetalle || "Sin detalle",
+                            usuario: `${nombreUsuario} - Dirsa`
+                        };
+
                         const eventoRef = firebase.db
                             .collection("animal")
                             .doc(doc.id)
                             .collection("eventos")
                             .doc();
 
-                        await eventoRef.set({
-                            fecha: fechaEventoTimeStamp,
-                            tipo: eventoTipo,
-                            detalle: eventoDetalle,
-                            usuario: `${nombreUsuario} - Dirsa`
-                        });
-
-                        console.log(`📥 Evento registrado para RP: ${rp}`);
+                        await eventoRef.set(eventoData);
                     } catch (error) {
-                        console.error(`❌ Error al agregar evento en subcolección para RP ${rp}:`, error);
                         setErrores(prev => [...prev, `Error al agregar evento en subcolección para RP ${rp}: ${error.message}`]);
                     }
                 }
@@ -226,7 +244,6 @@ export async function procesarEventosTambo(data, tamboSel, setErrores, setActual
                 setErrores(prev => [...prev, `❌ No se encontró RP '${rp}' en la base de datos.`]);
             }
         } catch (error) {
-            console.error(`🛑 Error al procesar RP '${rp}':`, error);
             setErrores(prev => [...prev, `Error en RP ${rp}: ${error.message}`]);
         }
     }

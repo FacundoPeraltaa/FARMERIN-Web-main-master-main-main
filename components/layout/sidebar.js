@@ -120,6 +120,10 @@ const Aside = ({ collapsed, toggled, handleToggleSidebar }) => {
               <Link href="/raciones">
                 <MenuItem>Control de Ingreso </MenuItem>
               </Link>
+              <Link href="/IngresosTurnos">
+              <MenuItem icon={<FaHandsHelping size={15} />}>
+                INGRESOS PHP </MenuItem>
+            </Link>
             </SubMenu>
           </Menu>
 

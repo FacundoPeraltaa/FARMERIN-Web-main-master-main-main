@@ -29,6 +29,8 @@
     "firebase": "^7.23.0",
     "firebase-admin": "^9.12.0",
     "google-maps-react": "^2.0.6",
+    "jspdf": "^3.0.1",
+    "jspdf-autotable": "^5.0.2",
     "moment": "^2.30.1",
     "next": "^9.5.3",
     "node-fetch": "^2.6.1",

@@ -66,7 +66,7 @@ const Dirsa = () => {
                 const encabezados = jsonData[0].map(h => h.toString().trim());
                 const encabezadosMayus = encabezados.map(h => h.toUpperCase());
                 const indiceRP = encabezadosMayus.indexOf("RP");
-                const indiceCodigoEvento = encabezadosMayus.indexOf("CODIGO DE EVENTO (*)");
+                const indiceCodigoEvento = encabezadosMayus.findIndex(h => h === "CODIGO DE EVENTO (*)" || h === "D.EV");
 
                 if (indiceRP === -1 || indiceCodigoEvento === -1) {
                     setErrores(["Error: La estructura del archivo es incorrecta. Verifica los encabezados."]);
@@ -74,7 +74,6 @@ const Dirsa = () => {
                     return;
                 }
 
-                // 🔥 ACA CAMBIAMOS: mapeamos TODAS las columnas
                 jsonData = jsonData.slice(1).map((row) => {
                     const obj = {};
                     encabezados.forEach((encabezado, i) => {
@@ -87,13 +86,15 @@ const Dirsa = () => {
                         obj[encabezado] = typeof valor === "string" ? valor.trim() : valor;
                     });
 
-                    // Limpiamos RP
                     if (obj["RP"]) {
                         obj["RP"] = limpiarRP(obj["RP"]);
                     }
 
                     return obj;
-                }).filter(item => item.RP && item["CODIGO DE EVENTO (*)"]);
+                }).filter(item =>
+                    item.RP &&
+                    (item["CODIGO DE EVENTO (*)"] || item["D.Ev"])
+                );
 
                 if (jsonData.length === 0) {
                     setErrores(["No hay datos válidos en la planilla."]);
@@ -110,7 +111,12 @@ const Dirsa = () => {
                 }
 
                 console.log("📊 Total eventos cargados:", jsonData.length);
-                const eventosParto = jsonData.filter(evento => evento["CODIGO DE EVENTO (*)"] === "PA");
+
+                // ✅ Detección generalizada de evento parto
+                const eventosParto = jsonData.filter(evento => {
+                    const cod = (evento["CODIGO DE EVENTO (*)"] || evento["D.Ev"] || "").toString().toUpperCase().trim();
+                    return cod === "PA" || cod === "PARTO";
+                });
                 console.log("🐄 Eventos de parto detectados:", eventosParto.length, eventosParto);
 
                 for (const evento of eventosParto) {
@@ -125,7 +131,12 @@ const Dirsa = () => {
                     }
                 }
 
-                const otrosEventos = jsonData.filter(e => e["CODIGO DE EVENTO (*)"] !== "PA");
+                // ✅ Otros eventos (no parto)
+                const otrosEventos = jsonData.filter(evento => {
+                    const cod = (evento["CODIGO DE EVENTO (*)"] || evento["D.Ev"] || "").toString().toUpperCase().trim();
+                    return cod !== "PA" && cod !== "PARTO";
+                });
+
                 for (const evento of otrosEventos) {
                     try {
                         await procesarEventosTambo([evento], tamboSel, setErrores, setActualizados, () => {}, firebase, usuario);

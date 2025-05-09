@@ -14,7 +14,13 @@ const procesarParto = async (evento, tamboSel, firebase, usuario) => {
   console.log("📥 Evento recibido:", evento);
 
   const rpMadre = limpiarTexto(getValor(evento, "RP")).replace(/\s/g, "");
-  const fechaEvento = getValor(evento, "FECHA DE EVENTO (xx/xx/xxxx)") || new Date().toISOString().split("T")[0];
+  const fechaEvento = getValor(evento, "Fecha)") || new Date().toISOString().split("T")[0];
+  const tipoParto = getValor(evento, "TIPO DE PARTO");
+  const observ = getValor(evento, "OBSERV");
+  const sexoCria = getValor(evento, "Sexo Cria");
+  const rpCria = limpiarTexto(getValor(evento, "RP Cria"));
+  const rpCria2 = limpiarTexto(getValor(evento, "INSCRIBIR CRIA**"));
+
   const crias = [];
 
   try {
@@ -33,6 +39,7 @@ const procesarParto = async (evento, tamboSel, firebase, usuario) => {
 
     console.log("👩‍🍼 Madre encontrada:", madreData);
 
+    // ✅ Actualizar madre
     await madreRef.update({
       estrep: "vacia",
       fparto: fechaEvento,
@@ -41,88 +48,71 @@ const procesarParto = async (evento, tamboSel, firebase, usuario) => {
       fservicio: ""
     });
 
-    const registrarCria = async (rpCria) => {
-      if (!rpCria) {
-        console.warn("⚠️ RP de cría vacío. No se registrará.");
-        return;
-      }
+    const registrarCria = async (rp, sexo) => {
+      if (!rp) return;
 
-      console.log(`🍼 Registrando cría con RP: ${rpCria}`);
-
-      // Verificar si ya existe
-      const existeCria = await firebase.db.collection('animal')
-        .where('idtambo', '==', tamboSel.id)
-        .where('rp', '==', rpCria)
-        .where('fbaja', '==', '')
+      const existeCria = await firebase.db.collection("animal")
+        .where("idtambo", "==", tamboSel.id)
+        .where("rp", "==", rp)
+        .where("fbaja", "==", "")
         .get();
 
       if (!existeCria.empty) {
-        console.warn(`⚠️ Cría con RP ${rpCria} ya existe. No se registrará duplicado.`);
-        return;
-      }
+        console.warn(`⚠️ Cría con RP ${rp} ya existe. Solo se registrará el evento.`);
+      } else {
+        const nuevaCria = {
+          ingreso: fechaEvento,
+          idtambo: tamboSel.id,
+          rp,
+          erp: "",
+          lactancia: 0,
+          observaciones: "",
+          estpro: "cria",
+          estrep: "vacia",
+          fparto: "",
+          fservicio: "",
+          categoria: "Vaquillona",
+          racion: 8,
+          porcentaje: 1,
+          fracion: firebase.ayerTimeStamp(),
+          nservicio: 1,
+          uc: 0,
+          fuc: firebase.nowTimeStamp(),
+          ca: 0,
+          anorm: "",
+          fbaja: "",
+          mbaja: "",
+          rodeo: 0,
+          sugerido: 0,
+        };
 
-      const nuevaCria = {
-        ingreso: fechaEvento,
-        idtambo: tamboSel.id,
-        rp: rpCria,
-        erp: "",
-        lactancia: 0,
-        observaciones: "",
-        estpro: "cria",
-        estrep: "vacia",
-        fparto: "",
-        fservicio: "",
-        categoria: "categoriaCria",
-        racion: 8,
-        porcentaje: 1,
-        fracion: firebase.ayerTimeStamp(),
-        nservicio: 1,
-        uc: 0,
-        fuc: firebase.nowTimeStamp(),
-        ca: 0,
-        anorm: "",
-        fbaja: "",
-        mbaja: "",
-        rodeo: 0,
-        sugerido: 0,
-      };
-
-      try {
         const res = await firebase.db.collection("animal").add(nuevaCria);
-        console.log(`✅ Cría con RP ${rpCria} registrada con ID: ${res.id}`);
-        crias.push({ rp: rpCria, sexo: getValor(evento, "SEXO CRIA") });
-      } catch (e) {
-        console.error(`❌ Error registrando cría con RP ${rpCria}:`, e.message);
+        console.log(`✅ Cría con RP ${rp} registrada con ID: ${res.id}`);
       }
+
+      crias.push({ rp, sexo });
     };
 
-    // Registrar primera cría
-    const rpCria1 = limpiarTexto(getValor(evento, "RP CRIA"));
-    await registrarCria(rpCria1);
-
-    // Registrar segunda cría si es parto múltiple
-    const tipoParto = getValor(evento, "TIPO DE PARTO");
-    console.log("🍼 Tipo de parto:", tipoParto);
+    await registrarCria(rpCria, sexoCria);
 
     if (tipoParto === "Mellizos") {
-      const rpCria2 = limpiarTexto(getValor(evento, "INSCRIBIR CRIA**"));
-      await registrarCria(rpCria2);
+      const sexoCria2 = getValor(evento, "Sexo Cria 2") || "";
+      await registrarCria(rpCria2, sexoCria2);
     }
 
-    // Registrar evento de parto
     const refEventos = madreRef.collection("eventos");
     const eventoObj = {
       crias,
       rp: rpMadre,
       tipo: "Parto",
-      fecha: fechaEvento,
+      fecha: firebase.fechaTimeStamp(fechaEvento), // ✅ ahora como Timestamp ajustado
       tambo: tamboSel.id,
-      detalle: `${getValor(evento, "OBSERV")} - ${tipoParto}`,
+      detalle: `${observ} - ${tipoParto}`,
       usuario: `${usuario.displayName} - Dirsa`,
     };
 
     await refEventos.add(eventoObj);
-    console.log(`✅ Parto registrado correctamente para RP ${rpMadre}`);
+    console.log(`✅ Evento de parto registrado para RP ${rpMadre}`);
   } catch (error) {
     console.error(`❌ Error general registrando parto para RP ${rpMadre}:`, error.message);
   }

@@ -3932,3 +3932,76 @@ button.listasAnimalesCerrar-button:hover svg {
   color: #f44336;
 }
 
+////// MODIFICAR LISTA DE INGRESOS TURNOS //////////////////////
+ .contenedor-tablas {
+  display: flex;
+  gap: 2rem; // separación entre tablas
+  align-items: flex-start;
+  flex-wrap: wrap; // para que se acomoden en pantallas pequeñas
+}
+
+.tabla-ingresos {
+  flex: 1 1 45%; // ancho mínimo de cada tabla
+  max-width: 100%;
+}
+
+.tabla-ingresos {
+  width: 100%;
+  margin-top: 1rem;
+  font-family: monospace; // o 'Courier New', 'Lucida Console', monospace
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #999;
+  }
+
+  thead {
+    background-color: #eaeaea;
+    border-bottom: 2px solid #999;
+
+    th {
+      padding: 8px 12px;
+      font-size: 0.95rem;
+      font-weight: bold;
+      color: #000;
+      text-align: left;
+      border-right: 1px solid #999;
+
+      &:last-child {
+        border-right: none;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      border-bottom: 1px solid #ccc;
+
+      &:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+
+      td {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+        color: #222;
+        border-right: 1px solid #ddd;
+
+        &:last-child {
+          border-right: none;
+        }
+      }
+    }
+  }
+
+  h3 {
+    font-size: 1rem;
+    margin: 1rem 0 0.5rem;
+    color: #111;
+    border-bottom: 1px solid #999;
+    padding-bottom: 4px;
+  }
+}
+
+
