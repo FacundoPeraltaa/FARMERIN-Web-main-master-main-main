@@ -30,12 +30,12 @@ $icon-size: 35px;
     justify-content: center;
     font-size: 40px;
     display: none;
-    background-image:url('../public/logoF.png');
+    background-image: url('../public/logoF.png');
     background-repeat: no-repeat;
     background-position: center;
-    background-blend-mode:lighten;
-    background-size:auto 100%;
-  
+    background-blend-mode: lighten;
+    background-size: auto 100%;
+
   }
 
 
@@ -44,7 +44,7 @@ $icon-size: 35px;
     display: flex;
     align-items: center;
     justify-content: center;
-    
+
     .sidebar-btn {
       padding: 1px 15px;
       border-radius: 40px;
@@ -58,10 +58,12 @@ $icon-size: 35px;
       justify-content: center;
       text-overflow: ellipsis;
       overflow: hidden;
+
       span {
         margin-left: 5px;
         font-size: 13px;
       }
+
       &:hover {
         color: $highlight-color;
       }
@@ -72,10 +74,11 @@ $icon-size: 35px;
     display: flex;
     align-items: center;
     justify-content: center;
+
     .sidebar-logo {
       padding: 5px 5px;
       border-radius: 40px;
-     
+
       color: #adadad;
       text-decoration: none;
       margin: 0 auto;
@@ -85,20 +88,24 @@ $icon-size: 35px;
       justify-content: center;
       text-overflow: ellipsis;
       overflow: hidden;
+
       span {
         margin-left: 5px;
         font-size: 25px;
       }
+
       &:hover {
         color: $highlight-color;
       }
     }
   }
-@media (max-width:768px) {
-  .responsive {
-    display: none;
+
+  @media (max-width:768px) {
+    .responsive {
+      display: none;
+    }
   }
-}
+
   .collapsed {
     .sidebar-btn {
       display: inline-block;
@@ -106,45 +113,46 @@ $icon-size: 35px;
       width: 35px;
       height: 35px;
       line-height: 40px;
-      padding:0;
-  
+      padding: 0;
+
     }
+
     .sidebar-logo {
       display: inline-block;
       border-radius: 50%;
       width: 55px;
       height: 55px;
       line-height: 60px;
-      padding:0;
+      padding: 0;
     }
   }
 
   main {
-   
+
     flex-grow: 1;
     display: flex;
     flex-direction: column;
     overflow-y: auto;
-    background-color:whitesmoke;
+    background-color: whitesmoke;
 
     header {
       color: white;
-      margin:0rem;
+      margin: 0rem;
       align-items: center;
-      display:flex;
-      justify-content:space-between;
+      display: flex;
+      justify-content: space-between;
       height: 5rem;
       width: 100%;
-      position:fixed;
-      top:0;
+      position: fixed;
+      top: 0;
       z-index: 1;
-      background-color:#212f49;    //#5b5d5f 
+      background-color: #212f49; //#5b5d5f 
       border: 0;
-      box-shadow: 0 2px 2px 0 rgba(60,75,100,.14), 0 3px 1px -2px rgba(60,75,100,.12), 0 1px 5px 0 rgba(60,75,100,.2);
-     
+      box-shadow: 0 2px 2px 0 rgba(60, 75, 100, .14), 0 3px 1px -2px rgba(60, 75, 100, .12), 0 1px 5px 0 rgba(60, 75, 100, .2);
+
     }
 
-    content{     
+    content {
       padding-top: 6rem;
     }
 
@@ -152,41 +160,45 @@ $icon-size: 35px;
       margin-top: auto;
       color: #888;
       text-align: center;
+
       a {
         text-decoration: none;
         color: #888;
+
         &:hover {
           text-decoration: underline;
         }
       }
     }
 
-    
+
   }
 
   .social-bagdes {
     margin-top: 10px;
+
     img {
       margin: 5px;
     }
   }
 
-  .block { 
+  .block {
     padding: 1rem;
     font-size: 14px;
     color: #545454;
-    > span {
+
+    >span {
       margin-left: 10px;
     }
   }
 
-  .enca-ani{
+  .enca-ani {
     display: flex;
     margin-right: 300px;
     padding: 2;
   }
-  
-  .hdos-ani{
+
+  .hdos-ani {
     display: flex;
     background-color: #F18700;
     text-align: center;
@@ -198,28 +210,29 @@ $icon-size: 35px;
     border-radius: 10px;
 
   }
-  .elem-header{
+
+  .elem-header {
     align-items: center;
     display: flex;
-    padding: 0.5rem ;
-    }
+    padding: 0.5rem;
+  }
 
 
 
 
-  .elem-porc-reduccion{
+  .elem-porc-reduccion {
     display: flex;
     margin-right: 300px;
     padding: 2;
   }
 
-  .elem-porc-aumento{
+  .elem-porc-aumento {
     display: flex;
     margin-right: 300px;
     padding: 2;
   }
 
-  .elem-aumen-letras{
+  .elem-aumen-letras {
     display: flex;
     background-color: #F18700;
     text-align: center;
@@ -231,7 +244,7 @@ $icon-size: 35px;
     border-radius: 10px;
   }
 
-  .elem-reduc-letras{
+  .elem-reduc-letras {
     display: flex;
     background-color: #F18700;
     text-align: center;
@@ -246,9 +259,10 @@ $icon-size: 35px;
 
 
 
-// CUANDO LA PESTAÑA SEA MENOR A 768 PX CAMBIA DE LA SIGUIENTE MANERA
-@media (max-width: 767.98px) {
+  // CUANDO LA PESTAÑA SEA MENOR A 768 PX CAMBIA DE LA SIGUIENTE MANERA
+  @media (max-width: 767.98px) {
     overflow-x: hidden;
+
     header {
       h1 {
         font-size: 24px;
@@ -262,51 +276,58 @@ $icon-size: 35px;
       margin: 1rem;
       display: flex;
     }
-    .block{
+
+    .block {
       display: none;
     }
- 
+
   }
 }
+
 .hambur {
   display: flex;
   margin-right: 2%;
 }
+
 @media (min-width: 768px) {
   .hambur {
     display: none
-  }}
+  }
+}
 
 .badge {
   padding: 3px 6px;
   font-size: 9px;
   letter-spacing: 1px;
   border-radius: 15px;
+
   &.red {
     color: #ffffff;
     background: #d63030;
   }
+
   &.gray {
     color: #ffffff;
     background: #777777;
   }
+
   &.yellow {
     color: #000000;
     background: #ffd331;
   }
- 
+
 }
 
 // CUANDO LA PESTAÑA SEA MENOR A 1434 PX CAMBIA DE LA SIGUIENTE MANERA
 @media (max-width: 1434px) {
-  .elem-porc-aumento{
+  .elem-porc-aumento {
     width: 45em;
     display: flex;
     margin: 4%;
-    
+
   }
 
-  .elem-aumen-letras{
+  .elem-aumen-letras {
     width: 22em;
     display: flex;
     font-size: 25px;
@@ -331,14 +352,14 @@ $icon-size: 35px;
 
 // CUANDO LA PESTAÑA SEA MENOR A 1234 PX CAMBIA DE LA SIGUIENTE MANERA
 @media (max-width: 1234px) {
-  .elem-porc-aumento{
+  .elem-porc-aumento {
     width: 25em;
     display: flex;
     margin: 3%;
-    
+
   }
 
-  .elem-aumen-letras{
+  .elem-aumen-letras {
     width: 30em;
     display: flex;
     font-size: 15px;
@@ -363,14 +384,14 @@ $icon-size: 35px;
 
 // CUANDO LA PESTAÑA SEA MENOR A 990 PX CAMBIA DE LA SIGUIENTE MANERA
 @media (max-width: 990px) {
-  .elem-porc-aumento{
+  .elem-porc-aumento {
     width: 14em;
     display: flex;
     margin: 2%;
-    
+
   }
 
-  .elem-aumen-letras{
+  .elem-aumen-letras {
     width: 40em;
     display: flex;
     font-size: 14px;
@@ -396,14 +417,14 @@ $icon-size: 35px;
 
 // CUANDO LA PESTAÑA SEA MENOR A 900 PX CAMBIA DE LA SIGUIENTE MANERA
 @media (max-width: 900px) {
-  .elem-porc-aumento{
+  .elem-porc-aumento {
     width: 13em;
     display: flex;
     margin: 5%;
-    
+
   }
 
-  .elem-aumen-letras{
+  .elem-aumen-letras {
     width: 19em;
     display: flex;
     font-size: 11px;
@@ -428,14 +449,14 @@ $icon-size: 35px;
 
 // CUANDO LA PESTAÑA SEA MENOR A 888 PX CAMBIA DE LA SIGUIENTE MANERA
 @media (max-width: 888px) {
-  .elem-porc-aumento{
+  .elem-porc-aumento {
     width: 13em;
     display: flex;
     margin: 5%;
-    
+
   }
 
-  .elem-aumen-letras{
+  .elem-aumen-letras {
     width: 19em;
     display: flex;
     font-size: 11px;
@@ -455,7 +476,7 @@ $icon-size: 35px;
     text-align: center;
   }
 
-  
+
 
 }
 
@@ -463,13 +484,13 @@ $icon-size: 35px;
 
 // CUANDO LA PESTAÑA SEA MENOR A 700 PX CAMBIA DE LA SIGUIENTE MANERA
 @media (max-width: 700px) {
-  .elem-porc-aumento{
+  .elem-porc-aumento {
     width: 27em;
     display: flex;
     margin: 10%;
   }
 
-  .elem-aumen-letras{
+  .elem-aumen-letras {
     width: 45em;
     display: flex;
     font-size: 16px;
@@ -495,7 +516,7 @@ $icon-size: 35px;
 
 // CUANDO LA PESTAÑA SEA MENOR A 500 PX CAMBIA DE LA SIGUIENTE MANERA
 @media (max-width: 500px) {
-  .elem-porc-aumento{
+  .elem-porc-aumento {
     align-items: center;
     width: 70em;
     height: 4em;
@@ -503,7 +524,7 @@ $icon-size: 35px;
     margin: 3%;
   }
 
-  .elem-aumen-letras{
+  .elem-aumen-letras {
     width: 17em;
     height: 4em;
     display: flex;
@@ -530,8 +551,9 @@ $icon-size: 35px;
 
 
 }
+
 //LOADER DE  MONITOR
-/* From Uiverse.io by Chriskoziol */ 
+/* From Uiverse.io by Chriskoziol */
 .spinnerContainer-Monitor {
   display: flex;
   flex-direction: column;
@@ -572,7 +594,7 @@ $icon-size: 35px;
 
 .loader-Monitor {
   color: #4a4a4a;
-  font-family: "Poppins",sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 500;
   font-size: 25px;
   -webkit-box-sizing: content-box;
@@ -640,15 +662,21 @@ $icon-size: 35px;
 }
 
 
-.TextoFoto 
-{
-  background-color: #1b8aa5; /* Color de fondo amarillo */
-  color: #c4cd07; /* Color de texto oscuro */
-  padding: 5px 9px; /* Espacio dentro del elemento */
-  border: 1px solid #e0a800; /* Borde del elemento */
-  border-radius: 5px; /* Bordes redondeados */
-  font-size: 25PX; /* Tamaña de las letras */
+.TextoFoto {
+  background-color: #1b8aa5;
+  /* Color de fondo amarillo */
+  color: #c4cd07;
+  /* Color de texto oscuro */
+  padding: 5px 9px;
+  /* Espacio dentro del elemento */
+  border: 1px solid #e0a800;
+  /* Borde del elemento */
+  border-radius: 5px;
+  /* Bordes redondeados */
+  font-size: 25PX;
+  /* Tamaña de las letras */
 }
+
 .chartContainer {
   width: 100%;
   display: flex;
@@ -703,7 +731,7 @@ $icon-size: 35px;
 
 .loader-Grafico {
   color: #4a4a4a;
-  font-family: "Poppins",sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 500;
   font-size: 25px;
   -webkit-box-sizing: content-box;
@@ -793,6 +821,7 @@ $icon-size: 35px;
   border-radius: 5px;
   margin-left: 20px;
 }
+
 .AnimalesFormulario h2 {
   font-size: 23px;
 }
@@ -802,7 +831,8 @@ $icon-size: 35px;
   border-collapse: collapse;
 }
 
-.tablaDeAnimales th, .tablaDeAnimales td {
+.tablaDeAnimales th,
+.tablaDeAnimales td {
   border: 1px solid #ddd;
   padding: 8px;
   text-align: left;
@@ -882,7 +912,8 @@ $icon-size: 35px;
 }
 
 // Asegúrate de que el botón use flexbox para centrar el contenido
-.web-button { // Clase renombrada
+.web-button {
+  // Clase renombrada
   display: flex; // Usar flexbox
   align-items: center; // Centrar verticalmente
   justify-content: center; // Centrar horizontalmente
@@ -909,7 +940,8 @@ $icon-size: 35px;
 }
 
 // Mostrar el texto al pasar el mouse
-.web-button:hover .llamadas-text { // Clase renombrada
+.web-button:hover .llamadas-text {
+  // Clase renombrada
   opacity: 1; // Mostrar texto al pasar el mouse
 }
 
@@ -921,7 +953,9 @@ $icon-size: 35px;
   padding: 20px;
   background-color: #f0f0f0;
 }
-contact-section, .social-section {
+
+contact-section,
+.social-section {
   width: 45%;
   background-color: #ffffff;
   padding: 20px;
@@ -929,7 +963,8 @@ contact-section, .social-section {
   box-shadow: 0 2px 4px #020014;
 }
 
-.contact-section, .map-section {
+.contact-section,
+.map-section {
   width: 95%;
   background-color: #ffffff;
   padding: 10px;
@@ -937,32 +972,46 @@ contact-section, .social-section {
   border-radius: 8px;
   box-shadow: 0 2px 4px #020014;
 }
+
 // TITULOS CONTACTO - REDES 
 .titulo-ayuda {
-  font-family: 'Roboto', sans-serif; /* Fuente moderna */
-  font-size: 2.5rem; /* Tamaño del texto */
-  font-weight: 700; /* Grosor del texto */
-  line-height: 1.2; /* Espaciado entre líneas */
-  letter-spacing: -0.5px; /* Espaciado entre letras */
-  margin: 0.5em 0; /* Márgenes superior e inferior */
-  padding: 0.2em 0.5em; /* Relleno adicional para el fondo */
-  color: #1b89a5; /* Color del texto: Gris oscuro */
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Sombra suave */
-  border-bottom: 2px solid #1b89a5; /* Línea inferior */
+  font-family: 'Roboto', sans-serif;
+  /* Fuente moderna */
+  font-size: 2.5rem;
+  /* Tamaño del texto */
+  font-weight: 700;
+  /* Grosor del texto */
+  line-height: 1.2;
+  /* Espaciado entre líneas */
+  letter-spacing: -0.5px;
+  /* Espaciado entre letras */
+  margin: 0.5em 0;
+  /* Márgenes superior e inferior */
+  padding: 0.2em 0.5em;
+  /* Relleno adicional para el fondo */
+  color: #1b89a5;
+  /* Color del texto: Gris oscuro */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  /* Sombra suave */
+  border-bottom: 2px solid #1b89a5;
+  /* Línea inferior */
 }
 
 /* Ajustes responsivos */
 @media (max-width: 768px) {
   .titulo-ayuda {
-      font-size: 2rem; /* Tamaño del texto para dispositivos medianos */
+    font-size: 2rem;
+    /* Tamaño del texto para dispositivos medianos */
   }
 }
 
 @media (max-width: 480px) {
   .titulo-ayuda {
-      font-size: 1.5rem; /* Tamaño del texto para dispositivos pequeños */
+    font-size: 1.5rem;
+    /* Tamaño del texto para dispositivos pequeños */
   }
 }
+
 /*
 // AVISO DE RACIONES
 .divRaciones {
@@ -1020,43 +1069,57 @@ contact-section, .social-section {
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
 
 .titulo-ayuda-ubi {
-    font-family: 'Roboto', sans-serif; /* Fuente moderna y legible */
-    font-size: 2.5rem; /* Tamaño del texto ajustable */
-    font-weight: 700; /* Grosor del texto */
-    line-height: 1.2; /* Espaciado entre líneas */
-    letter-spacing: -0.5px; /* Espaciado entre letras */
-    margin: 0.5em 0; /* Márgenes superior e inferior */
-    padding: 0; /* Sin relleno adicional */
+  font-family: 'Roboto', sans-serif;
+  /* Fuente moderna y legible */
+  font-size: 2.5rem;
+  /* Tamaño del texto ajustable */
+  font-weight: 700;
+  /* Grosor del texto */
+  line-height: 1.2;
+  /* Espaciado entre líneas */
+  letter-spacing: -0.5px;
+  /* Espaciado entre letras */
+  margin: 0.5em 0;
+  /* Márgenes superior e inferior */
+  padding: 0;
+  /* Sin relleno adicional */
 }
 
 /* Colores */
 .titulo-ayuda-ubi {
-    color: #1b89a5; /* Color del texto: Gris oscuro */
-    padding: 0.2em 0.5em; /* Relleno para el fondo */
+  color: #1b89a5;
+  /* Color del texto: Gris oscuro */
+  padding: 0.2em 0.5em;
+  /* Relleno para el fondo */
 }
 
 /* Sombra de texto */
 .titulo-ayuda-ubi {
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  /* Sombra suave */
 }
 
 /* Bordes */
 .titulo-ayuda-ubi {
-    border-bottom: 2px solid #1b89a5; /* Línea en la parte inferior */
+  border-bottom: 2px solid #1b89a5;
+  /* Línea en la parte inferior */
 }
 
 /* Ajustes responsivos */
 @media (max-width: 768px) {
-    .titulo-ayuda-ubi {
-        font-size: 2rem; /* Tamaño del texto para dispositivos medianos */
-    }
+  .titulo-ayuda-ubi {
+    font-size: 2rem;
+    /* Tamaño del texto para dispositivos medianos */
+  }
 }
 
 @media (max-width: 480px) {
-    .titulo-ayuda-ubi {
-        font-size: 1.5rem; /* Tamaño del texto para dispositivos pequeños */
-    }
+  .titulo-ayuda-ubi {
+    font-size: 1.5rem;
+    /* Tamaño del texto para dispositivos pequeños */
+  }
 }
+
 .contact-item {
   margin-bottom: 15px;
 }
@@ -1065,20 +1128,29 @@ contact-section, .social-section {
   text-decoration: none;
   display: flex;
   align-items: center;
-  color: #020014; /* Color del texto */
-  font-size: 20px; /* Tamaño del texto */
-  font-weight: 500; /* Peso del texto */
+  color: #020014;
+  /* Color del texto */
+  font-size: 20px;
+  /* Tamaño del texto */
+  font-weight: 500;
+  /* Peso del texto */
 }
 
-.contact-item a i, .contact-item a svg {
-  margin-right: 15px; /* Espacio entre el icono y el texto */
-  font-size: 28px; /* Tamaño del icono */
-  color: #1a8aa4; /* Color del icono */
+.contact-item a i,
+.contact-item a svg {
+  margin-right: 15px;
+  /* Espacio entre el icono y el texto */
+  font-size: 28px;
+  /* Tamaño del icono */
+  color: #1a8aa4;
+  /* Color del icono */
 }
 
 .contact-item a:hover {
-  color: #1a8aa4; /* Color del texto al pasar el mouse */
-  text-decoration: underline; /* Subraya al pasar el mouse */
+  color: #1a8aa4;
+  /* Color del texto al pasar el mouse */
+  text-decoration: underline;
+  /* Subraya al pasar el mouse */
 }
 
 /* Estilos generales para las alertas */
@@ -1096,7 +1168,7 @@ contact-section, .social-section {
     font-size: 18px;
     font-weight: bold;
   }
-  
+
   .d-flex {
     display: flex;
     align-items: center;
@@ -1155,7 +1227,7 @@ contact-section, .social-section {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
+
   .elem-aumen-letras {
     font-size: 18px;
     font-weight: bold;
@@ -1173,13 +1245,14 @@ contact-section, .social-section {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
+
   .elem-reduc-letras {
     font-size: 18px;
     font-weight: bold;
     margin: 0;
   }
 }
+
 /*
 // LAYAUT DE NOREGS
 .listaNoRegs {
@@ -1305,7 +1378,8 @@ button.btn-info:hover {
   margin-top: 20px;
 }
 
-.custom-table th, .custom-table td {
+.custom-table th,
+.custom-table td {
   text-align: center;
   vertical-align: middle;
 }
@@ -1323,17 +1397,17 @@ button.btn-info:hover {
 //////////////////////////////////////////// BOTONES PARAMETROS ////////////////////////////////////////7
 .dropdown-reducir-button {
   .btn {
-  background-color: red;
-  border-color: red;
-  font-size: 1.25rem;         // Tamaño de fuente más grande
-  padding: 0.75rem 1.5rem;    // Aumenta el padding para hacer el botón más grande
-  line-height: 1.5;           // Ajusta la altura de la línea para el texto
+    background-color: red;
+    border-color: red;
+    font-size: 1.25rem; // Tamaño de fuente más grande
+    padding: 0.75rem 1.5rem; // Aumenta el padding para hacer el botón más grande
+    line-height: 1.5; // Ajusta la altura de la línea para el texto
 
-  &:hover {
-    background-color: darkred; // Rojo más oscuro
-    border-color: darkred;     // Rojo más oscuro
+    &:hover {
+      background-color: darkred; // Rojo más oscuro
+      border-color: darkred; // Rojo más oscuro
+    }
   }
-}
 }
 
 .dropdown-menu {
@@ -1343,47 +1417,48 @@ button.btn-info:hover {
 
 
   .dropdown-item {
-    font-size: 1.25rem;       // Tamaño de fuente más grande para los items
-    padding: 0.75rem 1.5rem;  // Aumenta el padding para los items
+    font-size: 1.25rem; // Tamaño de fuente más grande para los items
+    padding: 0.75rem 1.5rem; // Aumenta el padding para los items
   }
 
   .dropdown-item:hover {
     background-color: white; // Rojo más oscuro para los items del dropdown
-    color: white;             // Opcional: cambia el color del texto para mejorar el contraste
+    color: white; // Opcional: cambia el color del texto para mejorar el contraste
   }
 }
 
 
-.dropdown-aumentar-button{
+.dropdown-aumentar-button {
   .btn {
-  background-color: green;
-  border-color: green;
-  font-size: 1.25rem;         // Tamaño de fuente más grande
-  padding: 0.75rem 1.5rem;    // Aumenta el padding para hacer el botón más grande
-  line-height: 1.5;           // Ajusta la altura de la línea para el texto
+    background-color: green;
+    border-color: green;
+    font-size: 1.25rem; // Tamaño de fuente más grande
+    padding: 0.75rem 1.5rem; // Aumenta el padding para hacer el botón más grande
+    line-height: 1.5; // Ajusta la altura de la línea para el texto
 
-  &:hover {
-    background-color: darkgreen; // Rojo más oscuro
-    border-color: darkgreen;     // Rojo más oscuro
+    &:hover {
+      background-color: darkgreen; // Rojo más oscuro
+      border-color: darkgreen; // Rojo más oscuro
+    }
+  }
+
+  .dropdown-menu {
+    background-color: whitesmoke;
+    border-color: whitesmoke;
+    border-color: #000000;
+
+    .dropdown-item {
+      font-size: 1.25rem; // Tamaño de fuente más grande para los items
+      padding: 0.75rem 1.5rem; // Aumenta el padding para los items
+    }
+
+    .dropdown-item:hover {
+      background-color: white; // Rojo más oscuro para los items del dropdown
+      color: white; // Opcional: cambia el color del texto para mejorar el contraste
+    }
   }
 }
 
-.dropdown-menu {
-  background-color: whitesmoke;
-  border-color: whitesmoke;
-  border-color: #000000;
-
-  .dropdown-item {
-    font-size: 1.25rem;       // Tamaño de fuente más grande para los items
-    padding: 0.75rem 1.5rem;  // Aumenta el padding para los items
-  }
-
-  .dropdown-item:hover {
-    background-color: white; // Rojo más oscuro para los items del dropdown
-    color: white;              // Opcional: cambia el color del texto para mejorar el contraste
-  }
-}
-}
 .botonAplicar {
   font-weight: bold;
   border-radius: 10px;
@@ -1398,8 +1473,8 @@ button.btn-info:hover {
   margin-top: 10px; // Ajusta el margen superior según necesites
 }
 
-.botonRestablecer{
-  padding: 0.75rem 1.5rem; 
+.botonRestablecer {
+  padding: 0.75rem 1.5rem;
   font-weight: bold;
   border-radius: 10px;
   width: 40%;
@@ -1415,8 +1490,9 @@ button.btn-info:hover {
   background-color: #1b8aa5;
   color: white; // Asegúrate de que el texto sea legible
   border: none; // Opcional: quitar el borde si no se ajusta al diseño
+
   &:hover {
-      background-color: darken(#1b8aa5, 10%); // Oscurecer el color al pasar el ratón por encima
+    background-color: darken(#1b8aa5, 10%); // Oscurecer el color al pasar el ratón por encima
   }
 }
 
@@ -1426,27 +1502,27 @@ button.btn-info:hover {
   padding: 15px;
 
   .historial-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px;
-      border-bottom: 1px solid #e0e0e0; // Línea de separación entre elementos
-      background-color: #f9f9f9; // Fondo de los elementos del historial
-      margin-bottom: 10px;
-      border-radius: 5px; // Bordes redondeados
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #e0e0e0; // Línea de separación entre elementos
+    background-color: #f9f9f9; // Fondo de los elementos del historial
+    margin-bottom: 10px;
+    border-radius: 5px; // Bordes redondeados
 
-      &:last-child {
-          border-bottom: none; // Sin borde inferior en el último elemento
-      }
+    &:last-child {
+      border-bottom: none; // Sin borde inferior en el último elemento
+    }
 
-      .historial-fecha {
-          font-weight: bold;
-          color: #333; // Color de la fecha
-      }
+    .historial-fecha {
+      font-weight: bold;
+      color: #333; // Color de la fecha
+    }
 
-      .historial-mensaje {
-          color: #666; // Color del mensaje
-      }
+    .historial-mensaje {
+      color: #666; // Color del mensaje
+    }
   }
 }
 
@@ -1460,7 +1536,8 @@ button.btn-info:hover {
   margin: auto;
   align-items: center;
 }
- ///////////////////////// inicio TITULO Y EXCEL  /////////////////////
+
+///////////////////////// inicio TITULO Y EXCEL  /////////////////////
 .tamboHeader {
   display: flex;
   align-items: center;
@@ -1469,7 +1546,7 @@ button.btn-info:hover {
 
 }
 
-.btn_btn-primary{
+.btn_btn-primary {
   background-color: #28a745;
   /* Color de fondo del botón */
   color: white;
@@ -1480,6 +1557,7 @@ button.btn-info:hover {
   cursor: pointer;
   /* Cambia el cursor al pasar sobre el botón */
 }
+
 ///////////////////////// fin TITULO Y EXCEL  ///////////////////////// 
 ///
 ///////////////////////// inicio GRAFICO DE BARRAS ////////////////////
@@ -1488,6 +1566,7 @@ button.btn-info:hover {
   width: 100%;
   max-width: 800px;
 }
+
 ///////////////////////// fin GRAFICO DE BARRAS //////////////////////
 ///
 /////////////////////// inicio BOTONES Y LISTA DE ANIMALES /////////// 
@@ -1545,12 +1624,14 @@ button.btn-info:hover {
   padding: 8px;
   text-align: center;
 }
-.loaderSecosNaN{
+
+.loaderSecosNaN {
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 15px;
   color: #333;
 }
+
 /////////////////////// fin BOTONES Y LISTA DE ANIMALES /////////// 
 ///
 ///////////////////////// inicio AVISO  /////////////////////////
@@ -1573,15 +1654,16 @@ button.btn-info:hover {
 }
 
 .tituloRacionesAviso:first-child {
-  color:#000000;
+  color: #000000;
   font-size: 25px;
 
 }
 
 .tituloRacionesAviso:nth-child(2) {
-  color:#000000;
+  color: #000000;
   font-size: 25px;
 }
+
 ///////////////////////// fin AVISO  /////////////////////////
 
 //
@@ -1634,18 +1716,22 @@ button.btn-info:hover {
     letter-spacing: 1px;
     transform: translateX(0px);
   }
+
   40% {
     letter-spacing: 2px;
     transform: translateX(26px);
   }
+
   80% {
     letter-spacing: 1px;
     transform: translateX(32px);
   }
+
   90% {
     letter-spacing: 2px;
     transform: translateX(0px);
   }
+
   100% {
     letter-spacing: 1px;
     transform: translateX(0px);
@@ -1657,18 +1743,22 @@ button.btn-info:hover {
     width: 16px;
     transform: translateX(0px);
   }
+
   40% {
     width: 100%;
     transform: translateX(0px);
   }
+
   80% {
     width: 16px;
     transform: translateX(64px);
   }
+
   90% {
     width: 100%;
     transform: translateX(0px);
   }
+
   100% {
     width: 16px;
     transform: translateX(0px);
@@ -1680,23 +1770,28 @@ button.btn-info:hover {
     transform: translateX(0px);
     width: 16px;
   }
+
   40% {
     transform: translateX(0%);
     width: 80%;
   }
+
   80% {
     width: 100%;
     transform: translateX(0px);
   }
+
   90% {
     width: 80%;
     transform: translateX(15px);
   }
+
   100% {
     transform: translateX(0px);
     width: 16px;
   }
 }
+
 .loginContainer * {
   margin: 0;
   padding: 0;
@@ -1801,13 +1896,15 @@ button.btn-info:hover {
   color: #000000;
   font-weight: bold;
 }
+
 .footerFarmerinDiv {
   margin-top: 5px; // Espaciado superior
   letter-spacing: 0.5px; // Espaciado entre letras
   font-size: 12px; // Tamaño de fuente
   color: #626262;
-  
+
 }
+
 .linkLoginFarmerin {
   color: #4cb04e; // Color del enlace
   text-decoration: none; // Sin subrayado
@@ -1836,6 +1933,7 @@ button.btn-info:hover {
   color: #ffffff;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+
 .logoLetras {
   display: block; // Asegura que el logo sea un bloque
   position: absolute; // Permite posicionar el logo de manera absoluta
@@ -1861,32 +1959,35 @@ button.btn-info:hover {
 
 // Estilos para el modal de perfil
 .modal-perfil {
-    position: absolute;
-    right: 0;
+  position: absolute;
+  right: 0;
 }
+
 .modal-perfil {
-    .modal-header {
-        background-color: #1b8aa5; // Color de fondo del encabezado
-        color: white; // Color del texto
-    }
+  .modal-header {
+    background-color: #1b8aa5; // Color de fondo del encabezado
+    color: white; // Color del texto
+  }
 
-    .modal-body {
-        background-color: #f8f9fa; // Color de fondo del cuerpo del modal
-        color: #333; // Color del texto
-        h5 {
-            margin-bottom: 15px; // Espaciado entre los encabezados
-        }
-    }
+  .modal-body {
+    background-color: #f8f9fa; // Color de fondo del cuerpo del modal
+    color: #333; // Color del texto
 
-    .modal-footer {
-        background-color: #f1f1f1; // Color de fondo del pie del modal
-        button {
-            &:hover {
-                background-color: #1b8aa5; // Color de fondo al pasar el mouse
-                color: white; // Color del texto al pasar el mouse
-            }
-        }
+    h5 {
+      margin-bottom: 15px; // Espaciado entre los encabezados
     }
+  }
+
+  .modal-footer {
+    background-color: #f1f1f1; // Color de fondo del pie del modal
+
+    button {
+      &:hover {
+        background-color: #1b8aa5; // Color de fondo al pasar el mouse
+        color: white; // Color del texto al pasar el mouse
+      }
+    }
+  }
 }
 
 // Estilos para el botón de perfil en la barra de navegación
@@ -1897,11 +1998,11 @@ button.btn-info:hover {
   align-items: center; // Centra verticalmente los elementos
 
   .alert-container {
-      margin-right: auto; // Empuja el contenedor de alertas hacia la izquierda
+    margin-right: auto; // Empuja el contenedor de alertas hacia la izquierda
   }
 
   .perfil-container {
-      margin-left: auto; // Empuja el contenedor de perfil hacia la derecha
+    margin-left: auto; // Empuja el contenedor de perfil hacia la derecha
   }
 }
 
@@ -1919,10 +2020,13 @@ button.btn-info:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px 20px; /* Mayor espacio interno */
+  padding: 10px 20px;
+  /* Mayor espacio interno */
   gap: 12px;
-  height: 40px; /* Más alto */
-  width: 280px; /* Más ancho */
+  height: 40px;
+  /* Más alto */
+  width: 280px;
+  /* Más ancho */
   border: none;
   color: #ffffff;
   background-color: #297fba;
@@ -1947,6 +2051,7 @@ button.btn-info:hover {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
@@ -1968,15 +2073,18 @@ button.btn-info:hover {
   font-size: 18px;
   color: #666;
 }
+
 /* Contenedor del menú desplegable */
 .card-perfil {
   position: absolute;
-  top: 55px; /* Se mantiene en su lugar */
+  top: 55px;
+  /* Se mantiene en su lugar */
   background: white;
   border-radius: 12px;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
   padding: 15px;
-  width: 300px; /* Más ancho */
+  width: 300px;
+  /* Más ancho */
   z-index: 100;
   display: flex;
   flex-direction: column;
@@ -1995,7 +2103,8 @@ button.btn-info:hover {
 .element-perfil {
   display: flex;
   align-items: center;
-  padding: 16px; /* Mayor espacio */
+  padding: 16px;
+  /* Mayor espacio */
   cursor: pointer;
   border-radius: 10px;
   transition: background 0.3s ease;
@@ -2035,18 +2144,18 @@ button.btn-info:hover {
   padding: 0; // Elimina padding si es necesario
 
   .obtener-button {
-      background-color: #4CAF50; // Color verde
-      color: white;
-      padding: 5px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
-      transition: background-color 0.3s;
+    background-color: #4CAF50; // Color verde
+    color: white;
+    padding: 5px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
 
-      &:hover {
-          background-color: #45a049; // Color verde más oscuro al pasar el mouse
-      }
+    &:hover {
+      background-color: #45a049; // Color verde más oscuro al pasar el mouse
+    }
   }
 }
 
@@ -2056,42 +2165,45 @@ button.btn-info:hover {
   transition: all .3s;
   width: 100%;
   border: 1px solid #080808;
- }
- 
- .card-botones-animales2 {
+}
+
+.card-botones-animales2 {
   width: 100%;
   background-color: #fefafa;
-  border-radius:20px;
+  border-radius: 20px;
   transition: all .2s;
- }
- 
- .card-botones-animales2:hover {
+}
+
+.card-botones-animales2:hover {
   transform: scale(0.98);
   border-radius: 20px;
   box-shadow: 0px 0px 30px 1px #2387cf;
- }
- 
- .card-botones-animales:hover {
+}
+
+.card-botones-animales:hover {
   box-shadow: 0px 0px 30px 1px #1a741e;
- }
+}
 
 
-.tituloAnimales  {
+.tituloAnimales {
   margin-bottom: 5px; // Espacio entre el título y los botones
   font-size: 1.5rem; // Ajusta el tamaño de la fuente según sea necesario
   font-weight: bold;
   margin: auto;
 }
-  
+
 
 
 .AdverPerfil {
-  position: relative; /* Para posicionar el tooltip */
-  display: inline-flex; /* Para alinear el icono y el texto */
-  align-items: center; /* Centrar verticalmente */
+  position: relative;
+  /* Para posicionar el tooltip */
+  display: inline-flex;
+  /* Para alinear el icono y el texto */
+  align-items: center;
+  /* Centrar verticalmente */
 }
 
-/* From Uiverse.io by Cksunandh */ 
+/* From Uiverse.io by Cksunandh */
 /* Basic reset and styling */
 
 /* Tooltip container */
@@ -2102,7 +2214,7 @@ button.btn-info:hover {
 }
 
 /* Icon styling */
-.icon-tooltip  {
+.icon-tooltip {
   width: 50px;
   height: 50px;
   display: flex;
@@ -2133,8 +2245,10 @@ button.btn-info:hover {
   border-radius: 5px;
   padding: 10px;
   position: absolute;
-  bottom: 125%; /* Position above the icon */
-  transform: translateX(-50%); /* Center the tooltip */
+  bottom: 125%;
+  /* Position above the icon */
+  transform: translateX(-50%);
+  /* Center the tooltip */
   opacity: 0;
   transition: opacity 0.5s, transform 0.5s;
 }
@@ -2158,6 +2272,7 @@ button.btn-info:hover {
 }
 
 @keyframes bounce {
+
   0%,
   20%,
   50%,
@@ -2165,9 +2280,11 @@ button.btn-info:hover {
   100% {
     transform: translateY(0);
   }
+
   40% {
     transform: translateY(-30px);
   }
+
   60% {
     transform: translateY(-15px);
   }
@@ -2180,61 +2297,64 @@ button.btn-info:hover {
   animation: bounce 0.6s ease;
 }
 
-  /* BOTONES LISTA DE ANIMALES */ 
-  .custom-obtenerAnimales-button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+/* BOTONES LISTA DE ANIMALES */
+.custom-obtenerAnimales-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .custom-obtenerAnimales-button:hover {
-    background-color: #0056b3;
+  background-color: #0056b3;
 }
 
 .custom-obtenerAnimales-button:focus {
-    outline: none;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
 /* Estilos del modal */
 .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6); /* Fondo semitransparente */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000; /* Asegura que esté encima de otros elementos */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  /* Fondo semitransparente */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  /* Asegura que esté encima de otros elementos */
 }
 
 .modal-content {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    width: 90%;
-    max-width: 500px;
-    text-align: center;
-    animation: fadeIn 0.3s ease-out;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+  animation: fadeIn 0.3s ease-out;
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: scale(0.9);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 
@@ -2253,7 +2373,7 @@ button.listasAnimalesVaquillonas-button {
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
   transition: all 0.3s;
   margin: auto;
-  width: 300px; 
+  width: 300px;
   height: 30px;
 }
 
@@ -2310,7 +2430,7 @@ button.listasAnimalesVacas-button {
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
   transition: all 0.3s;
   margin: auto;
-  width: 300px; 
+  width: 300px;
   height: 30px;
 }
 
@@ -2368,7 +2488,7 @@ button.listasAnimalesCerrar-button {
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
   transition: all 0.3s;
   margin: auto;
-  width: 300px; 
+  width: 300px;
   height: 30px;
 }
 
@@ -2417,7 +2537,8 @@ button.listasAnimalesCerrar-button:hover svg {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 15px; /* Espaciado entre elementos */
+  gap: 15px;
+  /* Espaciado entre elementos */
   margin-top: 10px;
   padding: 20px;
   background-color: #f9f9f9;
@@ -2461,24 +2582,24 @@ button.listasAnimalesCerrar-button:hover svg {
 
 /* Botón de cerrar en el modal */
 .close-modal-button {
-    margin-top: 20px;
-    background-color: #dc3545;
-    color: #fff;
-    border: none;
-    padding: 10px 15px;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  margin-top: 20px;
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .close-modal-button:hover {
-    background-color: #a71d2a;
+  background-color: #a71d2a;
 }
 
 .close-modal-button:focus {
-    outline: none;
-    box-shadow: 0 0 5px rgba(220, 53, 69, 0.5);
+  outline: none;
+  box-shadow: 0 0 5px rgba(220, 53, 69, 0.5);
 }
 
 /* Contenedor principal de botones */
@@ -2498,24 +2619,26 @@ button.listasAnimalesCerrar-button:hover svg {
   padding: 0; // Elimina padding si es necesario
 
   .obtenerInfoTambo {
-      background-color: #4CAF50; // Color verde
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
-      transition: background-color 0.3s;
+    background-color: #4CAF50; // Color verde
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
 
-      &:hover {
-          background-color: #45a049; // Color verde más oscuro al pasar el mouse 
-      }
+    &:hover {
+      background-color: #45a049; // Color verde más oscuro al pasar el mouse 
+    }
   }
 }
+
 ///////////////////////////////////////////////77 PERFIL FARMERIN ///////////////////////////////////////////////////////////////
 .farmerin-card-container {
   padding-top: 95px;
 }
+
 .farmerin-card {
   max-width: 320px;
   border-radius: 1rem;
@@ -2565,32 +2688,37 @@ button.listasAnimalesCerrar-button:hover svg {
   line-height: 1rem; // Ajustado para reducir el espacio
   color: rgba(156, 163, 175, 1);
 }
+
 .farmerin-card-actions {
   padding-top: 30px;
   display: flex;
   flex-direction: column;
   gap: 25px;
   align-items: center;
-  justify-content: center; /* Asegura distribución uniforme */
+  justify-content: center;
+  /* Asegura distribución uniforme */
 }
 
- /////////////////////////////// BOTON OBTENER INFO TAMBO ///////////////////////////////
- .button-containerInfoTambo {
-    width: 100%; /* Asegura que no genere un espacio adicional */
-    display: flex;
-    justify-content: center;
+/////////////////////////////// BOTON OBTENER INFO TAMBO ///////////////////////////////
+.button-containerInfoTambo {
+  width: 100%;
+  /* Asegura que no genere un espacio adicional */
+  display: flex;
+  justify-content: center;
 }
+
 .card-fondoBotones {
   margin: 0 !important;
   padding: 0 !important;
 }
+
 .custom-obtenerInfoTambo-button {
   text-decoration: none;
   line-height: 1;
   border-radius: 10px;
   overflow: hidden;
   position: relative;
-  box-shadow: 10px 10px 20px rgba(0,0,0,.05);
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, .05);
   background-color: #fff;
   color: #121212;
   border: none;
@@ -2640,6 +2768,7 @@ button.listasAnimalesCerrar-button:hover svg {
 .custom-obtenerInfoTambo-button:hover .custom-obtenerInfoTambo-button-decor {
   transform: translate(0);
 }
+
 /* MODAL OBTENER INFO TAMBO */
 
 .green-btn-horarios {
@@ -2721,17 +2850,19 @@ button.listasAnimalesCerrar-button:hover svg {
 .confirmHorarios-div p strong {
   margin-bottom: 15px;
 }
+
 .text-center-horarios-p {
   display: flex;
   flex-direction: row;
-  margin:auto;
+  margin: auto;
 }
+
 .text-center-horarios-span {
-   margin: auto;
-   text-align: center;
-   font-size: 12px;
-   color: #000000;
-   font-weight: bold;
+  margin: auto;
+  text-align: center;
+  font-size: 12px;
+  color: #000000;
+  font-weight: bold;
 }
 
 
@@ -2753,14 +2884,14 @@ button.listasAnimalesCerrar-button:hover svg {
 }
 
 ///////////////////////////// BOTON OBTENER ANIMALES ///////////////////////////////
-/* From Uiverse.io by Creatlydev */ 
+/* From Uiverse.io by Creatlydev */
 .obtener-animales-button {
   text-decoration: none;
   line-height: 1;
   border-radius: 10px;
   overflow: hidden;
   position: relative;
-  box-shadow: 10px 10px 20px rgba(0,0,0,.05);
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, .05);
   background-color: #fff;
   color: #121212;
   border: none;
@@ -2810,9 +2941,11 @@ button.listasAnimalesCerrar-button:hover svg {
 .obtener-animales-button:hover .obtener-animales-button-decor {
   transform: translate(0);
 }
+
 .card-fondoBotones {
- padding-top: 70px;
- }
+  padding-top: 70px;
+}
+
 ///////////////////////////// BOTON CERRAR SESION /////////////////////////////// 
 .farmerin-footer {
   padding-top: 40px;
@@ -2820,6 +2953,7 @@ button.listasAnimalesCerrar-button:hover svg {
   justify-content: center; // Centra los botones en el contenedor
   gap: 20px; // Espacio entre los botones
 }
+
 .Btn-footer-perfil {
   display: flex;
   align-items: center;
@@ -2888,8 +3022,9 @@ button.listasAnimalesCerrar-button:hover svg {
   transform: translate(2px, 2px);
   box-shadow: 0 0 0 rgba(0, 0, 0, 0.2);
 }
+
 ///////////////////////////// BOTON BORRAR TAMBO ///////////////////////////////
-/* From Uiverse.io by vinodjangid07 */ 
+/* From Uiverse.io by vinodjangid07 */
 .button-borrar-tambo {
   width: 50px;
   height: 50px;
@@ -2950,7 +3085,7 @@ button.listasAnimalesCerrar-button:hover svg {
   transition-duration: .3s;
 }
 
-/* MODAL BORRAR TAMBO */ 
+/* MODAL BORRAR TAMBO */
 .confirmBorrar-div {
   background-color: #ccc;
 }
@@ -3013,7 +3148,7 @@ button.listasAnimalesCerrar-button:hover svg {
   border: none;
   height: 30px;
   width: 100%;
-  
+
 }
 
 .confirmBorrar-div p {
@@ -3026,14 +3161,16 @@ button.listasAnimalesCerrar-button:hover svg {
 }
 
 .warning-borrar-general {
-  position: absolute; /* switch to fixed */
+  position: absolute;
+  /* switch to fixed */
   top: 0;
   left: 0;
   z-index: 999;
   width: 100%;
   height: 100%;
-  color:rgba(0, 0, 0, 0.5);;
-  
+  color: rgba(0, 0, 0, 0.5);
+  ;
+
 }
 
 .warning-borrar-generala {
@@ -3041,7 +3178,7 @@ button.listasAnimalesCerrar-button:hover svg {
   height: 1px;
   width: 1px;
   background-color: rgba(0, 0, 0, 0.5);
- 
+
 }
 
 .modal-borrar-container {
@@ -3052,26 +3189,33 @@ button.listasAnimalesCerrar-button:hover svg {
   gap: 7px;
   width: 100%;
 }
-/* BOTON APLICAR A TODOS */ 
+
+/* BOTON APLICAR A TODOS */
 .copy-custom {
   /* button */
   --button-bg: #353434;
   --button-hover-bg: #464646;
   --button-text-color: #CCCCCC;
   --button-hover-text-color: #8bb9fe;
-  --button-border-radius: 8px; /* Reduce el radio del borde */
-  --button-diameter: 28px; /* Reduce el diámetro del botón */
+  --button-border-radius: 8px;
+  /* Reduce el radio del borde */
+  --button-diameter: 28px;
+  /* Reduce el diámetro del botón */
   --button-outline-width: 1px;
   --button-outline-color: rgb(141, 141, 141);
   /* tooltip */
   --tooltip-bg: #f4f3f3;
   --toolptip-border-radius: 4px;
   --tooltip-font-family: Menlo, Roboto Mono, monospace;
-  --tooltip-font-size: 10px; /* Reduce el tamaño de fuente del tooltip */
+  --tooltip-font-size: 10px;
+  /* Reduce el tamaño de fuente del tooltip */
   --tootip-text-color: rgb(50, 50, 50);
-  --tooltip-padding-x: 5px; /* Reduce el padding del tooltip */
-  --tooltip-padding-y: 5px; /* Reduce el padding del tooltip */
-  --tooltip-offset: 6px; /* Ajusta el offset del tooltip */
+  --tooltip-padding-x: 5px;
+  /* Reduce el padding del tooltip */
+  --tooltip-padding-y: 5px;
+  /* Reduce el padding del tooltip */
+  --tooltip-offset: 6px;
+  /* Ajusta el offset del tooltip */
 }
 
 .copy-custom {
@@ -3102,7 +3246,8 @@ button.listasAnimalesCerrar-button:hover svg {
   border-radius: var(--toolptip-border-radius);
   pointer-events: none;
   transition: all var(--tooltip-transition-duration) cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  z-index: 1000; /* Asegúrate de que el tooltip tenga un z-index alto */
+  z-index: 1000;
+  /* Asegúrate de que el tooltip tenga un z-index alto */
 }
 
 .tooltip-custom::before {
@@ -3166,14 +3311,17 @@ button.listasAnimalesCerrar-button:hover svg {
 .copy-custom:hover svg {
   color: var(--button-hover-text-color);
 }
+
 /// RACION SUGERIDA
 .alert-container-control {
-  top: 60px; /* Adjust based on your header height */
+  top: 60px;
+  /* Adjust based on your header height */
   width: 100%;
   z-index: 1000;
 }
+
 //// MODAL HORARIOS 
-/* From Uiverse.io by SteveBloX */ 
+/* From Uiverse.io by SteveBloX */
 .lista-horarios-perfil {
   box-sizing: border-box;
   width: 280px;
@@ -3198,9 +3346,9 @@ button.listasAnimalesCerrar-button:hover svg {
   padding: 10px; // Espaciado interno para evitar que el contenido toque los bordes
   margin: auto;
 
-   // Nuevos estilos para el texto
-   font-size: 1.2rem; // Aumenta el tamaño de la fuente
-  
+  // Nuevos estilos para el texto
+  font-size: 1.2rem; // Aumenta el tamaño de la fuente
+
 }
 
 .lista-horarios-perfil:hover {
@@ -3213,42 +3361,65 @@ button.listasAnimalesCerrar-button:hover svg {
 }
 
 // Estilos para los elementos de texto dentro de .lista-horarios-perfil
-.lista-horarios-perfil p, // Asegúrate de que los párrafos tengan padding
-.lista-horarios-perfil span { // Asegúrate de que los spans tengan padding
+.lista-horarios-perfil p,
+// Asegúrate de que los párrafos tengan padding
+.lista-horarios-perfil span {
+  // Asegúrate de que los spans tengan padding
   padding: 15px; // Añade padding a los elementos de texto
   font-size: 15px; // Asegura que hereden el tamaño de fuente del contenedor
 
 }
 
 .close-button-perfil {
-  position: absolute; /* Posiciona el botón de forma absoluta */
-  top: 10px; /* Ajusta la distancia desde la parte superior */
-  left: 10px; /* Ajusta la distancia desde la izquierda */
-  background-color: red; /* Color de fondo rojo */
-  color: white; /* Color del texto blanco */
-  border: none; /* Sin borde */
-  border-radius: 5px; /* Bordes redondeados */
-  padding: 5px 10px; /* Espaciado interno */
-  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
-  font-size: 16px; /* Tamaño de fuente */
+  position: absolute;
+  /* Posiciona el botón de forma absoluta */
+  top: 10px;
+  /* Ajusta la distancia desde la parte superior */
+  left: 10px;
+  /* Ajusta la distancia desde la izquierda */
+  background-color: red;
+  /* Color de fondo rojo */
+  color: white;
+  /* Color del texto blanco */
+  border: none;
+  /* Sin borde */
+  border-radius: 5px;
+  /* Bordes redondeados */
+  padding: 5px 10px;
+  /* Espaciado interno */
+  cursor: pointer;
+  /* Cambia el cursor al pasar sobre el botón */
+  font-size: 16px;
+  /* Tamaño de fuente */
 }
 
 .close-button-perfil:hover {
-  background-color: darkred; /* Color de fondo más oscuro al pasar el mouse */
+  background-color: darkred;
+  /* Color de fondo más oscuro al pasar el mouse */
 }
 
 /* MODAL DE INFORMACION DE TAMBO */
 .modal-table-container {
-  position: fixed; /* Fija el contenedor en la pantalla */
-  top: 50%; /* Centra verticalmente */
-  left: 50%; /* Centra horizontalmente */
-  transform: translate(-50%, -50%); /* Ajusta el centro */
-  background-color: white; /* Fondo blanco */
-  padding: 20px; /* Espaciado interno */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra */
-  z-index: 1050; /* Asegúrate de que esté por encima de otros elementos */
-  max-width: 90%; /* Ancho máximo */
-  overflow: auto; /* Permite desplazamiento si es necesario */
+  position: fixed;
+  /* Fija el contenedor en la pantalla */
+  top: 50%;
+  /* Centra verticalmente */
+  left: 50%;
+  /* Centra horizontalmente */
+  transform: translate(-50%, -50%);
+  /* Ajusta el centro */
+  background-color: white;
+  /* Fondo blanco */
+  padding: 20px;
+  /* Espaciado interno */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  /* Sombra */
+  z-index: 1050;
+  /* Asegúrate de que esté por encima de otros elementos */
+  max-width: 90%;
+  /* Ancho máximo */
+  overflow: auto;
+  /* Permite desplazamiento si es necesario */
 }
 
 /* BOTON PARA SELECCIONAR ARCHIVO DE EXEL EN ACTUALIZACION MASIVA */
@@ -3321,6 +3492,7 @@ button.listasAnimalesCerrar-button:hover svg {
 #file-ActMasiva {
   display: none;
 }
+
 /* Boton de Actualizar Animales */
 .button-ActMasiva {
   cursor: pointer;
@@ -3346,7 +3518,7 @@ button.listasAnimalesCerrar-button:hover svg {
   background: #4db04e;
 }
 
-.button-ActMasiva > svg-ActMasiva {
+.button-ActMasiva>svg-ActMasiva {
   width: 34px;
   margin-left: 10px;
   transition: transform 0.3s ease-in-out;
@@ -3430,6 +3602,7 @@ button.listasAnimalesCerrar-button:hover svg {
 #file-AltaMasiva {
   display: none;
 }
+
 /* Boton de Alta Animales */
 .button-AltaMasiva {
   cursor: pointer;
@@ -3455,7 +3628,7 @@ button.listasAnimalesCerrar-button:hover svg {
   background: #4db04e;
 }
 
-.button-AltaMasiva > svg-AltaMasiva {
+.button-AltaMasiva>svg-AltaMasiva {
   width: 34px;
   margin-left: 10px;
   transition: transform 0.3s ease-in-out;
@@ -3539,6 +3712,7 @@ button.listasAnimalesCerrar-button:hover svg {
 #file-ControlLechero {
   display: none;
 }
+
 /* Boton de Control Lechero */
 
 .button-ControlLechero {
@@ -3565,7 +3739,7 @@ button.listasAnimalesCerrar-button:hover svg {
   background: #4db04e;
 }
 
-.button-ControlLechero > svg-ControlLechero {
+.button-ControlLechero>svg-ControlLechero {
   width: 34px;
   margin-left: 10px;
   transition: transform 0.3s ease-in-out;
@@ -3579,7 +3753,7 @@ button.listasAnimalesCerrar-button:hover svg {
   transform: scale(0.95);
 }
 
-.calendario-ControlLechero{
+.calendario-ControlLechero {
   cursor: pointer;
   font-weight: 700;
   transition: all 0.2s;
@@ -3628,12 +3802,13 @@ button.listasAnimalesCerrar-button:hover svg {
   background-color: #f2f4f8;
 }
 
-  .EncontrarERP-table tbody tr:nth-child(odd) {
+.EncontrarERP-table tbody tr:nth-child(odd) {
   background-color: #ffffff;
 }
 
 /* Celdas */
-.EncontrarERP-table th, .EncontrarERP-table td {
+.EncontrarERP-table th,
+.EncontrarERP-table td {
   padding: 15px;
   border-bottom: 1px solid #dddddd;
   text-align: left;
@@ -3658,7 +3833,8 @@ button.listasAnimalesCerrar-button:hover svg {
     padding: 10px;
   }
 
-  .EncontrarERP-table th, .EncontrarERP-table td {
+  .EncontrarERP-table th,
+  .EncontrarERP-table td {
     padding: 10px;
     font-size: 14px;
   }
@@ -3702,7 +3878,7 @@ button.listasAnimalesCerrar-button:hover svg {
 
 
 .containerCambioAseca {
-  background-color:  #f2f4f8;
+  background-color: #f2f4f8;
   padding: 15px;
   flex: 1;
 }
@@ -3713,16 +3889,16 @@ button.listasAnimalesCerrar-button:hover svg {
 }
 
 .itemCambioAseca {
-  background-color:  #fff;
-  border-radius:  8px;
+  background-color: #fff;
+  border-radius: 8px;
   padding: 15px;
   margin-bottom: 10px;
-  box-shadow: 0 2px 4px  rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .textoCambioAseca {
   font-size: 16px;
-  color:  #444;
+  color: #444;
   margin-bottom: 5px;
 }
 
@@ -3763,7 +3939,7 @@ button.listasAnimalesCerrar-button:hover svg {
   display: flex;
   gap: 10px;
 
-  .produccion-btn{
+  .produccion-btn {
     padding: 10px 20px;
     border: 2px solid transparent;
     border-radius: 8px;
@@ -3799,14 +3975,16 @@ button.listasAnimalesCerrar-button:hover svg {
 
 .control-tooltip-text {
   visibility: hidden;
-  width: 220px; /* Ajusta según el texto */
+  width: 220px;
+  /* Ajusta según el texto */
   background-color: #297fba;
   color: #fff;
   text-align: center;
   padding: 5px;
   border-radius: 6px;
   position: absolute;
-  bottom: -35px; /* Hace que aparezca debajo */
+  bottom: -35px;
+  /* Hace que aparezca debajo */
   left: 50%;
   transform: translateX(-50%);
   font-size: 13px;
@@ -3860,7 +4038,8 @@ button.listasAnimalesCerrar-button:hover svg {
       border-color: #297fba transparent transparent transparent;
     }
   }
-} 
+}
+
 .result-container {
   display: flex;
   flex-direction: column;
@@ -3921,87 +4100,338 @@ button.listasAnimalesCerrar-button:hover svg {
 }
 
 .result-item::before {
-  content: '✔'; /* Checkmark for success */
+  content: '✔';
+  /* Checkmark for success */
   color: #4caf50;
   font-size: 18px;
   margin-right: 10px;
 }
 
 .error-box .result-item::before {
-  content: '⚠'; /* Warning sign for errors */
+  content: '⚠';
+  /* Warning sign for errors */
   color: #f44336;
 }
 
 ////// MODIFICAR LISTA DE INGRESOS TURNOS //////////////////////
- .contenedor-tablas {
+/* Estilos generales */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+.ingresos-container {
   display: flex;
-  gap: 2rem; // separación entre tablas
-  align-items: flex-start;
-  flex-wrap: wrap; // para que se acomoden en pantallas pequeñas
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  gap: 1.5rem;
 }
 
-.tabla-ingresos {
-  flex: 1 1 45%; // ancho mínimo de cada tabla
-  max-width: 100%;
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+
+  label {
+    font-size: 1.15rem; // Más grande
+    font-weight: 600; // Resalta sin ser agresivo
+    color: #2c3e50; // Azul grisáceo moderno
+    letter-spacing: 0.5px; // Ligera separación de letras
+    text-transform: uppercase; // Da un toque profesional
+    margin-right: 0.5rem;
+    
+
+    // Sutil animación de entrada
+    opacity: 0;
+    transform: translateY(-5px);
+    animation: fadeInLabel 0.6s ease forwards;
+  }
+
+  @keyframes fadeInLabel {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  input[type='date'] {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+  }
+
+  button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    background-color: #2c5364;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.3s ease;
+
+    &:hover {
+      background-color: #3b853d;
+    }
+  }
+
+  .ingresosT-container-btn-file {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: #2c5364;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+
+    svg {
+      flex-shrink: 0;
+    }
+
+    .file {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    &:hover {
+      background-color: #203a43;
+    }
+  }
 }
 
-.tabla-ingresos {
+
+/* Tablas */
+.tabla-turno {
   width: 100%;
-  margin-top: 1rem;
-  font-family: monospace; // o 'Courier New', 'Lucida Console', monospace
+  border-collapse: collapse;
+  margin-bottom: 2rem;
 
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    border: 1px solid #999;
+  th,
+  td {
+    padding: 0.75rem;
+    text-align: center;
+    border: 1px solid #ddd;
   }
 
   thead {
-    background-color: #eaeaea;
-    border-bottom: 2px solid #999;
-
-    th {
-      padding: 8px 12px;
-      font-size: 0.95rem;
-      font-weight: bold;
-      color: #000;
-      text-align: left;
-      border-right: 1px solid #999;
-
-      &:last-child {
-        border-right: none;
-      }
-    }
+    background-color: #f1f1f1;
   }
 
-  tbody {
-    tr {
-      border-bottom: 1px solid #ccc;
+  tbody tr:hover {
+    background-color: #f9f9f9;
+  }
+}
 
-      &:nth-child(even) {
-        background-color: #f9f9f9;
-      }
+/* Turno contenedor */
+.turnos-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 
-      td {
-        padding: 8px 12px;
-        font-size: 0.9rem;
-        color: #222;
-        border-right: 1px solid #ddd;
-
-        &:last-child {
-          border-right: none;
-        }
-      }
-    }
+  @media (min-width: 768px) {
+    flex-direction: row;
   }
 
-  h3 {
-    font-size: 1rem;
-    margin: 1rem 0 0.5rem;
-    color: #111;
-    border-bottom: 1px solid #999;
-    padding-bottom: 4px;
+  .turno {
+    flex: 1;
+  }
+
+  .turno h3 {
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    color: #007BFF;
+  }
+}
+
+/* Errores y carga */
+.error-message {
+  color: red;
+  margin-top: 1rem;
+}
+
+.loading {
+  font-style: italic;
+}
+
+//// h2 titulo 
+.ingresosT-titulo {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #222;
+  text-align: center;
+  margin: 2rem 0;
+
+  // Sutil degradado de fondo en el texto (efecto moderno)
+  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  // Animación de entrada suave
+  opacity: 0;
+  transform: translateY(-10px);
+  animation: fadeInDown 0.6s ease-out forwards;
+
+  // Subrayado minimalista con pseudo-elemento
+  position: relative;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background-color: #2c5364;
+    margin: 0.5rem auto 0;
+    border-radius: 2px;
+  }
+}
+
+@keyframes fadeInDown {
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
 
+
+
+//// BOTON DE EXCEL 
+.ingresosT-container-btn-file {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  background-color: #307750;
+  color: #fff;
+  border-style: none;
+  padding: 1em 2em;
+  border-radius: 0.5em;
+  overflow: hidden;
+  z-index: 1;
+  box-shadow: 4px 8px 10px -3px rgba(0, 0, 0, 0.356);
+  transition: all 250ms;
+}
+
+.ingresosT-container-btn-file input[type="file"] {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.ingresosT-container-btn-file>svg {
+  margin-right: 1em;
+}
+
+.ingresosT-container-btn-file::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 0;
+  border-radius: 0.5em;
+  background-color: #3b853d;
+  z-index: -1;
+  transition: all 350ms;
+}
+
+.ingresosT-container-btn-file:hover::before {
+  width: 100%;
+}
+
+/// BOTON BUSCAR
+.ingresosT-container-btn-buscar {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  background-color: #307750;
+  color: #fff;
+  border-style: none;
+  padding: 1em 2em;
+  border-radius: 0.5em;
+  overflow: hidden;
+  z-index: 1;
+  box-shadow: 4px 8px 10px -3px rgba(0, 0, 0, 0.356);
+  transition: all 250ms;
+}
+
+.ingresosT-container-btn-buscar input[type="file"] {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.ingresosT-container-btn-buscar>svg {
+  margin-right: 5px;
+}
+
+.ingresosT-container-btn-buscar::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 0;
+  border-radius: 0.5em;
+  background-color: #3b853d;
+  z-index: -1;
+  transition: all 350ms;
+}
+
+.ingresosT-container-btn-buscar:hover::before {
+  width: 100%;
+}
+
+// Texto NO HAY DATOS FILTRADOS
+.ingresos-mensaje {
+  max-width: 700px;
+  text-align: center;
+  margin: 2rem auto;
+  font-size: 1.35rem; // más grande para todo el párrafo
+  line-height: 1.8;
+  color: #333;
+  background-color: #f9f9f9;
+  padding: 1.5rem 2rem;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+
+  strong {
+    font-weight: 600;
+    color: #0d232d;
+  }
+
+  .mensaje-alerta {
+    color: #ac0502; // rojo llamativo y profesional
+    font-weight: 700;
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+
+  // Animación de entrada sutil
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInMsg 0.6s ease-out forwards;
+}
+
+@keyframes fadeInMsg {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

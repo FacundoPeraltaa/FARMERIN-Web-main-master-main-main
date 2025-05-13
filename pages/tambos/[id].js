@@ -22,9 +22,11 @@ const STATE_INICIAL = {
     freclimp: 15,
     link: '',
     host: '',
+    ip: '',
     monitor: '',
     raciones: '',
     noreg: '',
+    version:'1'
 
 }
 
