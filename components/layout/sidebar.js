@@ -110,7 +110,7 @@ const Aside = ({ collapsed, toggled, handleToggleSidebar }) => {
             
             <Menu iconShape="circle">
             <SubMenu
-              suffix={<span className="badge yellow">2</span>}
+              suffix={<span className="badge yellow">3</span>}
               title='Herramientas'
               icon={<FaTools />}
             >
@@ -122,7 +122,7 @@ const Aside = ({ collapsed, toggled, handleToggleSidebar }) => {
               </Link>
               <Link href="/IngresosTurnos">
               <MenuItem icon={<FaHandsHelping size={15} />}>
-                INGRESOS PHP </MenuItem>
+                Control de Turnos </MenuItem>
             </Link>
             </SubMenu>
           </Menu>

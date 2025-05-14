@@ -4659,7 +4659,7 @@ body {
 
 /// LOADER INGRESOS 
 /* From Uiverse.io by seyed-mohsen-mousavi */ 
-.loader__btn {
+.loader__btn-Ingresos {
   border: none;
   background-color: ligtblue;
   padding: 10px 20px 10px 20px;
@@ -4678,13 +4678,13 @@ body {
   cursor: wait;
 }
 
-.loader {
+.loader-Ingresos {
   border: 4px solid rgba(0, 0, 0, 0.1);
   border-left-color: transparent;
   border-radius: 50%;
 }
 
-.loader {
+.loader-Ingresos {
   border: 4px solid rgba(0, 0, 0, 0.1);
   border-left-color: transparent;
   width: 23px;
@@ -4701,3 +4701,43 @@ body {
     transform: rotate(360deg);
   }
 }
+
+.turno-cantidad {
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-align: center;
+  margin: 0 auto 1.5rem;
+  color: #222;
+
+  // Degradado elegante
+  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  // Subrayado con pseudo-elemento
+  position: relative;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 3px;
+    background-color: #2c5364;
+    margin: 0.5rem auto 0;
+    border-radius: 2px;
+  }
+
+  // Entrada animada sutil
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInCantidad 0.6s ease-out forwards;
+}
+
+@keyframes fadeInCantidad {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+

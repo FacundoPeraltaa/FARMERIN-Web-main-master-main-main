@@ -189,7 +189,7 @@ function IngresosFiltrados() {
   return (
     <Layout>
       <div className="ingresos-container">
-        <h2 className='ingresosT-titulo'>Lista de Ingresos</h2>
+        <h2 className='ingresosT-titulo'>Control de Turnos</h2>
         <div className="filtros">
           <label>Seleccionar fecha: </label>
           <input type="date" value={fecha} onChange={e => setFecha(e.target.value)} />
@@ -231,8 +231,8 @@ function IngresosFiltrados() {
         </div>
 
         {cargando ? (
-          <button class="loader__btn">
-            <div class="loader"></div>
+          <button class="loader__btn-Ingresos">
+            <div class="loader-Ingresos"></div>
             Cargando turnos.....
           </button>
 
@@ -246,10 +246,12 @@ function IngresosFiltrados() {
               return (
                 <div key={turno} className="turno">
                   <h3 className="turno-titulo">Turno {turno}</h3>
+                  <p className="turno-cantidad">Cantidad: {datosTurno.length}</p>
                   {datosTurno.length > 0 ? (
                     <table className="tabla-turno">
                       <thead>
                         <tr>
+                          <th>#</th> {/* <-- nueva columna */}
                           <th>eRP</th>
                           <th>RP</th>
                           <th>Fecha</th>
@@ -259,6 +261,7 @@ function IngresosFiltrados() {
                       <tbody>
                         {datosTurno.map((item, index) => (
                           <tr key={`${turno}-${index}`}>
+                            <td>{index + 1}</td> {/* <-- número de fila */}
                             <td>{item.rp}</td>
                             <td>{item.visible}</td>
                             <td>{item.fecha}</td>
