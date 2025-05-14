@@ -1,9 +1,8 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { FirebaseContext } from '../firebase2';
 import Layout from '../components/layout/layout';
 import * as XLSX from 'xlsx';
-import { FaSearch } from 'react-icons/fa';
-
+import { FaSearch, FaFileArchive } from 'react-icons/fa';
 
 function IngresosFiltrados() {
   const { firebase, tamboSel } = useContext(FirebaseContext);
@@ -11,6 +10,32 @@ function IngresosFiltrados() {
   const [datosFiltrados, setDatosFiltrados] = useState([]);
   const [cargando, setCargando] = useState(false);
   const [error, setError] = useState(null);
+  const [sinIngresos, setSinIngresos] = useState(false);
+
+  // ✅ Verificar si existe la colección "ingresos" al montar el componente
+  useEffect(() => {
+    const verificarColeccionIngresos = async () => {
+      if (!tamboSel?.id) return;
+
+      try {
+        const ingresosSnapshot = await firebase.db
+          .collection('tambo')
+          .doc(tamboSel.id)
+          .collection('ingresos')
+          .limit(1)
+          .get();
+
+        const existe = !ingresosSnapshot.empty;
+        console.log('¿La colección ingresos existe?', existe);
+        setSinIngresos(!existe);
+      } catch (error) {
+        console.error('Error al verificar colección ingresos:', error);
+        setSinIngresos(true);
+      }
+    };
+
+    verificarColeccionIngresos();
+  }, [firebase.db, tamboSel]);
 
   const cargarDatos = async () => {
     setCargando(true);
@@ -18,20 +43,26 @@ function IngresosFiltrados() {
     setDatosFiltrados([]);
 
     try {
+      console.log('ID del tambo seleccionado:', tamboSel?.id);
+      console.log('Buscando documento: tambo/' + tamboSel?.id + '/ingresos/' + fecha);
+
       const docRef = firebase.db
         .collection('tambo')
         .doc(tamboSel.id)
         .collection('ingresos')
         .doc(fecha);
+
       const doc = await docRef.get();
+
+      console.log('Documento encontrado:', doc.exists);
 
       if (doc.exists) {
         const data = doc.data();
+        console.log('Contenido del documento:', data);
 
         const procesarTurno = (items, turno) =>
           (items || [])
             .filter(
-
               item =>
                 String(item.rfid) !== 'N/A' &&
                 String(item.rfid) !== '0' &&
@@ -53,9 +84,13 @@ function IngresosFiltrados() {
         const turnoManana = procesarTurno(data["1"], 'Mañana');
         const turnoTarde = procesarTurno(data["2"], 'Tarde');
 
-        setDatosFiltrados([...turnoManana, ...turnoTarde]);
+        const combinados = [...turnoManana, ...turnoTarde];
+        combinados.sort((a, b) => a.hora.localeCompare(b.hora));
+
+        setDatosFiltrados(combinados);
       } else {
-        setError('');
+        console.log('❌ Documento de ingresos NO existe para esta fecha.');
+        setDatosFiltrados([]);
       }
     } catch (err) {
       console.error('Error al obtener datos:', err);
@@ -74,7 +109,6 @@ function IngresosFiltrados() {
       const datosTurno = datosFiltrados.filter(item => item.turno === turno);
 
       if (datosTurno.length > 0) {
-        // Solo extrae las columnas deseadas y renombra claves
         const datosLimpios = datosTurno.map(({ rp, visible, fecha, hora }) => ({
           eRP: rp,
           RP: visible,
@@ -91,11 +125,71 @@ function IngresosFiltrados() {
     XLSX.writeFile(workbook, nombreArchivo);
   };
 
+  // ✅ Mostrar solo pantalla de desarrollo si no existe la colección
+  if (sinIngresos) {
+    return (
+      <Layout>
+        <div className="main_wrapper">
+          <div className="main">
+            <div className="antenna">
+              <div className="antenna_shadow"></div>
+              <div className="a1"></div>
+              <div className="a1d"></div>
+              <div className="a2"></div>
+              <div className="a2d"></div>
+              <div className="a_base"></div>
+            </div>
+            <div className="tv">
+              <div className="cruve">
+                <svg xmlSpace="preserve" viewBox="0 0 189.929 189.929" className="curve_svg">
+                  <path d="M70.343,70.343c-30.554,30.553-44.806,72.7-39.102,115.635l-29.738,3.951C-5.442,137.659,11.917,86.34,49.129,49.13
+                  C86.34,11.918,137.664-5.445,189.928,1.502l-3.95,29.738C143.041,25.54,100.895,39.789,70.343,70.343z" />
+                </svg>
+              </div>
+              <div className="display_div">
+                <div className="screen_out">
+                  <div className="screen_out1">
+                    <div className="screen">
+                      <span className="notfound_text">PROXIMAMENTE, SECCION EN DESARROLLO</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="lines">
+                <div className="line1"></div>
+                <div className="line2"></div>
+                <div className="line3"></div>
+              </div>
+              <div className="buttons_div">
+                <div className="b1"><div></div></div>
+                <div className="b2"></div>
+                <div className="speakers">
+                  <div className="g1">
+                    <div className="g11"></div>
+                    <div className="g12"></div>
+                    <div className="g13"></div>
+                  </div>
+                  <div className="g"></div>
+                  <div className="g"></div>
+                </div>
+              </div>
+            </div>
+            <div className="bottom">
+              <div className="base1"></div>
+              <div className="base2"></div>
+              <div className="base3"></div>
+            </div>
+          </div>
+        </div>
+      </Layout>
+    );
+  }
 
+  // ✅ Interfaz normal si la colección sí existe
   return (
     <Layout>
       <div className="ingresos-container">
-        <h2 className='ingresosT-titulo'>Lista de Ingresos </h2>
+        <h2 className='ingresosT-titulo'>Lista de Ingresos</h2>
         <div className="filtros">
           <label>Seleccionar fecha: </label>
           <input type="date" value={fecha} onChange={e => setFecha(e.target.value)} />
@@ -103,7 +197,7 @@ function IngresosFiltrados() {
             <FaSearch />
             Buscar
           </button>
-          <button class="ingresosT-container-btn-file" onClick={exportarAExcel}>
+          <button className="ingresosT-container-btn-file" onClick={exportarAExcel}>
             <svg
               fill="#fff"
               xmlns="http://www.w3.org/2000/svg"
@@ -133,22 +227,25 @@ function IngresosFiltrados() {
               ></path>
             </svg>
             Descargar Excel
-            <input class="file" name="text" type="file" />
           </button>
-
         </div>
 
-        {cargando && <p className="loading">Cargando...</p>}
-        {error && <p className="error-message">{error}</p>}
+        {cargando ? (
+          <button class="loader__btn">
+            <div class="loader"></div>
+            Cargando turnos.....
+          </button>
 
-        {datosFiltrados.length > 0 ? (
+        ) : error ? (
+          <p className="error-message">{error}</p>
+        ) : datosFiltrados.length > 0 ? (
           <div className="turnos-wrapper">
             {['Mañana', 'Tarde'].map(turno => {
               const datosTurno = datosFiltrados.filter(item => item.turno === turno);
 
               return (
                 <div key={turno} className="turno">
-                  <h3>Turno {turno}</h3>
+                  <h3 className="turno-titulo">Turno {turno}</h3>
                   {datosTurno.length > 0 ? (
                     <table className="tabla-turno">
                       <thead>
@@ -172,22 +269,19 @@ function IngresosFiltrados() {
                     </table>
                   ) : (
                     <p className='ingresos-mensaje'>
-                       <strong className="mensaje-alerta">No hay datos para Turno {turno}</strong>
-                       </p>
+                      <strong className="mensaje-alerta">No hay datos para Turno {turno}</strong>
+                    </p>
                   )}
                 </div>
               );
             })}
           </div>
         ) : (
-          !cargando && <p className="ingresos-mensaje">
+          <p className="ingresos-mensaje">
             <strong className="mensaje-alerta">No hay datos filtrados para mostrar.</strong> Seleccione una fecha y presione <strong>Buscar</strong> para ver los resultados correspondientes a los turnos <strong>matutino</strong> y <strong>vespertino</strong>.
           </p>
-
-
         )}
       </div>
-
     </Layout>
   );
 }
