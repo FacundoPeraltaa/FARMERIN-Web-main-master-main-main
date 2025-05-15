@@ -11,6 +11,8 @@ function IngresosFiltrados() {
   const [cargando, setCargando] = useState(false);
   const [error, setError] = useState(null);
   const [sinIngresos, setSinIngresos] = useState(false);
+  const [finesTurno, setFinesTurno] = useState(null);
+  const [cargandoTurnos, setCargandoTurnos] = useState(false);
 
   // ✅ Verificar si existe la colección "ingresos" al montar el componente
   useEffect(() => {
@@ -125,6 +127,30 @@ function IngresosFiltrados() {
     XLSX.writeFile(workbook, nombreArchivo);
   };
 
+  const obtenerHorariosTurno = async () => {
+    if (!tamboSel?.id) return;
+    setCargandoTurnos(true);
+    try {
+      const docRef = firebase.db.collection('tambo').doc(tamboSel.id);
+      const doc = await docRef.get();
+
+      if (doc.exists) {
+        const data = doc.data();
+        setFinesTurno({
+          mañana: data.finMañana || 'No definido',
+          tarde: data.finTarde || 'No definido',
+        });
+      } else {
+        console.warn('El documento del tambo no existe.');
+      }
+    } catch (error) {
+      console.error('Error al obtener los horarios de turno:', error);
+    } finally {
+      setCargandoTurnos(false);
+    }
+  };
+
+
   // ✅ Mostrar solo pantalla de desarrollo si no existe la colección
   if (sinIngresos) {
     return (
@@ -190,6 +216,23 @@ function IngresosFiltrados() {
     <Layout>
       <div className="ingresos-container">
         <h2 className='ingresosT-titulo'>Control de Turnos</h2>
+        <div className="descripcion-turnos">
+          <p>
+            La información de cada turno se actualiza una vez <strong>finalizado</strong>.
+            Consultá a qué hora termina cada uno con el siguiente botón:
+          </p>
+          <button className="btn-turnos" onClick={obtenerHorariosTurno} disabled={cargandoTurnos}>
+            {cargandoTurnos ? 'Cargando horarios...' : 'Ver horarios de fin de turno'}
+          </button>
+
+          {finesTurno && (
+            <div className="horarios-turno">
+              <button className="cerrar-turnos" onClick={() => setFinesTurno(null)}>✕</button>
+              <p><strong>Fin Turno Mañana:</strong> {finesTurno.mañana}</p>
+              <p><strong>Fin Turno Tarde:</strong> {finesTurno.tarde}</p>
+            </div>
+          )}
+        </div>
         <div className="filtros">
           <label>Seleccionar fecha: </label>
           <input type="date" value={fecha} onChange={e => setFecha(e.target.value)} />

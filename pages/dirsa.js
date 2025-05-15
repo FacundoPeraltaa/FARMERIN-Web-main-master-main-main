@@ -159,7 +159,7 @@ const Dirsa = () => {
     return (
         <Layout titulo="Dirsa">
             <Col md={4} className="d-flex align-items-center justify-content-center">
-                <Image src="/dirsa.png" width={300} />
+                <Image src="/DirsaIconoNuevo.png" width={300} />
             </Col>
 
             <Row className="mt-4 d-flex justify-content-center">

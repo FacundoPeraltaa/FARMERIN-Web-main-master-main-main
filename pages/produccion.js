@@ -97,7 +97,8 @@ const Produccion = () => {
   };
 
   const snapshotProduccion = (snapshot) => {
-    let totProd = 0, totDesc = 0, totGua = 0;
+    let totProd = 0, totDesc = 0, totGua = 0, totAnimales = 0;
+
 
     const prod = snapshot.docs.map(doc => {
       const data = doc.data();
@@ -112,16 +113,27 @@ const Produccion = () => {
         ? parseFloat((produccionNum / animales).toFixed(1))
         : "-";
 
-      console.log(`📊 ID ${doc.id} | Producción: ${produccionNum} | Animales: ${animales} | Prod. Indv: ${prodIndv}`);
-
       totProd += produccion;
       totDesc += descarte;
       totGua += guachera;
 
+      if (!isNaN(animales)) totAnimales += animales; // SUMA VACAS
+
       return { id: doc.id, ...data, produccion, descarte, guachera, prodIndv };
     });
 
-    setTotales({ produccion: totProd, descarte: totDesc, guachera: totGua, entregado: totProd - totDesc - totGua });
+    // ⚠️ Calculá el total promedio individual
+    const totalPromIndv = totAnimales > 0 ? parseFloat((totProd / totAnimales).toFixed(1)) : "-";
+
+    // GUARDAR EN ESTADO
+    setTotales({
+      produccion: totProd,
+      descarte: totDesc,
+      guachera: totGua,
+      entregado: totProd - totDesc - totGua,
+      promedioIndividual: totalPromIndv  // NUEVO
+    });
+
     setProducciones(prod);
     setProcesando(false);
   };
@@ -137,188 +149,234 @@ const Produccion = () => {
   };
 
 
-  const exportToExcel = () => {
-    if (!tamboSel || !tamboSel.nombre) {
-      alert("No se puede generar el archivo porque no hay un tambo seleccionado.");
-      return;
-    }
+ const exportToExcel = () => {
+  if (!tamboSel || !tamboSel.nombre) {
+    alert("No se puede generar el archivo porque no hay un tambo seleccionado.");
+    return;
+  }
 
-    const numberFormat = new Intl.NumberFormat('es-ES');
+  const wb = XLSX.utils.book_new();
+  const ws = XLSX.utils.aoa_to_sheet([]);
 
+  const numberStyleLeft = { alignment: { horizontal: "left" }, numFmt: "0" };
+  const numberStyleRight = { alignment: { horizontal: "right" }, numFmt: "0.0" };
+  const textStyle = { alignment: { horizontal: "left" } };
 
-    const wsData = [
-      ["Tambo:", tamboSel.nombre],
-      ["Total Producido:", numberFormat.format(totales.produccion)],
-      ["Total Descarte:", numberFormat.format(totales.descarte)],
-      ["Total Guachera:", numberFormat.format(totales.guachera)],
-      ["Total Entregado:", numberFormat.format(totales.entregado)],
-      [],
-      ["Fecha", "Prod. M", "Prod. T", "Produccion", "Desc. M", "Desc. T", "Descarte", "Guach. M", "Guach. T", "Guachera", "Entregados", "Animales en Orden", "Prod. Individual", "Fabrica"]
+  let row = 0;
+
+  const addRow = (values, styles = []) => {
+    values.forEach((val, col) => {
+      const cellRef = XLSX.utils.encode_cell({ c: col, r: row });
+      const cell = {};
+      const isNumber = typeof val === "number" && !isNaN(val);
+
+      cell.v = val;
+      cell.t = isNumber ? "n" : "s";
+      if (styles[col]) {
+        cell.s = styles[col];
+      } else if (isNumber) {
+        cell.s = numberStyleLeft;
+      } else {
+        cell.s = textStyle;
+      }
+
+      ws[cellRef] = cell;
+    });
+    row++;
+  };
+
+  // Encabezados
+  addRow(["Tambo:", tamboSel.nombre]);
+  addRow(["Total Producido:", totales.produccion], [textStyle, numberStyleLeft]);
+  addRow(["Total Descarte:", totales.descarte], [textStyle, numberStyleLeft]);
+  addRow(["Total Guachera:", totales.guachera], [textStyle, numberStyleLeft]);
+  addRow(["Total Entregado:", totales.entregado], [textStyle, numberStyleLeft]);
+  addRow(
+    ["Total Promedio Individual:", totales.promedioIndividual],
+    [textStyle, numberStyleRight]
+  );
+  row++; // Espacio
+
+  // Cabecera de tabla
+  const headers = [
+    "Fecha", "Prod. M", "Prod. T", "Producción", "Desc. M", "Desc. T", "Descarte",
+    "Guach. M", "Guach. T", "Guachera", "Entregados", "Animales en Orden",
+    "Prod. Individual", "Fábrica"
+  ];
+  addRow(headers, Array(headers.length).fill(textStyle));
+
+  // Datos
+  producciones.forEach(p => {
+    const prodIndvVal = typeof p.prodIndv === "number" ? p.prodIndv : null;
+
+    const rowData = [
+      p.fecha.toDate ? format(p.fecha.toDate(), 'yyyy-MM-dd') : p.fecha,
+      p.prodM, p.prodT, p.produccion,
+      p.desM, p.desT, p.descarte,
+      p.guaM, p.guaT, p.guachera,
+      p.entregados, p.animalesEnOrd,
+      prodIndvVal,
+      p.fabrica || ""
     ];
 
-    producciones.forEach(p => {
-      wsData.push([
-        p.fecha.toDate ? format(p.fecha.toDate(), 'yyyy-MM-dd') : p.fecha,
-        formatMiles(p.prodM),
-        formatMiles(p.prodT),
-        formatMiles(p.produccion),
-        formatMiles(p.desM),
-        formatMiles(p.desT),
-        formatMiles(p.descarte),
-        formatMiles(p.guaM),
-        formatMiles(p.guaT),
-        formatMiles(p.guachera),
-        formatMiles(p.entregados),
-        formatMiles(p.animalesEnOrd),
-        typeof p.prodIndv === 'number'
-          ? new Intl.NumberFormat('es-ES', { minimumFractionDigits: 1, maximumFractionDigits: 1 }).format(p.prodIndv)
-          : p.prodIndv,
-        p.fabrica || ""
-      ]);
+    const styles = rowData.map((_, idx) => {
+      if (idx === 12) return numberStyleRight; // Prod. Individual
+      if (idx === 0 || idx === 13) return textStyle; // Fecha y Fabrica
+      return typeof rowData[idx] === "number" ? numberStyleLeft : textStyle;
     });
 
-    const ws = XLSX.utils.aoa_to_sheet(wsData);
-    ws['!ref'] = XLSX.utils.encode_range({ s: { c: 0, r: 0 }, e: { c: 13, r: wsData.length - 1 } });
+    addRow(rowData, styles);
+  });
 
-    const wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, "Producción");
+  // Definir rango
+  ws['!ref'] = XLSX.utils.encode_range({ s: { c: 0, r: 0 }, e: { c: headers.length - 1, r: row - 1 } });
 
-    const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
-    const data = new Blob([excelBuffer], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+  // Crear y guardar
+  XLSX.utils.book_append_sheet(wb, ws, "Producción");
 
-    const fechaActual = new Date().toISOString().split('T')[0];
-    const nombreArchivo = `Produccion_${fechaActual}_${tamboSel.nombre.replace(/\s+/g, "_")}.xlsx`;
+  const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array", cellStyles: true });
+  const data = new Blob([excelBuffer], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+  const fechaActual = new Date().toISOString().split('T')[0];
+  const nombreArchivo = `Produccion_${fechaActual}_${tamboSel.nombre.replace(/\s+/g, "_")}.xlsx`;
+  saveAs(data, nombreArchivo);
+};
 
-    saveAs(data, nombreArchivo);
-  };
 
 
 
   return (
-    <Layout titulo="Producción">
-      <Botonera>
-        <Form onSubmit={(e) => { e.preventDefault(); handleSubmit(valores); }}>
-          <Row>
-            <Col lg>
-              <Form.Label>Desde</Form.Label>
-              <ButtonGroup className="produccion-botonera">
-                <div className="produccion-tooltip">
-                  <Button className={`produccion-btn ${valores.tipoFecha === 'ud' ? 'activo' : ''}`} variant="info" onClick={() => realizarBusqueda('ud')}>1 DÍA</Button>
-                  <span className="produccion-tooltip-text">Ultimo dia</span>
-                </div>
-                <div className="produccion-tooltip">
-                  <Button className={`produccion-btn ${valores.tipoFecha === 'mv' ? 'activo' : ''}`} variant="info" onClick={() => realizarBusqueda('mv')}>MES EN CURSO</Button>
-                  <span className="produccion-tooltip-text">Ultimo mes</span>
-                </div>
-                <div className="produccion-tooltip">
-                  <Button
-                    className={`produccion-btn ${valores.tipoFecha === 'ef' ? 'activo' : ''}`}
-                    variant="info"
-                    onClick={() => setValores({ ...valores, tipoFecha: 'ef' })}
-                  >
-                    POR FECHA
-                  </Button>
-                  <span className="produccion-tooltip-text">Selecciona un rango de fechas</span>
-                </div>
-              </ButtonGroup>
-            </Col>
-            {valores.tipoFecha === 'ef' && (
-              <>
-                <Col lg>
-                  <Form.Label>Inicio</Form.Label>
-                  <Form.Control type="date" name="fini" value={valores.fini} onChange={handleChange} required />
-                </Col>
-                <Col lg>
-                  <Form.Label>Fin</Form.Label>
-                  <Form.Control type="date" name="ffin" value={valores.ffin} onChange={handleChange} required />
-                </Col>
-              </>
-            )}
-            <Col lg>
-              <Form.Group>
-                <br />
-                <Button variant="info" block type="submit">
-                  <RiSearchLine size={22} /> Buscar
-                </Button>
-              </Form.Group>
-              <Button variant="success" block onClick={exportToExcel}>
-                Descargar Excel
+ <Layout titulo="Producción">
+  <Botonera>
+    <Form onSubmit={(e) => { e.preventDefault(); handleSubmit(valores); }}>
+      <Row className="Repo-produ-filtros">
+        <Col lg>
+          <Form.Label>Desde</Form.Label>
+          <ButtonGroup className="produccion-botonera">
+            <div className="produccion-tooltip">
+              <Button className={`produccion-btn ${valores.tipoFecha === 'ud' ? 'activo' : ''}`} variant="info" onClick={() => realizarBusqueda('ud')}>1 DÍA</Button>
+              <span className="produccion-tooltip-text">Último día</span>
+            </div>
+            <div className="produccion-tooltip">
+              <Button className={`produccion-btn ${valores.tipoFecha === 'mv' ? 'activo' : ''}`} variant="info" onClick={() => realizarBusqueda('mv')}>MES EN CURSO</Button>
+              <span className="produccion-tooltip-text">Mes actual</span>
+            </div>
+            <div className="produccion-tooltip">
+              <Button
+                className={`produccion-btn ${valores.tipoFecha === 'ef' ? 'activo' : ''}`}
+                variant="info"
+                onClick={() => setValores({ ...valores, tipoFecha: 'ef' })}
+              >
+                POR FECHA
               </Button>
+              <span className="produccion-tooltip-text">Selecciona un rango</span>
+            </div>
+          </ButtonGroup>
+        </Col>
+
+        {valores.tipoFecha === 'ef' && (
+          <>
+            <Col lg>
+              <Form.Label>Inicio</Form.Label>
+              <Form.Control type="date" name="fini" value={valores.fini} onChange={handleChange} required />
             </Col>
-          </Row>
-        </Form>
-      </Botonera>
-  
-      {procesando ? (
-        <ContenedorSpinner>
-          <Spinner animation="border" variant="info" />
-        </ContenedorSpinner>
-      ) : tamboSel ? (
-        producciones.length === 0 ? (
-          <Mensaje>
-            <Alert variant="warning">No se encontraron resultados</Alert>
-          </Mensaje>
-        ) : (
-          <Contenedor>
-            <tr>
-              <td><h6>Total Producido:</h6></td>
-              <td>{new Intl.NumberFormat('es-ES').format(totales.produccion)}</td>
-              <td>&nbsp;</td>
-              <td><h6>Total Descarte:</h6></td>
-              <td>{new Intl.NumberFormat('es-ES').format(totales.descarte)}</td>
-              <td>&nbsp;</td>
-              <td><h6>Total Guachera:</h6></td>
-              <td>{new Intl.NumberFormat('es-ES', { useGrouping: true, maximumFractionDigits: 0 }).format(Number(totales.guachera))}</td>
-              <td>&nbsp;</td>
-              <td><h6>Total Entregado:</h6></td>
-              <td>{new Intl.NumberFormat('es-ES').format(totales.entregado)}</td>
-            </tr>
-  
-            <Button
-              variant="dark"
-              onClick={() => setMostrarGrafico(!mostrarGrafico)}
-              style={{ margin: '0', marginleft: '50px' }}
-            >
-              {mostrarGrafico ? 'Ocultar gráfico' : 'Ver gráfico'}
-            </Button>
-  
-            {mostrarGrafico && <GraficoProduccion data={producciones} />}
-  
-            <StickyTable height={350}>
-              <Table responsive>
-                <thead>
-                  <tr>
-                    <th>Fecha</th>
-                    <th>Prod. M</th>
-                    <th>Prod. T</th>
-                    <th>Produccion</th>
-                    <th>Desc. M</th>
-                    <th>Desc. T</th>
-                    <th>Descarte</th>
-                    <th>Guach. M</th>
-                    <th>Guach. T</th>
-                    <th>Guachera</th>
-                    <th>Entregados</th>
-                    <th>Vacas en ordeñe</th>
-                    <th>Prod. Individual</th>
-                    <th>Fabrica</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {producciones.map(p => (
-                    <DetalleProduccion key={p.id} prod={p} />
-                  ))}
-                </tbody>
-              </Table>
-            </StickyTable>
-          </Contenedor>
-        )
-      ) : (
-        <SelectTambo />
-      )}
-    </Layout>
+            <Col lg>
+              <Form.Label>Fin</Form.Label>
+              <Form.Control type="date" name="ffin" value={valores.ffin} onChange={handleChange} required />
+            </Col>
+          </>
+        )}
+
+        <Col lg className="Repo-produ-acciones">
+          <Button variant="info" type="submit" block>
+            <RiSearchLine size={22} /> Buscar
+          </Button>
+          <Button variant="success" block onClick={exportToExcel}>
+            Descargar Excel
+          </Button>
+        </Col>
+      </Row>
+    </Form>
+  </Botonera>
+
+  {procesando ? (
+    <ContenedorSpinner>
+      <Spinner animation="border" variant="info" />
+    </ContenedorSpinner>
+  ) : tamboSel ? (
+    producciones.length === 0 ? (
+      <Mensaje>
+        <Alert variant="warning">No se encontraron resultados</Alert>
+      </Mensaje>
+    ) : (
+<Contenedor className="Repo-produ-wrapper">
+ <div className="Repo-produ-topbar">
+  <div className="Repo-produ-resumen">
+    <span><strong>Total Producido:</strong> {formatMiles(totales.produccion)}</span>
+    <span><strong>Total Descarte:</strong> {formatMiles(totales.descarte)}</span>
+    <span><strong>Total Guachera:</strong> {formatMiles(totales.guachera)}</span>
+    <span><strong>Total Entregado:</strong> {formatMiles(totales.entregado)}</span>
+    <span><strong>Total Prom. Individual:</strong> {typeof totales.promedioIndividual === 'number'
+      ? totales.promedioIndividual.toFixed(1)
+      : '-'}</span>
+  </div>
+
+  <div className="Repo-produ-topbar-right">
+    <Button
+      className="Repo-produ-grafico"
+      onClick={() => setMostrarGrafico(!mostrarGrafico)}
+      variant="dark"
+    >
+      {mostrarGrafico ? 'Ocultar gráfico' : 'Ver gráfico'}
+    </Button>
+  </div>
+</div>
+
+
+  {mostrarGrafico && (
+  <GraficoProduccion 
+    data={producciones} 
+    promedioTotal={totales.promedioIndividual}
+  />
+)}
+
+<div className="Repo-produ-tabla-wrapper">
+  <Table responsive bordered hover className="Repo-produ-tabla">
+    <thead>
+      <tr>
+        <th>Fecha</th>
+        <th>Prod. M</th>
+        <th>Prod. T</th>
+        <th>Producción</th>
+        <th>Desc. M</th>
+        <th>Desc. T</th>
+        <th>Descarte</th>
+        <th>Guach. M</th>
+        <th>Guach. T</th>
+        <th>Guachera</th>
+        <th>Entregados</th>
+        <th>Vacas en Ordeñe</th>
+        <th>Prod. Individual</th>
+        <th>Fábrica</th>
+      </tr>
+    </thead>
+    <tbody>
+      {producciones.map(p => (
+        <DetalleProduccion key={p.id} prod={p} />
+      ))}
+    </tbody>
+  </Table>
+</div>
+
+</Contenedor>
+
+    )
+  ) : (
+    <SelectTambo />
+  )}
+</Layout>
+
   )
-  
+
 }
 
 export default Produccion

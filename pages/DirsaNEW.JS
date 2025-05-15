@@ -1,5 +1,3 @@
-///////////////// DIRSA NUEVO ULTIMA VERSION
-
 import React, { useState, useRef, useContext } from 'react';
 import * as XLSX from 'xlsx';
 import Layout from '../components/layout/layout';
@@ -7,7 +5,7 @@ import { Button, Row, Col, Image, Spinner } from 'react-bootstrap';
 import { procesarEventosTambo } from '../components/layout/procesarEventosTambos';
 import { FirebaseContext } from '../firebase2';
 import ResultadosCargas from '../components/layout/ResultadosCargas';
-import  procesarParto  from '../components/layout/registrarParto'; // ✅ cambio correcto
+import procesarParto from '../components/layout/registrarParto';
 
 const Dirsa = () => {
     const { firebase, usuario, tamboSel } = useContext(FirebaseContext);
@@ -65,22 +63,38 @@ const Dirsa = () => {
                     return;
                 }
 
-                const encabezados = jsonData[0].map(h => h.toString().trim().toUpperCase());
-                const indiceRP = encabezados.indexOf("RP");
-                const indiceFechaEvento = encabezados.indexOf("FECHA DE EVENTO (XX/XX/XXXX)");
-                const indiceCodigoEvento = encabezados.indexOf("CODIGO DE EVENTO (*)");
+                const encabezados = jsonData[0].map(h => h.toString().trim());
+                const encabezadosMayus = encabezados.map(h => h.toUpperCase());
+                const indiceRP = encabezadosMayus.indexOf("RP");
+                const indiceCodigoEvento = encabezadosMayus.findIndex(h => h === "CODIGO DE EVENTO (*)" || h === "D.EV");
 
-                if (indiceRP === -1 || indiceFechaEvento === -1 || indiceCodigoEvento === -1) {
+                if (indiceRP === -1 || indiceCodigoEvento === -1) {
                     setErrores(["Error: La estructura del archivo es incorrecta. Verifica los encabezados."]);
                     setIsLoading(false);
                     return;
                 }
 
-                jsonData = jsonData.slice(1).map(row => ({
-                    RP: limpiarRP(row[indiceRP]), 
-                    'FECHA DE EVENTO (xx/xx/xxxx)': convertirFecha(row[indiceFechaEvento]),
-                    'CODIGO DE EVENTO (*)': row[indiceCodigoEvento]?.toString().trim() || ""
-                })).filter(item => item.RP && item['CODIGO DE EVENTO (*)']);
+                jsonData = jsonData.slice(1).map((row) => {
+                    const obj = {};
+                    encabezados.forEach((encabezado, i) => {
+                        let valor = row[i];
+
+                        if (encabezado.toUpperCase().includes("FECHA")) {
+                            valor = convertirFecha(valor);
+                        }
+
+                        obj[encabezado] = typeof valor === "string" ? valor.trim() : valor;
+                    });
+
+                    if (obj["RP"]) {
+                        obj["RP"] = limpiarRP(obj["RP"]);
+                    }
+
+                    return obj;
+                }).filter(item =>
+                    item.RP &&
+                    (item["CODIGO DE EVENTO (*)"] || item["D.Ev"])
+                );
 
                 if (jsonData.length === 0) {
                     setErrores(["No hay datos válidos en la planilla."]);
@@ -97,13 +111,18 @@ const Dirsa = () => {
                 }
 
                 console.log("📊 Total eventos cargados:", jsonData.length);
-                const eventosParto = jsonData.filter(evento => evento['CODIGO DE EVENTO (*)'] === "PA");
+
+                // ✅ Detección generalizada de evento parto
+                const eventosParto = jsonData.filter(evento => {
+                    const cod = (evento["CODIGO DE EVENTO (*)"] || evento["D.Ev"] || "").toString().toUpperCase().trim();
+                    return cod === "PA" || cod === "PARTO";
+                });
                 console.log("🐄 Eventos de parto detectados:", eventosParto.length, eventosParto);
 
                 for (const evento of eventosParto) {
                     const rpLimpio = limpiarRP(evento.RP);
-                    evento.RP = rpLimpio; // aseguramos consistencia para la función que recibe
-                
+                    evento.RP = rpLimpio;
+
                     try {
                         await procesarParto(evento, tamboSel, firebase, usuario);
                         setActualizados(prev => [...prev, `✅ Parto registrado para RP ${rpLimpio}`]);
@@ -112,7 +131,13 @@ const Dirsa = () => {
                     }
                 }
 
-                for (const evento of jsonData.filter(e => e['CODIGO DE EVENTO (*)'] !== "PA")) {
+                // ✅ Otros eventos (no parto)
+                const otrosEventos = jsonData.filter(evento => {
+                    const cod = (evento["CODIGO DE EVENTO (*)"] || evento["D.Ev"] || "").toString().toUpperCase().trim();
+                    return cod !== "PA" && cod !== "PARTO";
+                });
+
+                for (const evento of otrosEventos) {
                     try {
                         await procesarEventosTambo([evento], tamboSel, setErrores, setActualizados, () => {}, firebase, usuario);
                         setActualizados(prev => [...prev, `✅ RP ${evento.RP} actualizado`]);

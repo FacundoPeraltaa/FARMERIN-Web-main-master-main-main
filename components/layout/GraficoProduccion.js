@@ -1,7 +1,7 @@
-// components/charts/GraficoProduccion.js
 import React from 'react';
 import {
-  LineChart, Line, XAxis, YAxis, Tooltip, Legend,
+  ComposedChart, Line, Bar,
+  XAxis, YAxis, Tooltip, Legend,
   ResponsiveContainer, CartesianGrid
 } from 'recharts';
 
@@ -27,46 +27,74 @@ const formatProdIndv = (num) => {
 };
 
 // 📊 Tooltip personalizado
-const CustomTooltip = ({ active, payload, label }) => {
+const TooltipGeneral = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
     const prod = payload.find(p => p.dataKey === 'produccion')?.value;
-    const animales = payload.find(p => p.dataKey === 'animales')?.value;
-    const prodIndv = payload.find(p => p.dataKey === 'prodIndv')?.value;
-
+    const vacas = payload.find(p => p.dataKey === 'animales')?.value;
     return (
-      <div style={{ background: '#fff', border: '1px solid #ccc', padding: 10 }}>
+      <div style={{ background: '#fff', border: '1px solid #ccc', padding: 10, borderRadius: 6 }}>
         <p><strong>{label}</strong></p>
-        <p>Producción: {formatNumber(prod)}</p>
-        <p>Animales en ordeñe: {formatNumber(animales)}</p>
-        <p>Prod. Individual: {formatProdIndv(prodIndv)}</p>
+        <p>🍼 Producción: <strong>{formatNumber(prod)} lts</strong></p>
+        <p>🐄 Vacas en ordeñe: <strong>{formatNumber(vacas)}</strong></p>
       </div>
     );
   }
   return null;
 };
 
-const GraficoProduccion = ({ data }) => {
+const GraficoProduccion = ({ data, promedioTotal }) => {
   const formattedData = data.map(item => ({
     fecha: item.fecha.toDate ? item.fecha.toDate().toISOString().split('T')[0] : item.fecha,
     produccion: item.produccion,
-    animales: item.animalesEnOrd,
-    prodIndv: typeof item.prodIndv === 'number' ? item.prodIndv : 0
+    animales: item.animalesEnOrd
   }));
 
   return (
-    <div style={{ width: '100%', height: 400, marginTop: 40 }}>
-      <ResponsiveContainer>
-        <LineChart data={formattedData}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="fecha" />
-          <YAxis />
-          <Tooltip content={<CustomTooltip />} />
-          <Legend />
-          <Line type="monotone" dataKey="produccion" stroke="#8884d8" name="Producción" />
-          <Line type="monotone" dataKey="animales" stroke="#82ca9d" name="Animales en ordeñe" />
-          <Line type="monotone" dataKey="prodIndv" stroke="#ffc658" name="Prod. Individual" />
-        </LineChart>
-      </ResponsiveContainer>
+    <div style={{ width: '100%', marginTop: 40 }}>
+      {/* Título */}
+      <h3 style={{ textAlign: 'center', marginBottom: 5 }}>
+        Producción Total y Vacas en Ordeñe
+      </h3>
+
+      {/* Subtítulo del promedio individual total */}
+      {typeof promedioTotal === 'number' && (
+        <p style={{
+          textAlign: 'center',
+          fontSize: '1.1rem',
+          fontWeight: 'bold',
+          color: '#d32f2f',
+          marginBottom: 20
+        }}>
+          Prom. Individual Total: {formatProdIndv(promedioTotal)} lts/vaca
+        </p>
+      )}
+
+      {/* Gráfico */}
+      <div style={{ width: '100%', height: 360 }}>
+        <ResponsiveContainer>
+          <ComposedChart data={formattedData} margin={{ top: 20, right: 30, left: 20, bottom: 0 }}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="fecha" />
+            <YAxis tickFormatter={formatNumber} />
+            <Tooltip content={<TooltipGeneral />} />
+            <Legend verticalAlign="top" height={36} />
+            <Bar
+              dataKey="produccion"
+              barSize={30}
+              fill="#81d4fa"
+              name="🍼 Producción"
+            />
+            <Line
+              type="monotone"
+              dataKey="animales"
+              stroke="#66bb6a"
+              strokeWidth={2}
+              dot={{ r: 2 }}
+              name="🐄 Vacas en ordeñe"
+            />
+          </ComposedChart>
+        </ResponsiveContainer>
+      </div>
     </div>
   );
 };
