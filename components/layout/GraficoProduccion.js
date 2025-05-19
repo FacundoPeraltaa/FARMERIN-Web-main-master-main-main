@@ -72,18 +72,39 @@ const GraficoProduccion = ({ data, promedioTotal }) => {
       {/* Gráfico */}
       <div style={{ width: '100%', height: 360 }}>
         <ResponsiveContainer>
-          <ComposedChart data={formattedData} margin={{ top: 20, right: 30, left: 20, bottom: 0 }}>
+          <ComposedChart
+            data={formattedData}
+            margin={{ top: 20, right: 30, left: 20, bottom: 0 }}
+          >
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="fecha" />
-            <YAxis tickFormatter={formatNumber} />
+            
+            {/* Eje Y izquierdo: Producción */}
+            <YAxis
+              yAxisId="left"
+              tickFormatter={formatNumber}
+              label={{ value: 'Producción (lts)', angle: -90, position: 'insideLeft' }}
+            />
+            
+            {/* Eje Y derecho: Vacas en ordeñe */}
+            <YAxis
+              yAxisId="right"
+              orientation="right"
+              tickFormatter={formatNumber}
+              label={{ value: 'Vacas en ordeñe', angle: -90, position: 'insideRight' }}
+            />
+
             <Tooltip content={<TooltipGeneral />} />
             <Legend verticalAlign="top" height={36} />
+
             <Bar
               dataKey="produccion"
               barSize={30}
               fill="#81d4fa"
               name="🍼 Producción"
+              yAxisId="left"
             />
+
             <Line
               type="monotone"
               dataKey="animales"
@@ -91,6 +112,7 @@ const GraficoProduccion = ({ data, promedioTotal }) => {
               strokeWidth={2}
               dot={{ r: 2 }}
               name="🐄 Vacas en ordeñe"
+              yAxisId="right"
             />
           </ComposedChart>
         </ResponsiveContainer>

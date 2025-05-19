@@ -13,6 +13,7 @@ function IngresosFiltrados() {
   const [sinIngresos, setSinIngresos] = useState(false);
   const [finesTurno, setFinesTurno] = useState(null);
   const [cargandoTurnos, setCargandoTurnos] = useState(false);
+  const [resultadoAnalisis, setResultadoAnalisis] = useState(null);
 
   // ✅ Verificar si existe la colección "ingresos" al montar el componente
   useEffect(() => {
@@ -210,10 +211,51 @@ function IngresosFiltrados() {
       </Layout>
     );
   }
+  //// ANALIZAR RP 
+  const analizarERP = () => {
+    const mañana = datosFiltrados.filter(d => d.turno === 'Mañana').map(d => d.rp);
+    const tarde = datosFiltrados.filter(d => d.turno === 'Tarde').map(d => d.rp);
+
+    const setM = new Set(mañana);
+    const setT = new Set(tarde);
+
+    const duplicadosM = mañana.filter((erp, i, arr) => arr.indexOf(erp) !== i && tarde.includes(erp));
+    const duplicadosT = tarde.filter((erp, i, arr) => arr.indexOf(erp) !== i && mañana.includes(erp));
+
+    const soloMañana = [...setM].filter(erp => !setM.has(erp));
+    const soloTarde = [...setT].filter(erp => !setM.has(erp));
+
+    // Si solo hay datos de un turno
+    if (mañana.length > 0 && tarde.length === 0) {
+      const duplicadosUnicos = mañana.filter((erp, i, arr) => arr.indexOf(erp) !== i);
+      setResultadoAnalisis({
+        unico: 'Mañana',
+        duplicados: duplicadosUnicos,
+      });
+      return;
+    }
+
+    if (tarde.length > 0 && mañana.length === 0) {
+      const duplicadosUnicos = tarde.filter((erp, i, arr) => arr.indexOf(erp) !== i);
+      setResultadoAnalisis({
+        unico: 'Tarde',
+        duplicados: duplicadosUnicos,
+      });
+      return;
+    }
+
+    // Ambos turnos presentes
+    setResultadoAnalisis({
+      duplicadosMañana: [...new Set(duplicadosM)],
+      duplicadosTarde: [...new Set(duplicadosT)],
+      soloEnMañana: soloMañana,
+      soloEnTarde: soloTarde,
+    });
+  };
 
   // ✅ Interfaz normal si la colección sí existe
   return (
-    <Layout>
+    <Layout titulo="Herramientas">
       <div className="ingresos-container">
         <h2 className='ingresosT-titulo'>Control de Turnos</h2>
         <div className="descripcion-turnos">
@@ -272,6 +314,67 @@ function IngresosFiltrados() {
             Descargar Excel
           </button>
         </div>
+        <div>
+          {datosFiltrados.length > 0 && (
+            <button
+              onClick={analizarERP}
+              className="ingresosT-container-btn-buscar"            >
+              <FaSearch />
+              Analizar Turnos
+            </button>
+          )}
+
+        </div>
+        {resultadoAnalisis && (
+          <div className="resultado-analisis">
+            <div className="analisis-header">
+              <h3>Resultado del análisis</h3>
+              <button
+                className="btn-cerrar-analisis"
+                onClick={() => setResultadoAnalisis(null)}
+              >
+                ✕
+              </button>
+            </div>
+
+            {resultadoAnalisis.unico ? (
+              <>
+                <p>
+                  <strong>Solo hay datos del turno:</strong>
+                  <span className="unico-turno"> {resultadoAnalisis.unico}</span>
+                </p>
+                {resultadoAnalisis.duplicados.length > 0 ? (
+                  <p>
+                    <strong>ERP duplicados:</strong>
+                    <span className="duplicados"> {resultadoAnalisis.duplicados.join(', ')}</span>
+                  </p>
+                ) : (
+                  <p><span className="sin-duplicados">No hay ERP duplicados.</span></p>
+                )}
+              </>
+            ) : (
+              <>
+                <p>
+                  <strong>ERP duplicados en turno Mañana:</strong>
+                  <span className="duplicados"> {resultadoAnalisis.duplicadosMañana.join(', ') || 'Ninguno'}</span>
+                </p>
+                <p>
+                  <strong>ERP duplicados en turno Tarde:</strong>
+                  <span className="duplicados"> {resultadoAnalisis.duplicadosTarde.join(', ') || 'Ninguno'}</span>
+                </p>
+                <p>
+                  <strong>Solo en Mañana:</strong>
+                  <span className="solo-turno"> {resultadoAnalisis.soloEnMañana.join(', ') || 'Ninguno'}</span>
+                </p>
+                <p>
+                  <strong>Solo en Tarde:</strong>
+                  <span className="solo-turno"> {resultadoAnalisis.soloEnTarde.join(', ') || 'Ninguno'}</span>
+                </p>
+              </>
+            )}
+          </div>
+
+        )}
 
         {cargando ? (
           <button class="loader__btn-Ingresos">

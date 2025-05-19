@@ -1,9 +1,26 @@
 import React from 'react';
 
 const ResultadosCargas = ({ titulo, actualizados, errores }) => {
+  let mensajeGlobal = '';
+  let claseMensaje = '';
+
+  if (actualizados.length > 0 && errores.length === 0) {
+    mensajeGlobal = '✅ Carga exitosa.';
+    claseMensaje = 'mensaje-exito-Rcargas';
+  } else if (errores.length > 0) {
+    mensajeGlobal = '❌ Carga fallida. Revisá los errores.';
+    claseMensaje = 'mensaje-error-Rcargas';
+  }
+
   return (
     <div className="result-container">
       <h2 className="result-header">{titulo}</h2>
+
+      {mensajeGlobal && (
+        <div className={`mensaje-global-Rcargas ${claseMensaje}`}>
+          {mensajeGlobal}
+        </div>
+      )}
 
       {/* Registros Actualizados */}
       <div className="result-box success-box">

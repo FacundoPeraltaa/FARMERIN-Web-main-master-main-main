@@ -4128,6 +4128,28 @@ button.listasAnimalesCerrar-button:hover svg {
     }
   }
 }
+//// RESULTADO DE CARGA EN DIRSA 
+
+.mensaje-global-Rcargas {
+  margin: 1rem 0;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.mensaje-exito-Rcargas {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.mensaje-error-Rcargas {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
 
 .result-container {
   display: flex;
@@ -4923,4 +4945,68 @@ body {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+//// resultado listas 
+.resultado-analisis {
+  margin-top: 20px;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  color: #333;
+  font-size: 16px;
+  line-height: 1.6;
+
+  h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #1b829b;
+  }
+
+  p {
+    margin: 8px 0;
+
+    strong {
+      font-weight: 600;
+    }
+
+    span {
+      &.duplicados {
+        color: #b02a37;
+      }
+
+      &.unico-turno {
+        color: #555;
+      }
+
+      &.sin-duplicados {
+        color: #28a745;
+      }
+
+      &.solo-turno {
+        color: #6c757d;
+      }
+    }
+  }
+}
+
+.analisis-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-cerrar-analisis {
+  background-color: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: #888;
+  cursor: pointer;
+}
+
+.btn-cerrar-analisis:hover {
+  color: #c00;
 }
